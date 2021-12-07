@@ -9,6 +9,21 @@
     <script nomodule src="/build/achan-booking-modal.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <!-- <button class="modal-btn">button</button> -->
+    <modal-button class="modal-btn"></modal-button>
+    <modal-component></modal-component>
+
+    <script>
+      const modalButton = document.querySelector('.modal-btn');
+      const achanModal = document.querySelector('modal-component');
+      modalButton.addEventListener('click', () => {
+        if (!achanModal.opened) {
+          console.log('Opening modal...')
+          achanModal.opened = true;
+        }
+      })
+
+
+    </script>
   </body>
 </html>

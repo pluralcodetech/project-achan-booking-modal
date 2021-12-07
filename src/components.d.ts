@@ -6,56 +6,51 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface ModalButton {
+        "class": string;
+        "externalbtn": string;
+    }
+    interface ModalComponent {
+        "opened": boolean;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLModalButtonElement extends Components.ModalButton, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLModalButtonElement: {
+        prototype: HTMLModalButtonElement;
+        new (): HTMLModalButtonElement;
+    };
+    interface HTMLModalComponentElement extends Components.ModalComponent, HTMLStencilElement {
+    }
+    var HTMLModalComponentElement: {
+        prototype: HTMLModalComponentElement;
+        new (): HTMLModalComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "modal-button": HTMLModalButtonElement;
+        "modal-component": HTMLModalComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface ModalButton {
+        "class"?: string;
+        "externalbtn"?: string;
+    }
+    interface ModalComponent {
+        "opened"?: boolean;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "modal-button": ModalButton;
+        "modal-component": ModalComponent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "modal-button": LocalJSX.ModalButton & JSXBase.HTMLAttributes<HTMLModalButtonElement>;
+            "modal-component": LocalJSX.ModalComponent & JSXBase.HTMLAttributes<HTMLModalComponentElement>;
         }
     }
 }
