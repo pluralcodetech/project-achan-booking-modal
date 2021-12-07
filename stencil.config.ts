@@ -6,6 +6,8 @@ import cssnano from "cssnano";
 import purgecss from "@fullhuman/postcss-purgecss";
 import replace from "postcss-replace"
 
+
+
 //purge function to keep only the classes used in EACH component
 const purge = purgecss({
   content: ["./src/**/*.tsx", "./src/index.html"],
@@ -15,6 +17,7 @@ const purge = purgecss({
 
 export const config: Config = {
   namespace: 'achan-booking-modal',
+  // globalStyle: 'src/global/global.css',
   outputTargets: [
     {
       type: 'dist',
@@ -31,6 +34,12 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
+
+  // bundles: [
+  //   { components: ['home-page', 'page-pickup-point', 'page-arrival-to-final-destination', 'page-roundtrip-pickup'] }
+  // ],
+  // collections: [{ name: '@stencil/router' }],
+
 
   //add postcss as a plugin
   plugins: [

@@ -6,15 +6,30 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface HomePage {
+    }
     interface ModalButton {
         "class": string;
         "externalbtn": string;
     }
     interface ModalComponent {
+        "logoIcon": string;
         "opened": boolean;
+    }
+    interface PageArrivalToFinalDestination {
+    }
+    interface PagePickupPoint {
+    }
+    interface PageRoundtripPickup {
     }
 }
 declare global {
+    interface HTMLHomePageElement extends Components.HomePage, HTMLStencilElement {
+    }
+    var HTMLHomePageElement: {
+        prototype: HTMLHomePageElement;
+        new (): HTMLHomePageElement;
+    };
     interface HTMLModalButtonElement extends Components.ModalButton, HTMLStencilElement {
     }
     var HTMLModalButtonElement: {
@@ -27,30 +42,69 @@ declare global {
         prototype: HTMLModalComponentElement;
         new (): HTMLModalComponentElement;
     };
+    interface HTMLPageArrivalToFinalDestinationElement extends Components.PageArrivalToFinalDestination, HTMLStencilElement {
+    }
+    var HTMLPageArrivalToFinalDestinationElement: {
+        prototype: HTMLPageArrivalToFinalDestinationElement;
+        new (): HTMLPageArrivalToFinalDestinationElement;
+    };
+    interface HTMLPagePickupPointElement extends Components.PagePickupPoint, HTMLStencilElement {
+    }
+    var HTMLPagePickupPointElement: {
+        prototype: HTMLPagePickupPointElement;
+        new (): HTMLPagePickupPointElement;
+    };
+    interface HTMLPageRoundtripPickupElement extends Components.PageRoundtripPickup, HTMLStencilElement {
+    }
+    var HTMLPageRoundtripPickupElement: {
+        prototype: HTMLPageRoundtripPickupElement;
+        new (): HTMLPageRoundtripPickupElement;
+    };
     interface HTMLElementTagNameMap {
+        "home-page": HTMLHomePageElement;
         "modal-button": HTMLModalButtonElement;
         "modal-component": HTMLModalComponentElement;
+        "page-arrival-to-final-destination": HTMLPageArrivalToFinalDestinationElement;
+        "page-pickup-point": HTMLPagePickupPointElement;
+        "page-roundtrip-pickup": HTMLPageRoundtripPickupElement;
     }
 }
 declare namespace LocalJSX {
+    interface HomePage {
+    }
     interface ModalButton {
         "class"?: string;
         "externalbtn"?: string;
     }
     interface ModalComponent {
+        "logoIcon"?: string;
         "opened"?: boolean;
     }
+    interface PageArrivalToFinalDestination {
+    }
+    interface PagePickupPoint {
+    }
+    interface PageRoundtripPickup {
+    }
     interface IntrinsicElements {
+        "home-page": HomePage;
         "modal-button": ModalButton;
         "modal-component": ModalComponent;
+        "page-arrival-to-final-destination": PageArrivalToFinalDestination;
+        "page-pickup-point": PagePickupPoint;
+        "page-roundtrip-pickup": PageRoundtripPickup;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
             "modal-button": LocalJSX.ModalButton & JSXBase.HTMLAttributes<HTMLModalButtonElement>;
             "modal-component": LocalJSX.ModalComponent & JSXBase.HTMLAttributes<HTMLModalComponentElement>;
+            "page-arrival-to-final-destination": LocalJSX.PageArrivalToFinalDestination & JSXBase.HTMLAttributes<HTMLPageArrivalToFinalDestinationElement>;
+            "page-pickup-point": LocalJSX.PagePickupPoint & JSXBase.HTMLAttributes<HTMLPagePickupPointElement>;
+            "page-roundtrip-pickup": LocalJSX.PageRoundtripPickup & JSXBase.HTMLAttributes<HTMLPageRoundtripPickupElement>;
         }
     }
 }
