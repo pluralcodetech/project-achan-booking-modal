@@ -22,6 +22,8 @@ export namespace Components {
     }
     interface PagePickupPoint {
     }
+    interface PagePickuppointAirportDestination {
+    }
     interface PageRoundtripPickup {
     }
     interface RouteCard {
@@ -69,6 +71,12 @@ declare global {
         prototype: HTMLPagePickupPointElement;
         new (): HTMLPagePickupPointElement;
     };
+    interface HTMLPagePickuppointAirportDestinationElement extends Components.PagePickuppointAirportDestination, HTMLStencilElement {
+    }
+    var HTMLPagePickuppointAirportDestinationElement: {
+        prototype: HTMLPagePickuppointAirportDestinationElement;
+        new (): HTMLPagePickuppointAirportDestinationElement;
+    };
     interface HTMLPageRoundtripPickupElement extends Components.PageRoundtripPickup, HTMLStencilElement {
     }
     var HTMLPageRoundtripPickupElement: {
@@ -94,6 +102,7 @@ declare global {
         "modal-component": HTMLModalComponentElement;
         "page-arrival-to-final-destination": HTMLPageArrivalToFinalDestinationElement;
         "page-pickup-point": HTMLPagePickupPointElement;
+        "page-pickuppoint-airport-destination": HTMLPagePickuppointAirportDestinationElement;
         "page-roundtrip-pickup": HTMLPageRoundtripPickupElement;
         "route-card": HTMLRouteCardElement;
         "title-component": HTMLTitleComponentElement;
@@ -116,6 +125,8 @@ declare namespace LocalJSX {
     }
     interface PagePickupPoint {
     }
+    interface PagePickuppointAirportDestination {
+    }
     interface PageRoundtripPickup {
     }
     interface RouteCard {
@@ -132,6 +143,7 @@ declare namespace LocalJSX {
         "modal-component": ModalComponent;
         "page-arrival-to-final-destination": PageArrivalToFinalDestination;
         "page-pickup-point": PagePickupPoint;
+        "page-pickuppoint-airport-destination": PagePickuppointAirportDestination;
         "page-roundtrip-pickup": PageRoundtripPickup;
         "route-card": RouteCard;
         "title-component": TitleComponent;
@@ -147,6 +159,7 @@ declare module "@stencil/core" {
             "modal-component": LocalJSX.ModalComponent & JSXBase.HTMLAttributes<HTMLModalComponentElement>;
             "page-arrival-to-final-destination": LocalJSX.PageArrivalToFinalDestination & JSXBase.HTMLAttributes<HTMLPageArrivalToFinalDestinationElement>;
             "page-pickup-point": LocalJSX.PagePickupPoint & JSXBase.HTMLAttributes<HTMLPagePickupPointElement>;
+            "page-pickuppoint-airport-destination": LocalJSX.PagePickuppointAirportDestination & JSXBase.HTMLAttributes<HTMLPagePickuppointAirportDestinationElement>;
             "page-roundtrip-pickup": LocalJSX.PageRoundtripPickup & JSXBase.HTMLAttributes<HTMLPageRoundtripPickupElement>;
             "route-card": LocalJSX.RouteCard & JSXBase.HTMLAttributes<HTMLRouteCardElement>;
             "title-component": LocalJSX.TitleComponent & JSXBase.HTMLAttributes<HTMLTitleComponentElement>;
