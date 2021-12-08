@@ -1,8 +1,10 @@
 import { Component, getAssetPath, h, Prop } from "@stencil/core";
 
-import { createRouter, Route } from 'stencil-router-v2';
+import { Route } from 'stencil-router-v2';
+import { Router } from "./routerconfig/routerconfig";
 
-const Router = createRouter();
+
+console.log(Router);
 
 
 @Component({
@@ -54,6 +56,15 @@ export class ModalComponent {
                                     <Router.Switch>
                                         <Route path="/home">
                                             <home-page></home-page>
+                                        </Route>
+                                        <Route path="/page-pickup-point">
+                                            <page-pickup-point></page-pickup-point>
+                                        </Route>
+                                        <Route path="/page-arrival-to-final-destination">
+                                            <page-arrival-to-final-destination></page-arrival-to-final-destination>
+                                        </Route>
+                                        <Route path="/page-roundtrip-pickup">
+                                            <page-roundtrip-pickup></page-roundtrip-pickup>
                                         </Route>
                                         {/* Redirect to Home */}
                                         <Route path="/" to="/home"/>

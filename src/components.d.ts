@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface HomePage {
     }
+    interface MainScreen {
+    }
     interface ModalButton {
         "class": string;
         "externalbtn": string;
@@ -29,6 +31,12 @@ declare global {
     var HTMLHomePageElement: {
         prototype: HTMLHomePageElement;
         new (): HTMLHomePageElement;
+    };
+    interface HTMLMainScreenElement extends Components.MainScreen, HTMLStencilElement {
+    }
+    var HTMLMainScreenElement: {
+        prototype: HTMLMainScreenElement;
+        new (): HTMLMainScreenElement;
     };
     interface HTMLModalButtonElement extends Components.ModalButton, HTMLStencilElement {
     }
@@ -62,6 +70,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "home-page": HTMLHomePageElement;
+        "main-screen": HTMLMainScreenElement;
         "modal-button": HTMLModalButtonElement;
         "modal-component": HTMLModalComponentElement;
         "page-arrival-to-final-destination": HTMLPageArrivalToFinalDestinationElement;
@@ -71,6 +80,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface HomePage {
+    }
+    interface MainScreen {
     }
     interface ModalButton {
         "class"?: string;
@@ -88,6 +99,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "home-page": HomePage;
+        "main-screen": MainScreen;
         "modal-button": ModalButton;
         "modal-component": ModalComponent;
         "page-arrival-to-final-destination": PageArrivalToFinalDestination;
@@ -100,6 +112,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
+            "main-screen": LocalJSX.MainScreen & JSXBase.HTMLAttributes<HTMLMainScreenElement>;
             "modal-button": LocalJSX.ModalButton & JSXBase.HTMLAttributes<HTMLModalButtonElement>;
             "modal-component": LocalJSX.ModalComponent & JSXBase.HTMLAttributes<HTMLModalComponentElement>;
             "page-arrival-to-final-destination": LocalJSX.PageArrivalToFinalDestination & JSXBase.HTMLAttributes<HTMLPageArrivalToFinalDestinationElement>;
