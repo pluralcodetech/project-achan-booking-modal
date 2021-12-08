@@ -66,6 +66,7 @@ export class ModalComponent {
                                         <Route path="/page-roundtrip-pickup">
                                             <page-roundtrip-pickup></page-roundtrip-pickup>
                                         </Route>
+                                        
                                         {/* Redirect to Home */}
                                         <Route path="/" to="/home"/>
                                     </Router.Switch>

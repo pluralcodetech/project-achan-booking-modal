@@ -5,3 +5,11 @@
 .modal-container {
   background-color: rgba(0, 0, 0, 0.75);
 }
+
+.custom-text-color {
+  color: #0646a2;
+}
+
+.custom-border-color {
+  border-color: #0646a2;
+}

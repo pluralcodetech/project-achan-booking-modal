@@ -24,6 +24,13 @@ export namespace Components {
     }
     interface PageRoundtripPickup {
     }
+    interface RouteCard {
+        "faqIcon": string;
+        "pathname": string;
+        "places": string;
+    }
+    interface TitleComponent {
+    }
 }
 declare global {
     interface HTMLHomePageElement extends Components.HomePage, HTMLStencilElement {
@@ -68,6 +75,18 @@ declare global {
         prototype: HTMLPageRoundtripPickupElement;
         new (): HTMLPageRoundtripPickupElement;
     };
+    interface HTMLRouteCardElement extends Components.RouteCard, HTMLStencilElement {
+    }
+    var HTMLRouteCardElement: {
+        prototype: HTMLRouteCardElement;
+        new (): HTMLRouteCardElement;
+    };
+    interface HTMLTitleComponentElement extends Components.TitleComponent, HTMLStencilElement {
+    }
+    var HTMLTitleComponentElement: {
+        prototype: HTMLTitleComponentElement;
+        new (): HTMLTitleComponentElement;
+    };
     interface HTMLElementTagNameMap {
         "home-page": HTMLHomePageElement;
         "main-screen": HTMLMainScreenElement;
@@ -76,6 +95,8 @@ declare global {
         "page-arrival-to-final-destination": HTMLPageArrivalToFinalDestinationElement;
         "page-pickup-point": HTMLPagePickupPointElement;
         "page-roundtrip-pickup": HTMLPageRoundtripPickupElement;
+        "route-card": HTMLRouteCardElement;
+        "title-component": HTMLTitleComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -97,6 +118,13 @@ declare namespace LocalJSX {
     }
     interface PageRoundtripPickup {
     }
+    interface RouteCard {
+        "faqIcon"?: string;
+        "pathname"?: string;
+        "places"?: string;
+    }
+    interface TitleComponent {
+    }
     interface IntrinsicElements {
         "home-page": HomePage;
         "main-screen": MainScreen;
@@ -105,6 +133,8 @@ declare namespace LocalJSX {
         "page-arrival-to-final-destination": PageArrivalToFinalDestination;
         "page-pickup-point": PagePickupPoint;
         "page-roundtrip-pickup": PageRoundtripPickup;
+        "route-card": RouteCard;
+        "title-component": TitleComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -118,6 +148,8 @@ declare module "@stencil/core" {
             "page-arrival-to-final-destination": LocalJSX.PageArrivalToFinalDestination & JSXBase.HTMLAttributes<HTMLPageArrivalToFinalDestinationElement>;
             "page-pickup-point": LocalJSX.PagePickupPoint & JSXBase.HTMLAttributes<HTMLPagePickupPointElement>;
             "page-roundtrip-pickup": LocalJSX.PageRoundtripPickup & JSXBase.HTMLAttributes<HTMLPageRoundtripPickupElement>;
+            "route-card": LocalJSX.RouteCard & JSXBase.HTMLAttributes<HTMLRouteCardElement>;
+            "title-component": LocalJSX.TitleComponent & JSXBase.HTMLAttributes<HTMLTitleComponentElement>;
         }
     }
 }

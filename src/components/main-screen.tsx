@@ -1,4 +1,4 @@
-import { Component, h, Host } from "@stencil/core";
+import { Component, h, } from "@stencil/core";
 
 @Component({
     tag: "main-screen",
@@ -10,9 +10,35 @@ import { Component, h, Host } from "@stencil/core";
 export class MainScreen { 
     render() {
         return (
-            <Host>
-                <h1>Main Screen</h1>
-            </Host>
+            <div class="pt-14 pb-10">
+                <title-component>
+                    <h1 class="text-2xl custom-text-color">Book Our Aiport Taxi</h1>
+                </title-component>
+
+                <main class='mt-20 space-y-6'>
+                    <div>
+                        <route-card
+                            pathname="/page-pickup-point"
+                            places='Pick up Point - Departure Airport'
+                        ></route-card>
+                    </div>
+                    <div>
+                        <route-card
+                            pathname="/page-arrival-to-final-destination"
+                            places="Arrival Airport - Final Destination"
+                        ></route-card>
+                    </div>
+                    <div>
+                        <route-card
+                            pathname="/page-pickup-point"
+                            places='Round Trip Pick ups'
+                        ></route-card>
+                    </div>
+                    
+                    
+                    
+                </main>
+            </div>
         )
     }
 }
