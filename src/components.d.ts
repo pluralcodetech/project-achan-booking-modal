@@ -26,6 +26,7 @@ export namespace Components {
         "logoIcon": string;
     }
     interface PagePickuppointAirportDestination {
+        "logoIcon": string;
     }
     interface PageRoundtripPickup {
     }
@@ -132,6 +133,7 @@ declare namespace LocalJSX {
         "logoIcon"?: string;
     }
     interface PagePickuppointAirportDestination {
+        "logoIcon"?: string;
     }
     interface PageRoundtripPickup {
     }
