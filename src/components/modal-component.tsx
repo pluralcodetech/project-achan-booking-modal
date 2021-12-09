@@ -4,7 +4,7 @@ import { href, Route } from 'stencil-router-v2';
 
 
 import { Router } from "./routerconfig/routerconfig";
-import { toNextpageState } from "./globalState/globalState";
+import { branchId, toNextpageState } from "./globalState/globalState";
 
 
 console.log(Router);
@@ -24,11 +24,13 @@ console.log(toNextpageState.get('toNextpage'));
 
 export class ModalComponent {
     @Prop({ reflect: true, mutable: true }) opened: boolean;
+    @Prop({ reflect: true, mutable: true })  requiredid: string;
     @Prop() previousBtn = 'arrow-left.svg';
     @Prop() logoIcon = 'logo.png';
     
     componentWillLoad() { 
         toNextpageState.set('toNextpage', false);
+        branchId.set('id', this.requiredid);
     }
 
 

@@ -18,6 +18,7 @@ export namespace Components {
         "logoIcon": string;
         "opened": boolean;
         "previousBtn": string;
+        "requiredid": string;
     }
     interface PageArrivalToFinalDestination {
         "logoIcon": string;
@@ -126,6 +127,7 @@ declare namespace LocalJSX {
         "logoIcon"?: string;
         "opened"?: boolean;
         "previousBtn"?: string;
+        "requiredid"?: string;
     }
     interface PageArrivalToFinalDestination {
         "logoIcon"?: string;
