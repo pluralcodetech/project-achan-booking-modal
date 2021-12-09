@@ -1,10 +1,16 @@
 import { Component, getAssetPath, h, Prop } from "@stencil/core";
 
-import { Route } from 'stencil-router-v2';
+import { href, Route } from 'stencil-router-v2';
+
+
 import { Router } from "./routerconfig/routerconfig";
+import { toNextpageState } from "./globalState/globalState";
 
 
 console.log(Router);
+
+
+console.log(toNextpageState.get('toNextpage'));
 
 
 @Component({
@@ -18,13 +24,23 @@ console.log(Router);
 
 export class ModalComponent {
     @Prop({ reflect: true, mutable: true }) opened: boolean;
-    @Prop()logoIcon = 'logo.png';
+    @Prop() previousBtn = 'arrow-left.svg';
+    @Prop() logoIcon = 'logo.png';
+    
+    componentWillLoad() { 
+        toNextpageState.set('toNextpage', false);
+    }
 
 
     // Close the Modal
     closeModal() {
         this.opened = false;
         console.log("closing Modal...")
+    }
+
+    // Previous Button
+    previousButton() {
+        toNextpageState.set('toNextpage', false);
     }
 
     render() {
@@ -40,11 +56,26 @@ export class ModalComponent {
                                 <div class="flex items-center  justify-between p-4 border-b border-solid border-blueGray-200 rounded-t">
                                     <div>
                                         <div>
-                                            <img  
-                                                class="w-16" 
-                                                src={getAssetPath(`../assets/${this.logoIcon}`)} 
-                                                alt="logo-icon"
-                                            /> 
+                                            {!toNextpageState.get('toNextpage') ? (
+                                                <img  
+                                                    class="w-16" 
+                                                    src={getAssetPath(`../assets/${this.logoIcon}`)} 
+                                                    alt="logo-icon"
+                                                /> 
+                                            ) : (
+                                                    <a {...href('/home')} >
+                                                        <img 
+                                                            onClick={this.previousButton.bind(this)}  
+                                                            class="mr-6" 
+                                                            src={getAssetPath(`../assets/${this.previousBtn}`)} 
+                                                            alt="previous-icon"
+                                                        />
+                                                    </a>
+                                                    
+                                            )}
+                                            
+
+                                            
                                         </div>
                                     </div>
                                     <button

@@ -16,7 +16,7 @@ export class RouteCard {
 
     render() {
         return (
-            <a {...href(this.pathname)} >
+            <a {...href(this.pathname)}  >
                 <div class='p-5 mx-auto border flex flex-row items-center justify-between w-96 custom-border-color'>
                     <div>
                         <h1 class="font-semibold custom-text-color">{this.places}</h1>

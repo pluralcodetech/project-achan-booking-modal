@@ -17,10 +17,12 @@ export namespace Components {
     interface ModalComponent {
         "logoIcon": string;
         "opened": boolean;
+        "previousBtn": string;
     }
     interface PageArrivalToFinalDestination {
     }
     interface PagePickupPoint {
+        "logoIcon": string;
     }
     interface PagePickuppointAirportDestination {
     }
@@ -120,10 +122,12 @@ declare namespace LocalJSX {
     interface ModalComponent {
         "logoIcon"?: string;
         "opened"?: boolean;
+        "previousBtn"?: string;
     }
     interface PageArrivalToFinalDestination {
     }
     interface PagePickupPoint {
+        "logoIcon"?: string;
     }
     interface PagePickuppointAirportDestination {
     }

@@ -1,5 +1,5 @@
 import { Component, h } from "@stencil/core";
-import { Router } from "../routerconfig/routerconfig";
+// import { Router } from "../routerconfig/routerconfig";
 
 @Component({
     tag: "home-page",
@@ -10,8 +10,8 @@ import { Router } from "../routerconfig/routerconfig";
 
 export class HomePage {
     render() {
-        const url = Router.url?.pathname;
-        console.log(url);
+        // const url = Router.url?.pathname;
+        // console.log(url);
         return (
             <div>
                 <main-screen></main-screen>

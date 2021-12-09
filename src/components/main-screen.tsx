@@ -6,8 +6,11 @@ import { Component, h, } from "@stencil/core";
     shadow: true,
     assetsDirs: ['assets'],
 })
+    
+    
 
 export class MainScreen { 
+
     render() {
         return (
             <div class="pt-14 pb-10">
@@ -40,9 +43,7 @@ export class MainScreen {
                             places='Round Trip Pick ups'
                         ></route-card>
                     </div>
-                    
-                    
-                    
+
                 </main>
             </div>
         )
