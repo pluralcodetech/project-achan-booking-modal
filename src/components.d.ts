@@ -20,6 +20,7 @@ export namespace Components {
         "previousBtn": string;
     }
     interface PageArrivalToFinalDestination {
+        "logoIcon": string;
     }
     interface PagePickupPoint {
         "logoIcon": string;
@@ -125,6 +126,7 @@ declare namespace LocalJSX {
         "previousBtn"?: string;
     }
     interface PageArrivalToFinalDestination {
+        "logoIcon"?: string;
     }
     interface PagePickupPoint {
         "logoIcon"?: string;
