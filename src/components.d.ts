@@ -29,6 +29,7 @@ export namespace Components {
         "logoIcon": string;
     }
     interface PageRoundtripPickup {
+        "logoIcon": string;
     }
     interface RouteCard {
         "faqIcon": string;
@@ -136,6 +137,7 @@ declare namespace LocalJSX {
         "logoIcon"?: string;
     }
     interface PageRoundtripPickup {
+        "logoIcon"?: string;
     }
     interface RouteCard {
         "faqIcon"?: string;
