@@ -12,6 +12,16 @@ export namespace Components {
     }
     interface MainScreen {
     }
+    interface ModalBookingDetails {
+        "airport": string;
+        "date": string | number;
+        "destination": string;
+        "destinationAddress": string;
+        "dottedLines": string;
+        "estimatedPriceMax": string | number;
+        "estimatedPriceMin": string | number;
+        "time": string | number;
+    }
     interface ModalButton {
         "class": string;
         "externalbtn": string;
@@ -60,6 +70,12 @@ declare global {
     var HTMLMainScreenElement: {
         prototype: HTMLMainScreenElement;
         new (): HTMLMainScreenElement;
+    };
+    interface HTMLModalBookingDetailsElement extends Components.ModalBookingDetails, HTMLStencilElement {
+    }
+    var HTMLModalBookingDetailsElement: {
+        prototype: HTMLModalBookingDetailsElement;
+        new (): HTMLModalBookingDetailsElement;
     };
     interface HTMLModalButtonElement extends Components.ModalButton, HTMLStencilElement {
     }
@@ -113,6 +129,7 @@ declare global {
         "comfirm-booking": HTMLComfirmBookingElement;
         "home-page": HTMLHomePageElement;
         "main-screen": HTMLMainScreenElement;
+        "modal-booking-details": HTMLModalBookingDetailsElement;
         "modal-button": HTMLModalButtonElement;
         "modal-component": HTMLModalComponentElement;
         "page-arrival-to-final-destination": HTMLPageArrivalToFinalDestinationElement;
@@ -129,6 +146,16 @@ declare namespace LocalJSX {
     interface HomePage {
     }
     interface MainScreen {
+    }
+    interface ModalBookingDetails {
+        "airport"?: string;
+        "date"?: string | number;
+        "destination"?: string;
+        "destinationAddress"?: string;
+        "dottedLines"?: string;
+        "estimatedPriceMax"?: string | number;
+        "estimatedPriceMin"?: string | number;
+        "time"?: string | number;
     }
     interface ModalButton {
         "class"?: string;
@@ -163,6 +190,7 @@ declare namespace LocalJSX {
         "comfirm-booking": ComfirmBooking;
         "home-page": HomePage;
         "main-screen": MainScreen;
+        "modal-booking-details": ModalBookingDetails;
         "modal-button": ModalButton;
         "modal-component": ModalComponent;
         "page-arrival-to-final-destination": PageArrivalToFinalDestination;
@@ -180,6 +208,7 @@ declare module "@stencil/core" {
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
             "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
             "main-screen": LocalJSX.MainScreen & JSXBase.HTMLAttributes<HTMLMainScreenElement>;
+            "modal-booking-details": LocalJSX.ModalBookingDetails & JSXBase.HTMLAttributes<HTMLModalBookingDetailsElement>;
             "modal-button": LocalJSX.ModalButton & JSXBase.HTMLAttributes<HTMLModalButtonElement>;
             "modal-component": LocalJSX.ModalComponent & JSXBase.HTMLAttributes<HTMLModalComponentElement>;
             "page-arrival-to-final-destination": LocalJSX.PageArrivalToFinalDestination & JSXBase.HTMLAttributes<HTMLPageArrivalToFinalDestinationElement>;

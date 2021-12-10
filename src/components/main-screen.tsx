@@ -21,7 +21,8 @@ export class MainScreen {
                 <main class='mt-20 space-y-6'>
                     <div>
                         <route-card
-                            pathname="/page-pickup-point"
+                            // pathname="/page-pickup-point"
+                            pathname="/page-comfirm-booking"
                             places='Pick up Point - Departure Airport'
                         ></route-card>
                     </div>
@@ -45,6 +46,8 @@ export class MainScreen {
                     </div>
 
                 </main>
+
+                {/* <modal-booking-details></modal-booking-details> */}
             </div>
         )
     }
