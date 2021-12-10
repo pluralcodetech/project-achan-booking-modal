@@ -46,7 +46,6 @@ export class PageRoundtripPickusp {
         pickupTime: "",
         returnpickupDate: "",
         returnpickupTime: "",
-        
     };
 
     @State() firstNameErrMsg;

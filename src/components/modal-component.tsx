@@ -102,6 +102,9 @@ export class ModalComponent {
                                         <Route path="/page-roundtrip-pickup">
                                             <page-roundtrip-pickup></page-roundtrip-pickup>
                                         </Route>
+                                        <Route path="/page-comfirm-booking">
+                                            <comfirm-booking></comfirm-booking>
+                                        </Route>
 
                                         {/* Redirect to Home */}
                                         <Route path="/" to="/home"/>

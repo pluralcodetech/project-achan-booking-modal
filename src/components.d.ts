@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface ComfirmBooking {
+    }
     interface HomePage {
     }
     interface MainScreen {
@@ -41,6 +43,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLComfirmBookingElement extends Components.ComfirmBooking, HTMLStencilElement {
+    }
+    var HTMLComfirmBookingElement: {
+        prototype: HTMLComfirmBookingElement;
+        new (): HTMLComfirmBookingElement;
+    };
     interface HTMLHomePageElement extends Components.HomePage, HTMLStencilElement {
     }
     var HTMLHomePageElement: {
@@ -102,6 +110,7 @@ declare global {
         new (): HTMLTitleComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "comfirm-booking": HTMLComfirmBookingElement;
         "home-page": HTMLHomePageElement;
         "main-screen": HTMLMainScreenElement;
         "modal-button": HTMLModalButtonElement;
@@ -115,6 +124,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface ComfirmBooking {
+    }
     interface HomePage {
     }
     interface MainScreen {
@@ -149,6 +160,7 @@ declare namespace LocalJSX {
     interface TitleComponent {
     }
     interface IntrinsicElements {
+        "comfirm-booking": ComfirmBooking;
         "home-page": HomePage;
         "main-screen": MainScreen;
         "modal-button": ModalButton;
@@ -165,6 +177,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
             "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
             "main-screen": LocalJSX.MainScreen & JSXBase.HTMLAttributes<HTMLMainScreenElement>;
             "modal-button": LocalJSX.ModalButton & JSXBase.HTMLAttributes<HTMLModalButtonElement>;
