@@ -9,10 +9,13 @@ interface  formStateType {
   surname: string,
   phoneNumber: string,
   emailAddress: string,
-  pickupAdress: string,
-  airport: string,
+  homeAddress: string,
+  departureAirport: string,
+  arrivalAirport: string,
+  finalDest: string,
   pickupDate: string,
   pickupTime: string,
+  
 }
 
 @Component({
@@ -36,18 +39,23 @@ export class PagePickuppointAirportDestination {
         surname: "",
         phoneNumber: "",
         emailAddress: "",
-        pickupAdress: "",
-        airport: "",
+        homeAddress: "",
+        departureAirport: "",
+        arrivalAirport: "",
+        finalDest: "",
         pickupDate: "",
         pickupTime: "",
+        
     };
 
     @State() firstNameErrMsg;
     @State() surnameErrMsg;
     @State() phoneNumberErrMsg;
     @State() emailAddressErrMsg;
-    @State() pickupAdressErrMsg;
-    @State() airportErrMsg;
+    @State() homeAddressErrMsg;
+    @State() departureAirportErrMsg;
+    @State() arrivalAirportErrMsg;
+    @State() finalDestErrMsg;
     @State() pickupDateErrMsg;
     @State() pickupTimeErrMsg;
 
@@ -59,21 +67,22 @@ export class PagePickuppointAirportDestination {
     handleInputChange(event) {
         const value = event.target.value;
         this.formState[event.target.name] = value;
+        console.log(this.formState)
     };
 
-    handleLocationChange(event) {
+    handlefinalDest(event) {
         this.googleApiLocation = event.target.value;
-        this.formState.pickupAdress = event.target.value;
+        this.formState.finalDest = event.target.value;
 
         this.callgoogleApiData();
     };
 
-    handleSecondSelect(event) {
-    this.formState.airport = event.target.value;
-    
-    
-    
-    }
+    handleHomeAddress(event) {
+        this.googleApiLocation = event.target.value;
+        this.formState.homeAddress = event.target.value;
+
+        this.callgoogleApiData();
+    };
     
     airportDataApi = async (id: any) => {
     
@@ -88,20 +97,20 @@ export class PagePickuppointAirportDestination {
 
     callgoogleApiData = async () => {
     
-    let googleData: FormData = new FormData();
-    googleData.append('area', this.googleApiLocation);
+        let googleData: FormData = new FormData();
+        googleData.append('area', this.googleApiLocation);
 
 
-    const response = await fetch(`https://watchoutachan.herokuapp.com/api/google/locations`,
-      {
-        method: 'post',
-        body: googleData
-      }
-    );
-    handleErrors(response);
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/google/locations`,
+        {
+            method: 'post',
+            body: googleData
+        }
+        );
+        handleErrors(response);
 
-    let json = await response.json();
-    this.storeGoogleApiLocation = json;
+        let json = await response.json();
+        this.storeGoogleApiLocation = json;
     };
     
 
@@ -119,11 +128,17 @@ export class PagePickuppointAirportDestination {
       if (this.formState?.emailAddress?.trim() === '') {
         this.emailAddressErrMsg = 'Email Address is required';
       }
-      if (this.formState?.pickupAdress?.trim() === '') {
-        this.pickupAdressErrMsg = 'Pick up Adress is required';
+      if (this.formState?.homeAddress?.trim() === '') {
+        this.homeAddressErrMsg = 'Home Address is required';
       }
-      if (this.formState?.airport?.trim() === '') {
-        this.airportErrMsg = 'Airport is required';
+      if (this.formState?.departureAirport?.trim() === '') {
+        this.departureAirportErrMsg = 'Departure Airport is required';
+      }
+      if (this.formState?.arrivalAirport?.trim() === '') {
+        this.arrivalAirportErrMsg = 'Arrival Airport is required';
+      }
+      if (this.formState?.finalDest?.trim() === '') {
+        this.finalDestErrMsg = 'Final Destination is required';
       }
       if (this.formState?.pickupDate?.trim() === '') {
         this.pickupDateErrMsg = 'Pick up Date is required';
@@ -131,26 +146,7 @@ export class PagePickuppointAirportDestination {
       if (this.formState?.pickupTime?.trim() === '') {
         this.pickupTimeErrMsg = 'Pick up Time is required';
       }
-      
-
-    //   if (
-    //     this.formState?.firstName?.trim() !== ''
-    //     && this.formState?.surname?.trim() !== ''
-    //     && this.formState?.phoneNumber?.trim() !== ''
-    //     && this.formState?.emailAddress?.trim() !== ''
-    //     && this.formState?.pickupAdress?.trim() !== ''
-    //     && this.formState?.airport?.trim() !== ''
-    //     && this.formState?.pickupDate?.trim() !== ''
-    //     && this.formState?.pickupTime?.trim() !== ''
-    //   ) 
-
-      
-    
-    
-    
-
   }
-
 
     
     render() {
@@ -213,11 +209,11 @@ export class PagePickuppointAirportDestination {
 
                         <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:space-x-7 space-y-6 sm:space-y-0">
                             <div class="sm:w-3/6">
-                                <label class="block text-gray-400 text-sm font-light mb-2">Destination Address</label>
+                                <label class="block text-gray-400 text-sm font-light mb-2">Home Address</label>
                                 <input
-                                    name="pickupAdress"
+                                    name="homeAddress"
                                     list='datalist1'
-                                    onInput={(e) => this.handleLocationChange(e)}
+                                    onInput={(e) => this.handleHomeAddress(e)}
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600" type="text"
                                     required
                                 />
@@ -227,10 +223,10 @@ export class PagePickuppointAirportDestination {
                                         <option value={item}>{item}</option>
                                     ))}
                                 </datalist>
-                                <small>{this.pickupAdressErrMsg}</small>
+                                <small>{this.homeAddressErrMsg}</small>
                             </div>
                             <div class="sm:w-3/6">
-                                <label class="block text-gray-400 text-sm font-light mb-2">From</label>
+                                <label class="block text-gray-400 text-sm font-light mb-2">Departure Airport</label>
                                 <div class="relative w-full">
                                 <div class="pointer-events-none text-gray-600 absolute mt-3 ml-56  lg:ml-80  ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -239,21 +235,67 @@ export class PagePickuppointAirportDestination {
                                     </svg>
                                     
                                 </div>
-                                <select
-                                    class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
-                                    onInput={(event) => this.handleSecondSelect(event)} 
-                                    required
+                                    <select
+                                        name="departureAirport"
+                                        class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
+                                        onInput={(event) => this.handleInputChange(event)} 
+                                        required
                                     >
                                     <option value="" selected disabled hidden>select airport </option>
-                                        {this.storeAirportApiData?.map(({userid, branch_location }) => 
-                                        <option value={userid} >{branch_location}</option>
+                                        {this.storeAirportApiData?.map(({ branch_location }) => 
+                                        <option value={branch_location} >{branch_location}</option>
                                         )}
                                     </select>
-                                    <small>{this.airportErrMsg}</small>
+                                    <small>{this.departureAirportErrMsg}</small>
                                 </div>
                             </div>
                     
                         </div>
+
+                        <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:space-x-7 space-y-6 sm:space-y-0">
+                            <div class="sm:w-3/6">
+                                <label class="block text-gray-400 text-sm font-light mb-2">Arrival Airport</label>
+                                <div class="relative w-full">
+                                    <div class="pointer-events-none text-gray-600 absolute mt-3 ml-56  lg:ml-80  ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z"></path>
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                        
+                                    </div>
+                                    <select
+                                        name="arrivalAirport"
+                                        class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
+                                        onInput={(event) => this.handleInputChange(event)} 
+                                        required
+                                        >
+                                        <option value="" selected disabled hidden>select airport </option>
+                                            {this.storeAirportApiData?.map(({branch_location }) => 
+                                            <option value={branch_location} >{branch_location}</option>
+                                            )}
+                                    </select>
+                                    <small>{this.arrivalAirportErrMsg}</small>
+                                </div>
+                            </div>
+                            <div class="sm:w-3/6">
+                                <label class="block text-gray-400 text-sm font-light mb-2">Destination Address</label>
+                                <input
+                                    name="finalDest"
+                                    list='datalist1'
+                                    onInput={(e) => this.handlefinalDest(e)}
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600" type="text"
+                                    required
+                                />
+                                <datalist id='datalist1'>
+                                    {
+                                    this.storeGoogleApiLocation?.map((item) => (
+                                        <option value={item}>{item}</option>
+                                    ))}
+                                </datalist>
+                                <small>{this.finalDestErrMsg}</small>
+                            </div>
+                        </div>
+
                         <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:space-x-7 space-y-6 sm:space-y-0">
                             <div class="sm:w-3/6">
                                 <label class="block text-gray-400 text-sm font-light mb-2">Date</label>
@@ -276,6 +318,7 @@ export class PagePickuppointAirportDestination {
                                 <small>{this.pickupTimeErrMsg}</small>
                             </div>
                         </div>
+                       
                
                         <button 
                             type="button" 
