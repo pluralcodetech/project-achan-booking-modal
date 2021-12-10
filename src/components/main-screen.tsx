@@ -39,7 +39,7 @@ export class MainScreen {
                     </div>
                     <div>
                         <route-card
-                            pathname="/page-pickup-point"
+                            pathname="/page-roundtrip-pickup"
                             places='Round Trip Pick ups'
                         ></route-card>
                     </div>
