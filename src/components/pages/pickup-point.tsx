@@ -1,6 +1,12 @@
 import { Component, getAssetPath, h, Prop, State } from "@stencil/core";
-import { branchId, toNextpageState } from "../globalState/globalState";
+import { href } from "stencil-router-v2";
+import { branchId, confirmBranchState, toNextpageState } from "../globalState/globalState";
 import { handleErrors } from "../useFulSnippets/actions";
+
+// console.log(confirmBranchState.get('state'));
+// const sv = JSON.parse(localStorage.getItem("confirmBooking"))
+// console.log(sv.firstName)
+
 
 interface  formStateType { 
   firstName: string,
@@ -20,6 +26,7 @@ interface  formStateType {
 })
 
 export class MyComponent { 
+    
 
     componentWillLoad() { 
         toNextpageState.set('toNextpage', true);
@@ -65,12 +72,10 @@ export class MyComponent {
         this.callgoogleApiData();
     };
 
-    handleSecondSelect(event) {
-    this.formState.airport = event.target.value;
-    
-    
-    
-    }
+    // handleSecondSelect(event) {
+    //     // this.formState.airport = event.target.value;
+
+    // }
     
     airportDataApi = async (id: any) => {
     
@@ -97,40 +102,60 @@ export class MyComponent {
     );
     handleErrors(response);
 
-    let json = await response.json();
-    this.storeGoogleApiLocation = json;
+        let json = await response.json();
+        this.storeGoogleApiLocation = json;
     };
     
 
-      onBookChange() {
+    onBookChange() {
 
-      if (this.formState?.firstName?.trim() === '') {
-        this.firstNameErrMsg = 'First Name is required';
-      }
-      if (this.formState?.surname?.trim() === '') {
-        this.surnameErrMsg = 'Surname is required';
-      }
-      if (this.formState?.phoneNumber?.trim() === '') {
-        this.phoneNumberErrMsg = 'Phone Number is required';
-      }
-      if (this.formState?.emailAddress?.trim() === '') {
-        this.emailAddressErrMsg = 'Email Address is required';
-      }
-      if (this.formState?.pickupAdress?.trim() === '') {
-        this.pickupAdressErrMsg = 'Pick up Adress is required';
-      }
-      if (this.formState?.airport?.trim() === '') {
-        this.airportErrMsg = 'Airport is required';
-      }
-      if (this.formState?.pickupDate?.trim() === '') {
-        this.pickupDateErrMsg = 'Pick up Date is required';
-      }
-      if (this.formState?.pickupTime?.trim() === '') {
-        this.pickupTimeErrMsg = 'Pick up Time is required';
-      }
+        if (this.formState?.firstName?.trim() === '') {
+            this.firstNameErrMsg = 'First Name is required';
+        }
+        if (this.formState?.surname?.trim() === '') {
+            this.surnameErrMsg = 'Surname is required';
+        }
+        if (this.formState?.phoneNumber?.trim() === '') {
+            this.phoneNumberErrMsg = 'Phone Number is required';
+        }
+        if (this.formState?.emailAddress?.trim() === '') {
+            this.emailAddressErrMsg = 'Email Address is required';
+        }
+        if (this.formState?.pickupAdress?.trim() === '') {
+            this.pickupAdressErrMsg = 'Pick up Adress is required';
+        }
+        if (this.formState?.airport?.trim() === '') {
+            this.airportErrMsg = 'Airport is required';
+        }
+        if (this.formState?.pickupDate?.trim() === '') {
+            this.pickupDateErrMsg = 'Pick up Date is required';
+        }
+        if (this.formState?.pickupTime?.trim() === '') {
+            this.pickupTimeErrMsg = 'Pick up Time is required';
+        }
+        
+          
+        if (
+            this.formState?.firstName?.trim() !== ''
+            && this.formState?.surname?.trim() !== ''
+            && this.formState?.phoneNumber?.trim() !== ''
+            && this.formState?.emailAddress?.trim() !== ''
+            && this.formState?.pickupAdress?.trim() !== ''
+            && this.formState?.airport?.trim() !== ''
+            && this.formState?.pickupDate?.trim() !== ''
+            && this.formState?.pickupTime?.trim() !== ''
+        ) {
+            console.log(this.formState)
+            localStorage.setItem("confirmBooking", JSON.stringify(this.formState));
+            // console.log(pickupPointAir)
+            // confirmBranchState.set('state', this.formState);
+            console.log(localStorage.getItem("confirmBooking"));
+            
+        }
+    }
 
-  }
     
+
     render() {
         return (
             <div class="pt-14 pb-10">
@@ -218,8 +243,9 @@ export class MyComponent {
                                     
                                 </div>
                                 <select
+                                    name="airport"
                                     class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
-                                    onInput={(event) => this.handleSecondSelect(event)} 
+                                    onInput={(event) => this.handleInputChange(event)} 
                                     required
                                     >
                                     <option value="" selected disabled hidden>select airport </option>
@@ -259,10 +285,21 @@ export class MyComponent {
                             type="button" 
                             onClick={this.onBookChange.bind(this)}  
                             class="text-center mt-16 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
-                        >Book Now</button>
+                        >
+                            {/* <a {...href('/page-comfirm-booking')}>Book Now</a>  */}
+                            {
+                                confirmBranchState.get('state') !== '' ?
+                                    <a {...href('/page-comfirm-booking')}>Book Now</a> 
+                                    : <h1>Book Now</h1>
+                        }
+                            {/* Book Now */}
+                            
+                        </button>
                     </form>
                 </main>
             </div>
         );
     }
 }
+
+// ...href('/page-comfirm-booking')

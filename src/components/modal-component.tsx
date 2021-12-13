@@ -1,16 +1,23 @@
-import { Component, getAssetPath, h, Prop } from "@stencil/core";
+import { Component, getAssetPath, h, Prop, State } from "@stencil/core";
 
 import { href, Route } from 'stencil-router-v2';
+
+// import customPostAction from '../components/redux-statement/actions/customPostAction'
 
 
 import { Router } from "./routerconfig/routerconfig";
 import { branchId, toNextpageState } from "./globalState/globalState";
+// import { store } from "@stencil/redux";
+// import { configureStore } from "./redux-statement/store";
+
+
 
 
 console.log(Router);
 
 
 console.log(toNextpageState.get('toNextpage'));
+
 
 
 @Component({
@@ -27,10 +34,38 @@ export class ModalComponent {
     @Prop({ reflect: true, mutable: true })  requiredid: string;
     @Prop() previousBtn = 'arrow-left.svg';
     @Prop() logoIcon = 'logo.png';
+
+    @State() customPost;
+    @State() loading;
+    @State() error;
+
+    customPostAction: (...args: any) => any;
     
     componentWillLoad() { 
+
         toNextpageState.set('toNextpage', false);
         branchId.set('id', this.requiredid);
+        
+        // store.setStore(configureStore({}));
+
+        // store.mapStateToProps(this, state => {
+        //     const {
+        //         customPostReducer: { customPost, loading, error },
+        //     } = state;
+        //     return {
+        //         customPost,
+        //         loading,
+        //         error,
+        //     };
+        // });
+
+        // store.mapStateToProps(this, state => state)
+
+        // store.mapDispatchToProps(this, {
+        //     customPostAction,
+        // });
+
+        // this.customPostAction();
     }
 
 

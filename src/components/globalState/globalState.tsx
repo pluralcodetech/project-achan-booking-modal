@@ -7,3 +7,20 @@ export const toNextpageState = createStore({
 export const branchId = createStore({
     id : ''
 })
+
+
+
+export const confirmBranchState  = createStore({
+    state: ''
+});
+
+export const pickupPointAir = createStore({
+    firstName: "",
+    surname: "",
+    phoneNumber: "",
+    emailAddress: "",
+    pickupAdress: "",
+    airport: "",
+    pickupDate: "",
+    pickupTime: "",
+});
