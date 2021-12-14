@@ -37,6 +37,7 @@ export namespace Components {
     }
     interface PagePickupPoint {
         "logoIcon": string;
+        "setValid": () => Promise<void>;
     }
     interface PagePickuppointAirportDestination {
         "logoIcon": string;
