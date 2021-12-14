@@ -1,4 +1,4 @@
-import { Component, getAssetPath, h, Prop, State } from "@stencil/core";
+import { Component, getAssetPath, h, Method, Prop, State } from "@stencil/core";
 import { branchId, toNextpageState } from "../globalState/globalState";
 import { handleErrors } from "../useFulSnippets/actions";
 
@@ -8,7 +8,7 @@ interface  formStateType {
   phoneNumber: string,
   emailAddress: string,
   arrivalAirport: string,
-  finalDest: string,
+  destinationArea: string,
   pickupDate: string,
   pickupTime: string,
   finalDestAddress: string,
@@ -29,6 +29,7 @@ export class ArrivalToFinalDestination {
     };
 
     @Prop() logoIcon = 'logo.png';
+    
 
     @State() formState : formStateType = {
         firstName: "",
@@ -36,7 +37,7 @@ export class ArrivalToFinalDestination {
         phoneNumber: "",
         emailAddress: "",
         arrivalAirport: "",
-        finalDest: "",
+        destinationArea: "",
         pickupDate: "",
         pickupTime: "",
         finalDestAddress: "",
@@ -47,7 +48,7 @@ export class ArrivalToFinalDestination {
     @State() phoneNumberErrMsg;
     @State() emailAddressErrMsg;
     @State() arrivalAirportErrMsg;
-    @State() finalDestErrMsg;
+    @State() destinationAreaErrMsg;
     @State() pickupDateErrMsg;
     @State() pickupTimeErrMsg;
     @State() finalDestAddressErrMsg;
@@ -55,19 +56,28 @@ export class ArrivalToFinalDestination {
     @State() googleApiLocation;
     @State() storeGoogleApiLocation;
     @State() storeAirportApiData;
+
     
+    @State() destinationState: any;
+
+    @State() valid = false;
+    
+    @Method()
+    async setValid() {
+        this.valid = true;
+    }
 
     handleInputChange(event) {
         const value = event.target.value;
         this.formState[event.target.name] = value;
     };
 
-    handlefinalDest(event) {
-        this.googleApiLocation = event.target.value;
-        this.formState.finalDest = event.target.value;
+    // handlefinalDest(event) {
+    //     this.googleApiLocation = event.target.value;
+    //     // this.formState.finalDest = event.target.value;
 
-        this.callgoogleApiData();
-    };
+    //     this.callgoogleApiData();
+    // };
 
     handlefinalDestAddress(event) {
         this.googleApiLocation = event.target.value;
@@ -79,7 +89,27 @@ export class ArrivalToFinalDestination {
     handleSecondSelect(event) {
         this.formState.arrivalAirport = event.target.value;
 
+        this.callDestinationDataApi()
+
     }
+
+    callDestinationDataApi = async () => {
+    
+        let destiData: FormData = new FormData();
+        destiData.append('branchid', this.formState?.arrivalAirport);
+
+
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/destinationarea`,
+        {
+            method: 'post',
+            body: destiData
+        }
+        );
+        handleErrors(response);
+
+        let json = await response.json();
+        this.destinationState = json;
+    };
     
     airportDataApi = async (id: any) => {
     
@@ -111,7 +141,7 @@ export class ArrivalToFinalDestination {
     };
     
 
-      onBookChange() {
+    onBookChange() {
 
       if (this.formState?.firstName?.trim() === '') {
         this.firstNameErrMsg = 'First Name is required';
@@ -128,8 +158,8 @@ export class ArrivalToFinalDestination {
       if (this.formState?.arrivalAirport?.trim() === '') {
         this.arrivalAirportErrMsg = 'Arrival Airport is required';
       }
-      if (this.formState?.finalDest?.trim() === '') {
-        this.finalDestErrMsg = 'Final Destination is required';
+      if (this.formState?.destinationArea?.trim() === '') {
+        this.destinationAreaErrMsg = 'Destination Area is required';
       }
       if (this.formState?.pickupDate?.trim() === '') {
         this.pickupDateErrMsg = 'Pick up Date is required';
@@ -140,6 +170,29 @@ export class ArrivalToFinalDestination {
       if (this.formState?.finalDestAddress?.trim() === '') {
         this.finalDestAddressErrMsg = 'Final Destination Address is required';
       }
+      
+        
+      if (
+            this.formState?.firstName?.trim() !== ''
+            && this.formState?.surname?.trim() !== ''
+            && this.formState?.phoneNumber?.trim() !== ''
+            && this.formState?.emailAddress?.trim() !== ''
+            && this.formState?.arrivalAirport?.trim() !== ''
+            && this.formState?.destinationArea?.trim() !== ''
+            && this.formState?.pickupDate?.trim() !== ''
+            && this.formState?.pickupTime?.trim() !== ''
+            && this.formState?.finalDestAddress?.trim() !== ''
+        ) {
+            this.setValid()
+            console.log(this.formState)
+            localStorage.setItem("confirmBooking", JSON.stringify(this.formState));
+            // console.log(pickupPointAir)
+            // confirmBranchState.set('state', this.formState);
+            console.log(localStorage.getItem("confirmBooking"));
+          
+        }
+    
+
 
   }
 
@@ -226,22 +279,31 @@ export class ArrivalToFinalDestination {
                                     <small>{this.arrivalAirportErrMsg}</small>
                                 </div>
                             </div>
+                            
                             <div class="sm:w-3/6">
-                                <label class="block text-gray-400 text-sm font-light mb-2">Destination Address</label>
-                                <input
-                                    name="finalDest"
-                                    list='datalist1'
-                                    onInput={(e) => this.handlefinalDest(e)}
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600" type="text"
-                                    required
-                                />
-                                <datalist id='datalist1'>
-                                    {
-                                    this.storeGoogleApiLocation?.map((item) => (
-                                        <option value={item}>{item}</option>
-                                    ))}
-                                </datalist>
-                                <small>{this.finalDestErrMsg}</small>
+                            <label class="block text-gray-400 text-sm font-light mb-2">Destination Address</label>
+                            <div class="relative w-full">
+                            <div class="pointer-events-none text-gray-600 absolute mt-3 ml-56  lg:ml-80  ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                                
+                            </div>
+                            <select
+                                name="destinationArea"
+                                onInput={(e) => this.handleInputChange(e)}
+                                class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
+                                required
+                                >
+                                <option value="" selected disabled hidden>select branch </option>
+                                    {this.destinationState?.map(({area }) => 
+                                    <option value={area} >{area}</option>
+                                    )}
+                                </select>
+                                <small>{this.destinationAreaErrMsg}</small>
+                            </div>
+                        
                             </div>
                         </div>
 

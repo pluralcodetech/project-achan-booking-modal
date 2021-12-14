@@ -34,6 +34,7 @@ export namespace Components {
     }
     interface PageArrivalToFinalDestination {
         "logoIcon": string;
+        "setValid": () => Promise<void>;
     }
     interface PagePickupPoint {
         "logoIcon": string;

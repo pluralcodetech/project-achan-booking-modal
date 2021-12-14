@@ -75,8 +75,8 @@ export class MyComponent {
     @State() googleApiLocation;
     @State() storeGoogleApiLocation;
     @State() storeAirportApiData;
-    @State() destinationAreaState: any;
-    @State() storeFromDropDown: any;
+    // @State() destinationAreaState: any;
+    // @State() storeFromDropDown: any;
     @State() destinationState: any;
     
 
@@ -313,7 +313,8 @@ export class MyComponent {
                                 </select>
                                 <small>{this.pickupAreaErrMsg}</small>
                             </div>
-                        </div>
+                        
+                            </div>
         
                         </div>
                         <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:space-x-7 space-y-6 sm:space-y-0">
