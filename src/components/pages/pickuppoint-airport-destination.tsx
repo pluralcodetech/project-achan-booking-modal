@@ -1,4 +1,5 @@
-import { Component, getAssetPath, h, Prop, State } from "@stencil/core";
+import { Component, getAssetPath, h, Method, Prop, State } from "@stencil/core";
+import { href } from "stencil-router-v2";
 import { branchId, toNextpageState } from "../globalState/globalState";
 import { handleErrors } from "../useFulSnippets/actions";
 
@@ -14,8 +15,10 @@ interface  formStateType {
   pickupArea: string,
   arrivalAirport: string,
   destinationAddress: string,
+  destinationArea: string,
   pickupDate: string,
   pickupTime: string,
+  arrivalTime: string,
   
 }
 
@@ -45,8 +48,10 @@ export class PagePickuppointAirportDestination {
         pickupArea: "",
         arrivalAirport: "",
         destinationAddress: "",
+        destinationArea: "",
         pickupDate: "",
         pickupTime: "",
+        arrivalTime: "",
         
     };
 
@@ -59,13 +64,24 @@ export class PagePickuppointAirportDestination {
     @State() pickupAreaErrMsg;
     @State() arrivalAirportErrMsg;
     @State() destinationAddressErrMsg;
+    @State() destinationAreaErrMsg;
     @State() pickupDateErrMsg;
     @State() pickupTimeErrMsg;
+    @State() arrivalTimeErrMsg;
 
     @State() googleApiLocation;
     @State() storeGoogleApiLocation;
     @State() storeAirportApiData;
     @State() destinationState: any;
+
+    @State() valid = false;
+
+    @Method()
+    async setValid() {
+        
+         this.valid = true;
+    }
+
     
 
     handleInputChange(event) {
@@ -147,7 +163,7 @@ export class PagePickuppointAirportDestination {
     };
     
 
-      onBookChange() {
+    onBookChange() {
 
       if (this.formState?.firstName?.trim() === '') {
         this.firstNameErrMsg = 'First Name is required';
@@ -173,8 +189,11 @@ export class PagePickuppointAirportDestination {
       if (this.formState?.arrivalAirport?.trim() === '') {
         this.arrivalAirportErrMsg = 'Arrival Airport is required';
       }
+      if (this.formState?.destinationArea?.trim() === '') {
+        this.destinationAreaErrMsg = 'Destination Area is required';
+      }
       if (this.formState?.destinationAddress?.trim() === '') {
-        this.destinationAddressErrMsg = 'Final Destination is required';
+        this.destinationAddressErrMsg = 'Destination Address is required';
       }
       if (this.formState?.pickupDate?.trim() === '') {
         this.pickupDateErrMsg = 'Pick up Date is required';
@@ -182,6 +201,38 @@ export class PagePickuppointAirportDestination {
       if (this.formState?.pickupTime?.trim() === '') {
         this.pickupTimeErrMsg = 'Pick up Time is required';
       }
+      if (this.formState?.arrivalTime?.trim() === '') {
+        this.arrivalTimeErrMsg = 'Arrival Time is required';
+      }
+      
+    
+      if (
+            this.formState?.firstName?.trim() !== ''
+            && this.formState?.surname?.trim() !== ''
+            && this.formState?.phoneNumber?.trim() !== ''
+            && this.formState?.emailAddress?.trim() !== ''
+            && this.formState?.pickupAddress?.trim() !== ''
+            && this.formState?.departureAirport?.trim() !== ''
+            && this.formState?.pickupArea?.trim() !== ''
+            && this.formState?.arrivalAirport?.trim() !== ''
+            && this.formState?.destinationArea?.trim() !== ''
+            && this.formState?.destinationAddress?.trim() !== ''
+            && this.formState?.pickupDate?.trim() !== ''
+            && this.formState?.pickupTime?.trim() !== ''
+            && this.formState?.arrivalTime?.trim() !== ''
+        ) {
+            this.setValid()
+            console.log(this.formState)
+            localStorage.setItem("confirmBooking", JSON.stringify(this.formState));
+            // console.log(pickupPointAir)
+            // confirmBranchState.set('state', this.formState);
+            console.log(localStorage.getItem("confirmBooking"));
+        
+         
+
+           
+            
+        }
   }
 
     
@@ -372,7 +423,7 @@ export class PagePickuppointAirportDestination {
                                         
                                     </div>
                                     <select
-                                        name="pickupArea"
+                                        name="destinationArea"
                                         onInput={(e) => this.handleInputChange(e)}
                                         class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
                                         required
@@ -383,7 +434,7 @@ export class PagePickuppointAirportDestination {
                                         <option value={area} >{area}</option>
                                         )}
                                     </select>
-                                    <small>{this.pickupAreaErrMsg}</small>
+                                    <small>{this.destinationAreaErrMsg}</small>
                                 </div>
                             
                             </div>
@@ -403,7 +454,7 @@ export class PagePickuppointAirportDestination {
                                         <option value={item}>{item}</option>
                                     ))}
                                 </datalist>
-                                <small>{this.pickupAddressErrMsg}</small>
+                                <small>{this.destinationAddressErrMsg}</small>
                             </div>
                         </div>
 
@@ -431,14 +482,14 @@ export class PagePickuppointAirportDestination {
                         </div>
                         <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:space-x-7 space-y-6 sm:space-y-0 ">
                             <div class="w-full">
-                                <label class="block text-gray-400 text-sm font-light mb-2">Time</label>
+                                <label class="block text-gray-400 text-sm font-light mb-2">Arrival Time</label>
                                 <input
-                                    name="pickupTime"
+                                    name="arrivalTime"
                                     onInput={(e) => this.handleInputChange(e)}
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600" type="time"
                                     required
                                 />
-                                <small>{this.pickupTimeErrMsg}</small>
+                                <small>{this.arrivalTimeErrMsg}</small>
                             </div>
                         </div>
                        
@@ -447,7 +498,9 @@ export class PagePickuppointAirportDestination {
                             type="button" 
                             onClick={this.onBookChange.bind(this)}  
                             class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
-                        >Book Now</button>
+                        >
+                            <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a> 
+                        </button>
                     </form>
                 </main>
             </div>
