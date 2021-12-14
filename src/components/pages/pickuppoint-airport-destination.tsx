@@ -11,6 +11,7 @@ interface  formStateType {
   emailAddress: string,
   homeAddress: string,
   departureAirport: string,
+  pickupArea: string,
   arrivalAirport: string,
   finalDest: string,
   pickupDate: string,
@@ -41,6 +42,7 @@ export class PagePickuppointAirportDestination {
         emailAddress: "",
         homeAddress: "",
         departureAirport: "",
+        pickupArea: "",
         arrivalAirport: "",
         finalDest: "",
         pickupDate: "",
@@ -54,6 +56,7 @@ export class PagePickuppointAirportDestination {
     @State() emailAddressErrMsg;
     @State() homeAddressErrMsg;
     @State() departureAirportErrMsg;
+    @State() pickupAreaErrMsg;
     @State() arrivalAirportErrMsg;
     @State() finalDestErrMsg;
     @State() pickupDateErrMsg;
@@ -62,6 +65,7 @@ export class PagePickuppointAirportDestination {
     @State() googleApiLocation;
     @State() storeGoogleApiLocation;
     @State() storeAirportApiData;
+    @State() destinationState: any;
     
 
     handleInputChange(event) {
@@ -82,6 +86,32 @@ export class PagePickuppointAirportDestination {
         this.formState.homeAddress = event.target.value;
 
         this.callgoogleApiData();
+    };
+
+    handleSecondSelect(event) {
+        const value = event.target.value;
+        this.formState[event.target.name] = value;
+        console.log(this.formState)
+
+        this.callDestinationDataApi()
+    }
+
+    callDestinationDataApi = async () => {
+    
+        let destiData: FormData = new FormData();
+        destiData.append('branchid', this.formState?.departureAirport || this.formState?.arrivalAirport);
+
+
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/destinationarea`,
+        {
+            method: 'post',
+            body: destiData
+        }
+        );
+        handleErrors(response);
+
+        let json = await response.json();
+        this.destinationState = json;
     };
     
     airportDataApi = async (id: any) => {
@@ -208,7 +238,7 @@ export class PagePickuppointAirportDestination {
                         </div>
 
                         <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:space-x-7 space-y-6 sm:space-y-0">
-                            <div class="sm:w-3/6">
+                            {/* <div class="sm:w-3/6">
                                 <label class="block text-gray-400 text-sm font-light mb-2">Home Address</label>
                                 <input
                                     name="homeAddress"
@@ -224,7 +254,7 @@ export class PagePickuppointAirportDestination {
                                     ))}
                                 </datalist>
                                 <small>{this.homeAddressErrMsg}</small>
-                            </div>
+                            </div> */}
                             <div class="sm:w-3/6">
                                 <label class="block text-gray-400 text-sm font-light mb-2">Departure Airport</label>
                                 <div class="relative w-full">
@@ -238,7 +268,7 @@ export class PagePickuppointAirportDestination {
                                     <select
                                         name="departureAirport"
                                         class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
-                                        onInput={(event) => this.handleInputChange(event)} 
+                                        onInput={(event) => this.handleSecondSelect(event)} 
                                         required
                                     >
                                     <option value="" selected disabled hidden>select airport </option>
@@ -248,6 +278,32 @@ export class PagePickuppointAirportDestination {
                                     </select>
                                     <small>{this.departureAirportErrMsg}</small>
                                 </div>
+                            </div>
+
+                            <div class="sm:w-3/6">
+                            <label class="block text-gray-400 text-sm font-light mb-2">Pick Up Area</label>
+                            <div class="relative w-full">
+                            <div class="pointer-events-none text-gray-600 absolute mt-3 ml-56  lg:ml-80  ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                                
+                            </div>
+                            <select
+                                name="pickupArea"
+                                onInput={(e) => this.handleInputChange(e)}
+                                class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
+                                required
+                                >
+                                <option value="" selected disabled hidden>select branch </option>
+                                    {this.destinationState?.map(({area }) => 
+                                    <option value={area} >{area}</option>
+                                    )}
+                                </select>
+                                <small>{this.pickupAreaErrMsg}</small>
+                            </div>
+                        
                             </div>
                     
                         </div>
