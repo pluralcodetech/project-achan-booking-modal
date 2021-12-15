@@ -13,12 +13,50 @@ export class DepartureAirportCBTD {
     componentWillLoad() {
         toNextpageState.set('toNextpage', false);
     }
-    @State() estimateState = JSON.parse(localStorage.getItem("departureAirportCBTD"));
-    
+    @State() departureAirportCBTD = JSON.parse(localStorage.getItem("departureAirportCBTD"));
+    @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
     render() {
         return (
-            <div>
-                <h1>DepartureAirportCBTD</h1>
+            <div class="p-4">
+                <get-cabticket
+                    passengername={this.departureAirportCBTD?.first_ticket?.passenger_name}
+                    phonenumber = {this.departureAirportCBTD?.first_ticket?.phone_number}
+                    ticketnum = {this.departureAirportCBTD?.first_ticket?.ticket_num}
+                    date = {this.departureAirportCBTD?.first_ticket?.date}
+                    time = {this.departureAirportCBTD?.first_ticket?.time}
+                    from = {this.departureAirportCBTD?.first_ticket?.from}
+                    destination = {this.departureAirportCBTD?.first_ticket?.destination}
+                    phonenum = {this.departureAirportCBTD?.first_ticket?.phone_num}
+                    whatapp = {this.departureAirportCBTD?.first_ticket?.whatapp}
+                    estmin = {this.estimateState?.est_min}
+                    estmax = {this.estimateState?.est_max}
+                >
+                    <div>
+                        <a href={`http://www.codesandbox.com.ng/details/receipt.php?trip_id=${this.departureAirportCBTD?.first_ticket?.trip_id}` }>
+                            <button 
+                                // onClick={this.openDriverDetails.bind(this)}  
+                                type="button"  
+                                class="text-center w-full border-0 p-3 outline-none focus:outline-none customBookingDetails-btn">
+                                Ticket Details
+                            </button>
+                        </a>
+                    </div>
+                </get-cabticket>
+                {/* <cab-ticket
+                    passengername = {this.departureAirportCBTD?.first_ticket?.passenger_name}
+                    phonenumber = {this.departureAirportCBTD?.first_ticket?.phone_number}
+                    ticketnum = {this.departureAirportCBTD?.first_ticket?.ticket_num}
+                    date = {this.departureAirportCBTD?.first_ticket?.date}
+                    time = {this.departureAirportCBTD?.first_ticket?.time}
+                    from = {this.departureAirportCBTD?.first_ticket?.from}
+                    destination = {this.departureAirportCBTD?.first_ticket?.destination}
+                    phonenum = {this.departureAirportCBTD?.first_ticket?.phone_num}
+                    whatapp = {this.departureAirportCBTD?.first_ticket?.whatapp}
+                    estmin = {this.departureAirportCBTD?.first_ticket?.est_min}
+                    estmax = {this.departureAirportCBTD?.first_ticket?.est_max}
+                > */}
+                    {/* DepartureAirportCBTD */}
+                {/* </cab-ticket> */}
             </div>
         )
     }

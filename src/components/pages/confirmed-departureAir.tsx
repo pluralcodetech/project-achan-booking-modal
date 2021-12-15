@@ -13,10 +13,11 @@ export class ConfirmedDepartureAirport {
         toNextpageState.set('toNextpage', false);
     }
 
-    @State() estimateState = JSON.parse(localStorage.getItem("departureAirportCBTD"));
+    @State() departureAirportCBTD = JSON.parse(localStorage.getItem("departureAirportCBTD"));
 
     nextpage() {
         Router.push('/page-departure-airport-cbtd');
+        console.log(this.departureAirportCBTD)
     }
     render() {
         return (

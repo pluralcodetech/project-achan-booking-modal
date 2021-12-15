@@ -14,6 +14,22 @@ export namespace Components {
     }
     interface DepartureAirportCbtd {
     }
+    interface GetCabticket {
+        "callIcon": string;
+        "carIcon": string;
+        "date": string | number;
+        "destination": string | number;
+        "estmax": string | number;
+        "estmin": string | number;
+        "from": string | number;
+        "passengername": string | number;
+        "phonenum": string | number;
+        "phonenumber": string | number;
+        "ticketnum": string | number;
+        "time": string | number;
+        "whatapp": string | number;
+        "whatappIcon": string;
+    }
     interface HomePage {
     }
     interface MainScreen {
@@ -57,6 +73,8 @@ export namespace Components {
         "pathname": string;
         "places": string;
     }
+    interface RowElement {
+    }
     interface TitleComponent {
     }
 }
@@ -84,6 +102,12 @@ declare global {
     var HTMLDepartureAirportCbtdElement: {
         prototype: HTMLDepartureAirportCbtdElement;
         new (): HTMLDepartureAirportCbtdElement;
+    };
+    interface HTMLGetCabticketElement extends Components.GetCabticket, HTMLStencilElement {
+    }
+    var HTMLGetCabticketElement: {
+        prototype: HTMLGetCabticketElement;
+        new (): HTMLGetCabticketElement;
     };
     interface HTMLHomePageElement extends Components.HomePage, HTMLStencilElement {
     }
@@ -145,6 +169,12 @@ declare global {
         prototype: HTMLRouteCardElement;
         new (): HTMLRouteCardElement;
     };
+    interface HTMLRowElementElement extends Components.RowElement, HTMLStencilElement {
+    }
+    var HTMLRowElementElement: {
+        prototype: HTMLRowElementElement;
+        new (): HTMLRowElementElement;
+    };
     interface HTMLTitleComponentElement extends Components.TitleComponent, HTMLStencilElement {
     }
     var HTMLTitleComponentElement: {
@@ -156,6 +186,7 @@ declare global {
         "comfirm-booking": HTMLComfirmBookingElement;
         "confirmed-departure-airport": HTMLConfirmedDepartureAirportElement;
         "departure-airport-cbtd": HTMLDepartureAirportCbtdElement;
+        "get-cabticket": HTMLGetCabticketElement;
         "home-page": HTMLHomePageElement;
         "main-screen": HTMLMainScreenElement;
         "modal-booking-details": HTMLModalBookingDetailsElement;
@@ -166,6 +197,7 @@ declare global {
         "page-pickuppoint-airport-destination": HTMLPagePickuppointAirportDestinationElement;
         "page-roundtrip-pickup": HTMLPageRoundtripPickupElement;
         "route-card": HTMLRouteCardElement;
+        "row-element": HTMLRowElementElement;
         "title-component": HTMLTitleComponentElement;
     }
 }
@@ -177,6 +209,22 @@ declare namespace LocalJSX {
     interface ConfirmedDepartureAirport {
     }
     interface DepartureAirportCbtd {
+    }
+    interface GetCabticket {
+        "callIcon"?: string;
+        "carIcon"?: string;
+        "date"?: string | number;
+        "destination"?: string | number;
+        "estmax"?: string | number;
+        "estmin"?: string | number;
+        "from"?: string | number;
+        "passengername"?: string | number;
+        "phonenum"?: string | number;
+        "phonenumber"?: string | number;
+        "ticketnum"?: string | number;
+        "time"?: string | number;
+        "whatapp"?: string | number;
+        "whatappIcon"?: string;
     }
     interface HomePage {
     }
@@ -220,6 +268,8 @@ declare namespace LocalJSX {
         "pathname"?: string;
         "places"?: string;
     }
+    interface RowElement {
+    }
     interface TitleComponent {
     }
     interface IntrinsicElements {
@@ -227,6 +277,7 @@ declare namespace LocalJSX {
         "comfirm-booking": ComfirmBooking;
         "confirmed-departure-airport": ConfirmedDepartureAirport;
         "departure-airport-cbtd": DepartureAirportCbtd;
+        "get-cabticket": GetCabticket;
         "home-page": HomePage;
         "main-screen": MainScreen;
         "modal-booking-details": ModalBookingDetails;
@@ -237,6 +288,7 @@ declare namespace LocalJSX {
         "page-pickuppoint-airport-destination": PagePickuppointAirportDestination;
         "page-roundtrip-pickup": PageRoundtripPickup;
         "route-card": RouteCard;
+        "row-element": RowElement;
         "title-component": TitleComponent;
     }
 }
@@ -248,6 +300,7 @@ declare module "@stencil/core" {
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
             "confirmed-departure-airport": LocalJSX.ConfirmedDepartureAirport & JSXBase.HTMLAttributes<HTMLConfirmedDepartureAirportElement>;
             "departure-airport-cbtd": LocalJSX.DepartureAirportCbtd & JSXBase.HTMLAttributes<HTMLDepartureAirportCbtdElement>;
+            "get-cabticket": LocalJSX.GetCabticket & JSXBase.HTMLAttributes<HTMLGetCabticketElement>;
             "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
             "main-screen": LocalJSX.MainScreen & JSXBase.HTMLAttributes<HTMLMainScreenElement>;
             "modal-booking-details": LocalJSX.ModalBookingDetails & JSXBase.HTMLAttributes<HTMLModalBookingDetailsElement>;
@@ -258,6 +311,7 @@ declare module "@stencil/core" {
             "page-pickuppoint-airport-destination": LocalJSX.PagePickuppointAirportDestination & JSXBase.HTMLAttributes<HTMLPagePickuppointAirportDestinationElement>;
             "page-roundtrip-pickup": LocalJSX.PageRoundtripPickup & JSXBase.HTMLAttributes<HTMLPageRoundtripPickupElement>;
             "route-card": LocalJSX.RouteCard & JSXBase.HTMLAttributes<HTMLRouteCardElement>;
+            "row-element": LocalJSX.RowElement & JSXBase.HTMLAttributes<HTMLRowElementElement>;
             "title-component": LocalJSX.TitleComponent & JSXBase.HTMLAttributes<HTMLTitleComponentElement>;
         }
     }
