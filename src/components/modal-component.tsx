@@ -73,6 +73,10 @@ export class ModalComponent {
     closeModal() {
         this.opened = false;
         console.log("closing Modal...")
+        localStorage.removeItem("departureAirportCBTD");
+        localStorage.removeItem("estimatedPrice");
+        localStorage.removeItem("confirmBooking");
+        localStorage.removeItem("departureAirport");
     }
 
     // Previous Button
