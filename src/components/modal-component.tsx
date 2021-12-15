@@ -77,6 +77,7 @@ export class ModalComponent {
         localStorage.removeItem("estimatedPrice");
         localStorage.removeItem("confirmBooking");
         localStorage.removeItem("departureAirport");
+        localStorage.removeItem("finalDestination");
     }
 
     // Previous Button
@@ -149,6 +150,9 @@ export class ModalComponent {
                                         </Route>
                                         <Route path="/page-departure-airport-cbtd">
                                             <departure-airport-cbtd></departure-airport-cbtd>
+                                        </Route>
+                                        <Route path="/page-fd-comfirm-booking">
+                                            <fd-comfirm-booking></fd-comfirm-booking>
                                         </Route>
 
                                         {/* Redirect to Home */}

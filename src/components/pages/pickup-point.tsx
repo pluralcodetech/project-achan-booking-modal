@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, getAssetPath, h, Listen, Prop, State  } from "@stencil/core";
+import { Component, getAssetPath, h, Listen, Prop, State  } from "@stencil/core";
 // import { href} from "stencil-router-v2";
 import { branchId, toNextpageState } from "../globalState/globalState";
 import { Router } from "../routerconfig/routerconfig";
@@ -39,16 +39,6 @@ export class MyComponent {
 
     
 
-   
-
-    // @Method()
-    // async setValid() {
-    //     // show a prompt
-    //     this.valid = true;
-        
-    //     this.onValid.emit({ visible: this.valid });
-    // }
-
     
 
     @Prop() logoIcon = 'logo.png';
@@ -83,13 +73,6 @@ export class MyComponent {
     // @State() destinationAreaState: any;
     // @State() storeFromDropDown: any;
     @State() destinationState: any;
-
-    @Event() isValid: EventEmitter;
-
-    @Listen('isValid') // Listen to the onToggle event from the dropdown component
-        log(event) {
-        console.log(event);
-    }
     
 
     handleInputChange(event) {
@@ -225,7 +208,7 @@ export class MyComponent {
             && this.formState?.pickupDate?.trim() !== ''
             && this.formState?.pickupTime?.trim() !== ''
         ) {
-            // this.setValid()
+            
 
            Router.push('/page-comfirm-booking');
             console.log(this.formState)

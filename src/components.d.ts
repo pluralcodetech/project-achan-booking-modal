@@ -14,6 +14,8 @@ export namespace Components {
     }
     interface DepartureAirportCbtd {
     }
+    interface FdComfirmBooking {
+    }
     interface GetCabticket {
         "callIcon": string;
         "carIcon": string;
@@ -103,6 +105,12 @@ declare global {
         prototype: HTMLDepartureAirportCbtdElement;
         new (): HTMLDepartureAirportCbtdElement;
     };
+    interface HTMLFdComfirmBookingElement extends Components.FdComfirmBooking, HTMLStencilElement {
+    }
+    var HTMLFdComfirmBookingElement: {
+        prototype: HTMLFdComfirmBookingElement;
+        new (): HTMLFdComfirmBookingElement;
+    };
     interface HTMLGetCabticketElement extends Components.GetCabticket, HTMLStencilElement {
     }
     var HTMLGetCabticketElement: {
@@ -186,6 +194,7 @@ declare global {
         "comfirm-booking": HTMLComfirmBookingElement;
         "confirmed-departure-airport": HTMLConfirmedDepartureAirportElement;
         "departure-airport-cbtd": HTMLDepartureAirportCbtdElement;
+        "fd-comfirm-booking": HTMLFdComfirmBookingElement;
         "get-cabticket": HTMLGetCabticketElement;
         "home-page": HTMLHomePageElement;
         "main-screen": HTMLMainScreenElement;
@@ -209,6 +218,8 @@ declare namespace LocalJSX {
     interface ConfirmedDepartureAirport {
     }
     interface DepartureAirportCbtd {
+    }
+    interface FdComfirmBooking {
     }
     interface GetCabticket {
         "callIcon"?: string;
@@ -255,7 +266,6 @@ declare namespace LocalJSX {
     }
     interface PagePickupPoint {
         "logoIcon"?: string;
-        "onIsValid"?: (event: CustomEvent<any>) => void;
     }
     interface PagePickuppointAirportDestination {
         "logoIcon"?: string;
@@ -277,6 +287,7 @@ declare namespace LocalJSX {
         "comfirm-booking": ComfirmBooking;
         "confirmed-departure-airport": ConfirmedDepartureAirport;
         "departure-airport-cbtd": DepartureAirportCbtd;
+        "fd-comfirm-booking": FdComfirmBooking;
         "get-cabticket": GetCabticket;
         "home-page": HomePage;
         "main-screen": MainScreen;
@@ -300,6 +311,7 @@ declare module "@stencil/core" {
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
             "confirmed-departure-airport": LocalJSX.ConfirmedDepartureAirport & JSXBase.HTMLAttributes<HTMLConfirmedDepartureAirportElement>;
             "departure-airport-cbtd": LocalJSX.DepartureAirportCbtd & JSXBase.HTMLAttributes<HTMLDepartureAirportCbtdElement>;
+            "fd-comfirm-booking": LocalJSX.FdComfirmBooking & JSXBase.HTMLAttributes<HTMLFdComfirmBookingElement>;
             "get-cabticket": LocalJSX.GetCabticket & JSXBase.HTMLAttributes<HTMLGetCabticketElement>;
             "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
             "main-screen": LocalJSX.MainScreen & JSXBase.HTMLAttributes<HTMLMainScreenElement>;

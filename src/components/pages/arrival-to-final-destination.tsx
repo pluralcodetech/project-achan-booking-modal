@@ -1,5 +1,6 @@
 import { Component, getAssetPath, h, Method, Prop, State } from "@stencil/core";
 import { branchId, toNextpageState } from "../globalState/globalState";
+import { Router } from "../routerconfig/routerconfig";
 import { handleErrors } from "../useFulSnippets/actions";
 
 interface  formStateType { 
@@ -124,20 +125,43 @@ export class ArrivalToFinalDestination {
 
     callgoogleApiData = async () => {
     
-    let googleData: FormData = new FormData();
-    googleData.append('area', this.googleApiLocation);
+        let googleData: FormData = new FormData();
+        googleData.append('area', this.googleApiLocation);
 
 
-    const response = await fetch(`https://watchoutachan.herokuapp.com/api/google/locations`,
-      {
-        method: 'post',
-        body: googleData
-      }
-    );
-    handleErrors(response);
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/google/locations`,
+        {
+            method: 'post',
+            body: googleData
+        }
+        );
+        handleErrors(response);
 
-    let json = await response.json();
-    this.storeGoogleApiLocation = json;
+        let json = await response.json();
+        this.storeGoogleApiLocation = json;
+    };
+
+
+    callEstimatedDataApi = async () => {
+        let estimatedData: FormData = new FormData();
+        estimatedData.append('airid', this.formState?.arrivalAirport);
+        estimatedData.append('pickup_area', this.formState?.destinationArea);
+        estimatedData.append('date', this.formState?.pickupDate);
+        estimatedData.append('time', this.formState?.pickupTime);
+
+    
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/firstestimate`,
+        {
+            method: 'post',
+            body: estimatedData,
+        }
+        );
+        
+        handleErrors(response);
+
+        let json = await response.json();
+        // this.estimatePrice = json;
+        localStorage.setItem("estimatedPrice", JSON.stringify(json));
     };
     
 
@@ -183,12 +207,11 @@ export class ArrivalToFinalDestination {
             && this.formState?.pickupTime?.trim() !== ''
             && this.formState?.finalDestAddress?.trim() !== ''
         ) {
-            this.setValid()
+            Router.push('/page-fd-comfirm-booking')
             console.log(this.formState)
-            localStorage.setItem("confirmBooking", JSON.stringify(this.formState));
-            // console.log(pickupPointAir)
-            // confirmBranchState.set('state', this.formState);
-            console.log(localStorage.getItem("confirmBooking"));
+            localStorage.setItem("finalDestination", JSON.stringify(this.formState));
+           
+            console.log(localStorage.getItem("finalDestination"));
           
         }
     
