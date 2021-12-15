@@ -3,6 +3,7 @@ import {  href } from "stencil-router-v2";
 // import { href } from "stencil-router-v2";
 import { toNextpageState } from "../globalState/globalState";
 import { Router } from "../routerconfig/routerconfig";
+import { handleErrors } from "../useFulSnippets/actions";
 // import { handleErrors } from "../useFulSnippets/actions";
 
 
@@ -38,7 +39,7 @@ export class ConfirmBooking {
 
 
     callConfirmBookingApi = async () => {
-        Router.push('/home');
+        
 
         console.log(Router);
         
@@ -50,55 +51,39 @@ export class ConfirmBooking {
     
         
 
-    // let ConfirmBooking: FormData = new FormData();
-    // ConfirmBooking.append('firstname', this.globalTrips.firstName);
-    // ConfirmBooking.append('surname', this.globalTrips.surname);
-    // ConfirmBooking.append('email', this.globalTrips.emailAddress);
-    // ConfirmBooking.append('phonenumber', this.globalTrips.phoneNumber);
-    // ConfirmBooking.append('airid', this.globalTrips.from);
-    // if (this.estimatePrice?.first_cost) {
-    //   ConfirmBooking.append('from', this.estimatePrice?.first_cost?.from);
-    //   ConfirmBooking.append('estmin', this.estimatePrice?.first_cost?.est_min);
-    //   ConfirmBooking.append('estmax', this.estimatePrice?.first_cost?.est_max);
-    // } else {
-    //   ConfirmBooking.append('from', this.estimatePrice?.from);
-    //   ConfirmBooking.append('estmin', this.estimatePrice?.est_min);
-    //   ConfirmBooking.append('estmax', this.estimatePrice?.est_max);
-    // }
-
-    // ConfirmBooking.append('to', this.globalTrips.destination);
-    // ConfirmBooking.append('date', this.globalTrips.date);
-    // ConfirmBooking.append('time', this.globalTrips.time);
-   
-    // if (this.globalTrips?.returnDate) {
-    //    ConfirmBooking.append('returndate', this.globalTrips.returnDate);
-    // }
-    // if (this.globalTrips?.returnTime) {
-    //   ConfirmBooking.append('returntime', this.globalTrips.returnTime);
-    // }
-   
-    
-    // ConfirmBooking.append('dest_address', this.globalTrips.destinationAddress);
-    
-
-    // try {
-    //     const response = await fetch(`https://watchoutachan.herokuapp.com/api/booktrip`,
-    //       {
-    //         method: 'post',
-    //         body: ConfirmBooking,
-    //       }
-    //     )
-    //   handleErrors(response);
-      
-    //     this.loading = false;
-    //     let json = await response.json();
-    //     this.cabTicketDetails = json;
+    let ConfirmBooking: FormData = new FormData();
+    ConfirmBooking.append('firstname', this.localState.firstName);
+    ConfirmBooking.append('surname', this.localState?.surname);
+    ConfirmBooking.append('email', this.localState?.emailAddress);
+    ConfirmBooking.append('phonenumber', this.localState?.phoneNumber);
+    ConfirmBooking.append('airid', this.localState?.airport);
+    ConfirmBooking.append('from', this.localState?.pickupAdress);
+    ConfirmBooking.append('date', this.localState?.pickupDate);
+    ConfirmBooking.append('time', this.localState?.pickupTime);
+    ConfirmBooking.append('pickup_area', this.localState?.pickupArea);
+    ConfirmBooking.append('estmax', this.estimateState?.est_max);
+    ConfirmBooking.append('estmin', this.estimateState?.est_min);
         
-    // } catch (error) {
-    //     console.log(error);
-    //     this.cabTicketDetails = null;
-    //     this.loading = false;
-    // }
+    
+    try {
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/firstform`,
+          {
+            method: 'post',
+            body: ConfirmBooking,
+          }
+        )
+      handleErrors(response);
+      
+        this.loading = false;
+        let json = await response.json();
+        localStorage.setItem("departureAirportCBTD", JSON.stringify(json));
+        Router.push('/page-confirmed-departure-airport');
+        
+    } catch (error) {
+        console.log(error);
+        // this.cabTicketDetails = null;
+        this.loading = false;
+    }
   };
       
     

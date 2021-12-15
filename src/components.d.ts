@@ -10,6 +10,10 @@ export namespace Components {
     }
     interface ComfirmBooking {
     }
+    interface ConfirmedDepartureAirport {
+    }
+    interface DepartureAirportCbtd {
+    }
     interface HomePage {
     }
     interface MainScreen {
@@ -68,6 +72,18 @@ declare global {
     var HTMLComfirmBookingElement: {
         prototype: HTMLComfirmBookingElement;
         new (): HTMLComfirmBookingElement;
+    };
+    interface HTMLConfirmedDepartureAirportElement extends Components.ConfirmedDepartureAirport, HTMLStencilElement {
+    }
+    var HTMLConfirmedDepartureAirportElement: {
+        prototype: HTMLConfirmedDepartureAirportElement;
+        new (): HTMLConfirmedDepartureAirportElement;
+    };
+    interface HTMLDepartureAirportCbtdElement extends Components.DepartureAirportCbtd, HTMLStencilElement {
+    }
+    var HTMLDepartureAirportCbtdElement: {
+        prototype: HTMLDepartureAirportCbtdElement;
+        new (): HTMLDepartureAirportCbtdElement;
     };
     interface HTMLHomePageElement extends Components.HomePage, HTMLStencilElement {
     }
@@ -138,6 +154,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "booking-confirmed": HTMLBookingConfirmedElement;
         "comfirm-booking": HTMLComfirmBookingElement;
+        "confirmed-departure-airport": HTMLConfirmedDepartureAirportElement;
+        "departure-airport-cbtd": HTMLDepartureAirportCbtdElement;
         "home-page": HTMLHomePageElement;
         "main-screen": HTMLMainScreenElement;
         "modal-booking-details": HTMLModalBookingDetailsElement;
@@ -155,6 +173,10 @@ declare namespace LocalJSX {
     interface BookingConfirmed {
     }
     interface ComfirmBooking {
+    }
+    interface ConfirmedDepartureAirport {
+    }
+    interface DepartureAirportCbtd {
     }
     interface HomePage {
     }
@@ -203,6 +225,8 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "booking-confirmed": BookingConfirmed;
         "comfirm-booking": ComfirmBooking;
+        "confirmed-departure-airport": ConfirmedDepartureAirport;
+        "departure-airport-cbtd": DepartureAirportCbtd;
         "home-page": HomePage;
         "main-screen": MainScreen;
         "modal-booking-details": ModalBookingDetails;
@@ -222,6 +246,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "booking-confirmed": LocalJSX.BookingConfirmed & JSXBase.HTMLAttributes<HTMLBookingConfirmedElement>;
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
+            "confirmed-departure-airport": LocalJSX.ConfirmedDepartureAirport & JSXBase.HTMLAttributes<HTMLConfirmedDepartureAirportElement>;
+            "departure-airport-cbtd": LocalJSX.DepartureAirportCbtd & JSXBase.HTMLAttributes<HTMLDepartureAirportCbtdElement>;
             "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
             "main-screen": LocalJSX.MainScreen & JSXBase.HTMLAttributes<HTMLMainScreenElement>;
             "modal-booking-details": LocalJSX.ModalBookingDetails & JSXBase.HTMLAttributes<HTMLModalBookingDetailsElement>;
