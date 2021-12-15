@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface BookingConfirmed {
+    }
     interface ComfirmBooking {
     }
     interface HomePage {
@@ -38,7 +40,6 @@ export namespace Components {
     }
     interface PagePickupPoint {
         "logoIcon": string;
-        "setValid": () => Promise<void>;
     }
     interface PagePickuppointAirportDestination {
         "logoIcon": string;
@@ -56,6 +57,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLBookingConfirmedElement extends Components.BookingConfirmed, HTMLStencilElement {
+    }
+    var HTMLBookingConfirmedElement: {
+        prototype: HTMLBookingConfirmedElement;
+        new (): HTMLBookingConfirmedElement;
+    };
     interface HTMLComfirmBookingElement extends Components.ComfirmBooking, HTMLStencilElement {
     }
     var HTMLComfirmBookingElement: {
@@ -129,6 +136,7 @@ declare global {
         new (): HTMLTitleComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "booking-confirmed": HTMLBookingConfirmedElement;
         "comfirm-booking": HTMLComfirmBookingElement;
         "home-page": HTMLHomePageElement;
         "main-screen": HTMLMainScreenElement;
@@ -144,6 +152,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface BookingConfirmed {
+    }
     interface ComfirmBooking {
     }
     interface HomePage {
@@ -175,6 +185,7 @@ declare namespace LocalJSX {
     }
     interface PagePickupPoint {
         "logoIcon"?: string;
+        "onIsValid"?: (event: CustomEvent<any>) => void;
     }
     interface PagePickuppointAirportDestination {
         "logoIcon"?: string;
@@ -190,6 +201,7 @@ declare namespace LocalJSX {
     interface TitleComponent {
     }
     interface IntrinsicElements {
+        "booking-confirmed": BookingConfirmed;
         "comfirm-booking": ComfirmBooking;
         "home-page": HomePage;
         "main-screen": MainScreen;
@@ -208,6 +220,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "booking-confirmed": LocalJSX.BookingConfirmed & JSXBase.HTMLAttributes<HTMLBookingConfirmedElement>;
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
             "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
             "main-screen": LocalJSX.MainScreen & JSXBase.HTMLAttributes<HTMLMainScreenElement>;

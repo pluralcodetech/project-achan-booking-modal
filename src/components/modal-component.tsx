@@ -144,6 +144,8 @@ export class ModalComponent {
                                         {/* Redirect to Home */}
                                         <Route path="/" to="/home"/>
                                     </Router.Switch>
+
+                                
                                 </main>
                             </div>
                         </div>

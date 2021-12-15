@@ -1,6 +1,7 @@
-import { Component, getAssetPath, h, Method, Prop, State } from "@stencil/core";
-import { href, Route } from "stencil-router-v2";
-import { branchId, confirmBranchState, toNextpageState } from "../globalState/globalState";
+import { Component, Event, EventEmitter, getAssetPath, h, Listen, Prop, State  } from "@stencil/core";
+import { href} from "stencil-router-v2";
+import { branchId, toNextpageState } from "../globalState/globalState";
+import { Router } from "../routerconfig/routerconfig";
 import { handleErrors } from "../useFulSnippets/actions";
 
 // console.log(confirmBranchState.get('state'));
@@ -40,11 +41,15 @@ export class MyComponent {
 
    
 
-    @Method()
-    async setValid() {
-        // show a prompt
-         this.valid = true;
-    }
+    // @Method()
+    // async setValid() {
+    //     // show a prompt
+    //     this.valid = true;
+        
+    //     this.onValid.emit({ visible: this.valid });
+    // }
+
+    
 
     @Prop() logoIcon = 'logo.png';
 
@@ -78,6 +83,13 @@ export class MyComponent {
     // @State() destinationAreaState: any;
     // @State() storeFromDropDown: any;
     @State() destinationState: any;
+
+    @Event() isValid: EventEmitter;
+
+    @Listen('isValid') // Listen to the onToggle event from the dropdown component
+        log(event) {
+        console.log(event);
+    }
     
 
     handleInputChange(event) {
@@ -213,7 +225,9 @@ export class MyComponent {
             && this.formState?.pickupDate?.trim() !== ''
             && this.formState?.pickupTime?.trim() !== ''
         ) {
-            this.setValid()
+            // this.setValid()
+
+           Router.push('/page-comfirm-booking');
             console.log(this.formState)
 
             this.callEstimatedDataApi();
@@ -392,9 +406,9 @@ export class MyComponent {
                             // onSubmit={this.onBookChange.bind(this)}  
                             class="text-center mt-16 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
                         >
-                            {/* Book Now */}
+                            Book Now
                             {/* <a {...href('/page-comfirm-booking')}>Book Now</a>  */}
-                            <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a> 
+                            {/* <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a>  */}
                             {/* {
                                 confirmBranchState.get('state') !== '' ?
                                     <a {...href('/page-comfirm-booking')}>Book Now</a> 
