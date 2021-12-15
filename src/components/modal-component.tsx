@@ -78,6 +78,7 @@ export class ModalComponent {
         localStorage.removeItem("confirmBooking");
         localStorage.removeItem("departureAirport");
         localStorage.removeItem("finalDestination");
+        localStorage.removeItem("finalDestinationCBTD");
     }
 
     // Previous Button

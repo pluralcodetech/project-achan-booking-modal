@@ -58,7 +58,7 @@ export class FDConfirmBooking {
         
     
     try {
-        const response = await fetch(`https://watchoutachan.herokuapp.com/api/firstform`,
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/secondbookingform`,
           {
             method: 'post',
             body: ConfirmBooking,
@@ -68,7 +68,7 @@ export class FDConfirmBooking {
       
         this.loading = false;
         let json = await response.json();
-        localStorage.setItem("departureAirportCBTD", JSON.stringify(json));
+        localStorage.setItem("finalDestinationCBTD", JSON.stringify(json));
         Router.push('/page-confirmed-departure-airport');
         
     } catch (error) {
@@ -101,7 +101,7 @@ export class FDConfirmBooking {
                                     type="button"  
                                     class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none customBookingDetails-btn">Continue Book
                                   </button>
-                                  <a {...href('/page-pickup-point')}>
+                                  <a {...href('/page-arrival-to-final-destination')}>
                                       <button 
                                         // onClick={this.previousChange.bind(this)}  
                                         type="button" 
