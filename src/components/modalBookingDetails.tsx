@@ -1,4 +1,7 @@
 import { Component, Prop, h, getAssetPath} from "@stencil/core";
+import convertDate from "./useFulSnippets/convertDate";
+import convertTime from "./useFulSnippets/convertTime";
+import toCurrency from "./useFulSnippets/toCurrency";
 // import convertDate from "./useFulSnippets/convertDate";
 // import convertTime from "./useFulSnippets/convertTime";
 // import toCurrency from "./useFulSnippets/toCurrency";
@@ -30,7 +33,7 @@ export class ModalBookingDetails {
                     <div>
                         <img class="mr-4 h-full sm:h-64" src={getAssetPath(`../assets/${this.dottedLines}`)} alt="previous-icon"/>
                     </div>
-                    {/* <div class="text-white w-full">
+                    <div class="text-white w-full">
                         <div class="flex flex-col space-y-2 sm:space-y-1">
                             <small class="text-sm font-semibold">from</small>
                             <small class="text-xs">{convertDate(this.date)}</small>
@@ -49,11 +52,9 @@ export class ModalBookingDetails {
                                 <label class="text-xs sm:text-sm font-semibold">Estimated Price</label>
                                 <small class="text-xs sm:text-sm">{toCurrency(this.estimatedPriceMin, "NGN" )} - {toCurrency(this.estimatedPriceMax, "NGN" )}</small>
                             </div>
-                            
-                            
                         </div>
-                    </div> */}
-                    <div class="text-white w-full">
+                    </div>
+                    {/* <div class="text-white w-full">
                         <div class="flex flex-col space-y-2 sm:space-y-1">
                             <small class="text-sm font-semibold">from</small>
                             <small class="text-xs">2020-11-2</small>
@@ -70,12 +71,13 @@ export class ModalBookingDetails {
                             </div>
                             <div class="flex flex-col  space-y-1 ">
                                 <label class="text-xs sm:text-sm font-semibold">Estimated Price</label>
-                                {/* <small class="text-xs sm:text-sm">{toCurrency(this.estimatedPriceMin, "NGN" )} - {toCurrency(this.estimatedPriceMax, "NGN" )}</small> */}
+                                <small class="text-xs sm:text-sm">{toCurrency(this.estimatedPriceMin, "NGN" )} - {toCurrency(this.estimatedPriceMax, "NGN" )}</small>
                             </div>
                             
                             
                         </div>
-                    </div>
+                    </div> */}
+                    
                 </figcaption>
 
                 

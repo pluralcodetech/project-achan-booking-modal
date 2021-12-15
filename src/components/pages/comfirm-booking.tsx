@@ -1,5 +1,6 @@
-import { Component, h } from "@stencil/core";
+import { Component, h, State } from "@stencil/core";
 import { toNextpageState } from "../globalState/globalState";
+import { handleErrors } from "../useFulSnippets/actions";
 
 @Component({
     tag: 'comfirm-booking',
@@ -9,23 +10,40 @@ import { toNextpageState } from "../globalState/globalState";
 
 export class ConfirmBooking {
 
+    @State() estimatePrice;
+
+    @State() localState = JSON.parse(localStorage.getItem("departureAirport"));
+    @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
+    
+    
+
     componentWillLoad() { 
         toNextpageState.set('toNextpage', true);
-       
+
+    //    this.callEstimatedDataApi();
+
+        console.log(this.localState)
+        console.log(this.estimateState)
+
     };
+
+      
     
     render() {
         return (
+            <div class='p-4'>
+                <modal-booking-details
+                    date={this.localState?.pickupDate} //date
+                    time={this.localState?.pickupTime} //time
+                    airport={ this.estimateState?.from}
+                    destinationAddress={this.estimateState?.to}
+                    //   destination={this.globalTrips?.destination} //destination
+                    estimatedPriceMax={this.estimateState?.est_max}
+                    estimatedPriceMin={this.estimateState?.est_min}
+                ></modal-booking-details>
+            </div>
             // <modal-booking-details></modal-booking-details>
-            <modal-booking-details
-            //   date={this.globalTrips?.date} //date
-            //   time={this.globalTrips?.time} //time
-            //   airport={ 'MM2'}
-            //   destinationAddress={this.estimatePrice?.first_cost?.to || this.estimatePrice?.to}
-            //   destination={this.globalTrips?.destination} //destination
-            //   estimatedPriceMax={this.estimatePrice?.first_cost?.est_max || this.estimatePrice?.est_max}
-            //   estimatedPriceMin={this.estimatePrice?.first_cost?.est_min || this.estimatePrice?.est_min}
-            ></modal-booking-details>
+            
         )
     }
 }

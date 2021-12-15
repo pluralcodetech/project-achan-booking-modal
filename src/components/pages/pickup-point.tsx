@@ -145,6 +145,28 @@ export class MyComponent {
         let json = await response.json();
         this.destinationState = json;
     };
+
+    callEstimatedDataApi = async () => {
+        let estimatedData: FormData = new FormData();
+        estimatedData.append('airid', this.formState?.airport);
+        estimatedData.append('pickup_area', this.formState?.pickupArea);
+        estimatedData.append('date', this.formState?.pickupDate);
+        estimatedData.append('time', this.formState?.pickupTime);
+
+    
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/firstestimate`,
+        {
+            method: 'post',
+            body: estimatedData,
+        }
+        );
+        
+        handleErrors(response);
+
+        let json = await response.json();
+        // this.estimatePrice = json;
+        localStorage.setItem("estimatedPrice", JSON.stringify(json));
+    };
     
 
     onBookChange(e) {
@@ -193,10 +215,13 @@ export class MyComponent {
         ) {
             this.setValid()
             console.log(this.formState)
-            localStorage.setItem("confirmBooking", JSON.stringify(this.formState));
+
+            this.callEstimatedDataApi();
+
+            localStorage.setItem("departureAirport", JSON.stringify(this.formState));
             // console.log(pickupPointAir)
             // confirmBranchState.set('state', this.formState);
-            console.log(localStorage.getItem("confirmBooking"));
+            console.log(localStorage.getItem("departureAirport"));
         
          
 
