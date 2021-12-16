@@ -165,8 +165,8 @@ export class PagePickuppointAirportDestination {
 
     callEstimatedDataApi = async () => {
         let estimatedData: FormData = new FormData();
-        estimatedData.append('destination_area', this.formState?.arrivalAirport);
-        estimatedData.append('airid', this.formState?.arrivalAirport);
+        estimatedData.append('destination_area', this.formState?.destinationArea);
+        estimatedData.append('arrival_airid', this.formState?.arrivalAirport);
         estimatedData.append('date', this.formState?.pickupDate);
         estimatedData.append('time', this.formState?.pickupTime);
         estimatedData.append('pickup_area', this.formState?.pickupArea);
@@ -414,8 +414,8 @@ export class PagePickuppointAirportDestination {
                                         required
                                         >
                                         <option value="" selected disabled hidden>select airport </option>
-                                            {this.storeAirportApiData?.map(({branch_location }) => 
-                                            <option value={branch_location} >{branch_location}</option>
+                                            {this.storeAirportApiData?.map(({userid, branch_location }) => 
+                                            <option value={userid} >{branch_location}</option>
                                             )}
                                     </select>
                                     <small>{this.arrivalAirportErrMsg}</small>

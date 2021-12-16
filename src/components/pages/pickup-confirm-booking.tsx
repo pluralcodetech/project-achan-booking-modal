@@ -9,18 +9,20 @@ import { handleErrors } from "../useFulSnippets/actions";
 
 
 @Component({
-    tag: 'ad-comfirm-booking',
+    tag: 'pickup-comfirm-booking',
     styleUrl: 'pages.css',
     shadow: true
 })
 
-export class ADConfirmBooking {
+export class PickupConfirmBooking {
 
     @State() estimatePrice;
 
-    @State() localState = JSON.parse(localStorage.getItem("airportDestination"));
+    @State() localState = JSON.parse(localStorage.getItem("roundTripPickUp"));
     @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
     @State() loading = false;
+    // @Prop() router = createRouter();
+    
 
     componentWillLoad() { 
         toNextpageState.set('toNextpage', true);
@@ -44,31 +46,19 @@ export class ADConfirmBooking {
     ConfirmBooking.append('firstname', this.localState.firstName);
     ConfirmBooking.append('surname', this.localState?.surname);
     ConfirmBooking.append('email', this.localState?.emailAddress);
-    
     ConfirmBooking.append('phonenumber', this.localState?.phoneNumber);
+    ConfirmBooking.append('airid', this.localState?.arrivalAirport);
     ConfirmBooking.append('from', this.estimateState?.from);
+    ConfirmBooking.append('to', this.estimateState?.to);
     ConfirmBooking.append('date', this.localState?.pickupDate);
     ConfirmBooking.append('time', this.localState?.pickupTime);
+    ConfirmBooking.append('dest_area', this.localState?.destinationArea);
+    ConfirmBooking.append('estmax', this.estimateState?.est_max);
     ConfirmBooking.append('estmin', this.estimateState?.est_min);
-    ConfirmBooking.append('estmax', this.estimateState?.est_max); 
-    ConfirmBooking.append('airid', this.localState?.arrivalAirport);
-    
-    ConfirmBooking.append('pickup_address', this.localState?.pickupAddress);
-    ConfirmBooking.append('depature_airid', this.localState?.departureAirport);
-    ConfirmBooking.append('pickup_area', this.localState?.pickupArea);
-    ConfirmBooking.append('pickupaddress', this.localState?.pickupAddress);
-    
-    ConfirmBooking.append('dest_address', this.localState?.destinationAddress);
-    ConfirmBooking.append('to', this.estimateState?.to);
-    ConfirmBooking.append('estmin2', this.estimateState?.to);
-    ConfirmBooking.append('estmax2', this.estimateState?.to);
-    
-    
-    
         
     
     try {
-        const response = await fetch(`https://watchoutachan.herokuapp.com/api/thirdform`,
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/secondbookingform`,
           {
             method: 'post',
             body: ConfirmBooking,
@@ -78,8 +68,8 @@ export class ADConfirmBooking {
       
         this.loading = false;
         let json = await response.json();
-        localStorage.setItem("airportDestinationCBTD", JSON.stringify(json));
-        Router.push('/page-confirmed-airportdest-booking');
+        localStorage.setItem("finalDestinationCBTD", JSON.stringify(json));
+        Router.push('/page-confirmed-finaldest-booking');
         
     } catch (error) {
         console.log(error);
@@ -91,31 +81,16 @@ export class ADConfirmBooking {
     
     render() {
         return (
-            <div class='p-4 space-y-4'>
-              <div>
+            <div class='p-4'>
                 <modal-booking-details
-                    date={this.localState?.pickupDate} //date
-                    time={this.localState?.arrivalTime} //time
-                    airport={ this.estimateState?.first_cost?.from}
-                    destinationAddress={this.estimateState?.first_cost?.to}
-                    estimatedPriceMax={this.estimateState?.first_cost?.est_max}
-                    estimatedPriceMin={this.estimateState?.first_cost?.est_min}
-                ></modal-booking-details>
-              </div>
-              <div>
-                <modal-booking-details
-                    returnprops = {true}
                     date={this.localState?.pickupDate} //date
                     time={this.localState?.pickupTime} //time
-                    airport={ this.estimateState?.second_cost?.from}
-                    destinationAddress={this.estimateState?.second_cost?.to}
-                    estimatedPriceMax={this.estimateState?.second_cost?.est_max}
-                    estimatedPriceMin={this.estimateState?.second_cost?.est_min}
+                    airport={ this.estimateState?.from}
+                    destinationAddress={this.estimateState?.to}
+                    //   destination={this.globalTrips?.destination} //destination
+                    estimatedPriceMax={this.estimateState?.est_max}
+                    estimatedPriceMin={this.estimateState?.est_min}
                 ></modal-booking-details>
-              </div>
-                
-                
-                
 
                 <div>
                     {!this.loading ? (

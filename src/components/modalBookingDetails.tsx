@@ -15,6 +15,7 @@ import toCurrency from "./useFulSnippets/toCurrency";
 
 export class ModalBookingDetails {
     @Prop() dottedLines = 'dotted-lines.png';
+    @Prop({ reflect: true, mutable: true}) returnprops : boolean = false;
     @Prop({ reflect: true, mutable: true}) date : string | number;
     @Prop({ reflect: true, mutable: true}) time : string | number;
     @Prop({ reflect: true, mutable: true}) airport : string;
@@ -35,7 +36,14 @@ export class ModalBookingDetails {
                     </div>
                     <div class="text-white w-full">
                         <div class="flex flex-col space-y-2 sm:space-y-1">
-                            <small class="text-sm font-semibold">from</small>
+                            {
+                                !this.returnprops ? (
+                                    <small class="text-sm font-semibold">from</small>
+                                ) : (
+                                        <small class="text-sm font-semibold">to</small>
+                                )
+                            }
+                            
                             <small class="text-xs">{convertDate(this.date)}</small>
                             <small class="text-lg">{convertTime(this.time)}</small>
                             <small class="text-sm">{ this.airport}</small>
@@ -43,7 +51,13 @@ export class ModalBookingDetails {
                         </div>
                         <div class='flex justify-between mt-16 sm:mt-14 space-x-4 sm:space-x-0 items-end'>
                             <div class="flex flex-col  space-y-2 sm:space-y-1 ">
-                                <small class="text-sm font-semibold">to</small>
+                                {
+                                    !this.returnprops ? (
+                                        <small class="text-sm font-semibold">to</small>
+                                    ) : (
+                                        <small class="text-sm font-semibold">from</small>
+                                    )
+                                }
                                 <small class="text-xs">{convertDate(this.date)}</small>
                                 <small class="text-lg"> {convertTime(this.time)}</small>
                                 <small class="text-lg">{this.destinationAddress} </small>

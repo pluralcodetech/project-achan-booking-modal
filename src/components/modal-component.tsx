@@ -80,6 +80,7 @@ export class ModalComponent {
         localStorage.removeItem("finalDestination");
         localStorage.removeItem("finalDestinationCBTD");
         localStorage.removeItem("airportDestination");
+        localStorage.removeItem("roundTripPickUp");
     }
 
     // Previous Button
@@ -167,6 +168,9 @@ export class ModalComponent {
                                         </Route>
                                         <Route path="/page-confirmed-airportdest-booking">
                                             <confirmed-airportdest-booking></confirmed-airportdest-booking>
+                                        </Route>
+                                        <Route path="/page-pickup-comfirm-booking">
+                                            <pickup-comfirm-booking></pickup-comfirm-booking>
                                         </Route>
 
                                         {/* Redirect to Home */}
