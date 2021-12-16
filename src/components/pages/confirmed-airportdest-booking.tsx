@@ -16,7 +16,7 @@ export class ConfirmedAirportDestination {
     @State() airportDestinationCBTD = JSON.parse(localStorage.getItem("airportDestinationCBTD"));
 
     nextpage() {
-        Router.push('/page-finaldest-cbtd');
+        Router.push('/page-airdestination-cbtd');
         console.log(this.airportDestinationCBTD)
     }
     render() {

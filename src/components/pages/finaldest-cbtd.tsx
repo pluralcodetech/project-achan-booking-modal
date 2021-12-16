@@ -19,6 +19,7 @@ export class FinalDestCBTD {
         return (
             <div class="p-4">
                 <get-cabticket
+                    totalestimate={true}
                     passengername={this.finalDestinationCBTD?.first_ticket?.passenger_name}
                     phonenumber = {this.finalDestinationCBTD?.first_ticket?.phone_number}
                     ticketnum = {this.finalDestinationCBTD?.first_ticket?.ticket_num}

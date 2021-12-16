@@ -17,18 +17,27 @@ export class Getcabticket {
     @Prop() callIcon = "call-icon.png"
     @Prop() whatappIcon = "whatapp.png"
         
-    
+    @Prop({ reflect: true, mutable: true }) airdestination? = false
     @Prop({ reflect: true, mutable: true}) passengername : string | number;
     @Prop({ reflect: true, mutable: true}) phonenumber: string | number;
-    @Prop({ reflect: true, mutable: true}) ticketnum : string | number;
+    @Prop({ reflect: true, mutable: true}) ticketnum? : string | number;
     @Prop({ reflect: true, mutable: true}) date : string | number;
     @Prop({ reflect: true, mutable: true}) time : string | number;
-    @Prop({ reflect: true, mutable: true}) from : string | number;
-    @Prop({ reflect: true, mutable: true}) destination : string | number;
-    @Prop({ reflect: true, mutable: true}) phonenum : string | number;
-    @Prop({ reflect: true, mutable: true}) whatapp : string | number;
-    @Prop({ reflect: true, mutable: true}) estmin : string | number;
-    @Prop({ reflect: true, mutable: true}) estmax : string | number;
+    @Prop({ reflect: true, mutable: true}) from? : string | number;
+    @Prop({ reflect: true, mutable: true}) pickuparea? : string | number;
+    @Prop({ reflect: true, mutable: true}) departureairport? : string | number;
+    @Prop({ reflect: true, mutable: true}) destination? : string | number;
+    @Prop({ reflect: true, mutable: true}) phonenum? : string | number;
+    @Prop({ reflect: true, mutable: true}) whatapp? : string | number;
+    @Prop({ reflect: true, mutable: true}) estmin? : string | number;
+    @Prop({ reflect: true, mutable: true}) estmax? : string | number;
+    @Prop({ reflect: true, mutable: true}) pickupticketnum? : string | number;
+    @Prop({ reflect: true, mutable: true}) arrivalticketnum? : string | number;
+    @Prop({ reflect: true, mutable: true}) arrivalairport? : string | number;
+    @Prop({ reflect: true, mutable: true}) arrivaldestination? : string | number;
+    @Prop({ reflect: true, mutable: true}) estmax2? : string | number;
+    @Prop({ reflect: true, mutable: true}) estmin2? : string | number;
+    @Prop({ reflect: true, mutable: true}) totalestimate?;
 
     render() {
         return (
@@ -58,10 +67,7 @@ export class Getcabticket {
                                     <small>phone Number:</small>
                                     <small>{this.phonenumber}</small>
                                 </row-element>
-                                <row-element>
-                                    <small>ticket No:</small>
-                                    <small>{this.ticketnum}</small>
-                                </row-element>
+                                
                                 <row-element>
                                     <small>Date:</small>
                                     <small>{convertDate(this.date)}</small>
@@ -70,18 +76,70 @@ export class Getcabticket {
                                     <small>Time:</small>
                                     <small>{convertTime(this.time)}</small>
                                 </row-element>
-                                <row-element>
-                                    <small class='flex-1'>From:</small>
-                                    <div class='flex-1 justify-items-end'>
-                                    <small class='break-all'>{this.from}</small>
-                                    </div>
-                                </row-element>
-                                <row-element>
-                                    <small class='flex-1'>Destination:</small>
-                                    <div class='flex-1'>
-                                    <small class='break-all'>{this.destination}</small>
-                                    </div>
-                                </row-element>
+
+                                {
+                                    !this.airdestination ? (
+                                        <div>
+                                            <row-element>
+                                                <small>ticket No:</small>
+                                                <small>{this.ticketnum}</small>
+                                            </row-element>
+                                            <row-element>
+                                                <small class='flex-1'>From:</small>
+                                                <div class='flex-1 justify-items-end'>
+                                                <small class='break-all'>{this.from}</small>
+                                                </div>
+                                            </row-element>
+                                            <row-element>
+                                                <small class='flex-1'>Destination:</small>
+                                                <div class='flex-1'>
+                                                <small class='break-all'>{this.destination}</small>
+                                                </div>
+                                            </row-element>
+                                        </div>
+                                        
+                                    ) : (
+                                        <div>
+                                            <row-element>
+                                                <small>Pick up Ticket No:</small>
+                                                <small>{this.pickupticketnum}</small>
+                                            </row-element>
+                                            <row-element>
+                                                <small>Arrival Ticket No:</small>
+                                                <small>{this.arrivalticketnum}</small>
+                                            </row-element>
+                                            <row-element>
+                                                <small class='flex-1'>Pick up Area:</small>
+                                                <div class='flex-1 justify-items-end'>
+                                                <small class='break-all'>{this.pickuparea}</small>
+                                                </div>
+                                            </row-element>
+                                            <row-element>
+                                                <small class='flex-1'>Departure Airport:</small>
+                                                <div class='flex-1 justify-items-end'>
+                                                <small class='break-all'>{this.departureairport}</small>
+                                                </div>
+                                            </row-element>
+                                            <row-element>
+                                                <small class='flex-1'>Arrival Airport:</small>
+                                                <div class='flex-1 justify-items-end'>
+                                                <small class='break-all'>{this.arrivalairport}</small>
+                                                </div>
+                                            </row-element>
+                                            <row-element>
+                                                <small class='flex-1'>Arrival Destination:</small>
+                                                <div class='flex-1 justify-items-end'>
+                                                <small class='break-all'>{this.arrivaldestination}</small>
+                                                </div>
+                                            </row-element>
+                                            
+                                        </div>
+                                        
+                                    )
+                                }
+
+                                
+                                
                              </div>
                         </section>
 
@@ -120,10 +178,29 @@ export class Getcabticket {
                         <section class="sm:px-6 py-10 ">
                             <h1 class="text-xl font-semibold cabTicket-m-s-h1">Estimated cost</h1>
                             <div class="mt-10 space-y-8">
-                            <row-element>
-                                <small>estimated Total:</small>
-                                <small class="font-bold">{toCurrency(this.estmin, "NGN")} - {toCurrency(this.estmax, "NGN")}</small>
-                            </row-element>
+                                {
+                                    this.totalestimate ? (
+                                        <row-element>
+                                            <small>estimated Total:</small>
+                                            <small class="font-bold">{toCurrency(this.estmin, "NGN")} - {toCurrency(this.estmax, "NGN")}</small>
+                                        </row-element>
+                                    ) : null
+                                }
+                            
+                            {
+                                    this.airdestination ? (
+                                        <div>
+                                            <row-element>
+                                                <small>Pick up Trip Total Estimate:</small>
+                                                <small class="font-bold">{toCurrency(this.estmin, "NGN")} - {toCurrency(this.estmax, "NGN")}</small>
+                                            </row-element>
+                                            <row-element>
+                                                <small>Arrival Trip Total Estimate:</small>
+                                                <small class="font-bold">{toCurrency(this.estmin2, "NGN")} - {toCurrency(this.estmax2, "NGN")}</small>
+                                            </row-element>
+                                        </div>
+                                ) : null
+                            }
                             </div>
                         </section>
                     </main>

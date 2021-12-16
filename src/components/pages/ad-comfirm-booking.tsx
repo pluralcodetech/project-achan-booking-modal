@@ -46,11 +46,11 @@ export class ADConfirmBooking {
     ConfirmBooking.append('email', this.localState?.emailAddress);
     
     ConfirmBooking.append('phonenumber', this.localState?.phoneNumber);
-    ConfirmBooking.append('from', this.estimateState?.from);
+    ConfirmBooking.append('from', this.estimateState?.first_cost?.from);
     ConfirmBooking.append('date', this.localState?.pickupDate);
     ConfirmBooking.append('time', this.localState?.pickupTime);
-    ConfirmBooking.append('estmin', this.estimateState?.est_min);
-    ConfirmBooking.append('estmax', this.estimateState?.est_max); 
+    ConfirmBooking.append('estmin', this.estimateState?.first_cost?.est_min);
+    ConfirmBooking.append('estmax', this.estimateState?.first_cost?.est_max); 
     ConfirmBooking.append('airid', this.localState?.arrivalAirport);
     
     ConfirmBooking.append('pickup_address', this.localState?.pickupAddress);
@@ -59,9 +59,9 @@ export class ADConfirmBooking {
     ConfirmBooking.append('pickupaddress', this.localState?.pickupAddress);
     
     ConfirmBooking.append('dest_address', this.localState?.destinationAddress);
-    ConfirmBooking.append('to', this.estimateState?.to);
-    ConfirmBooking.append('estmin2', this.estimateState?.to);
-    ConfirmBooking.append('estmax2', this.estimateState?.to);
+    ConfirmBooking.append('to', this.estimateState?.first_cost?.to);
+    ConfirmBooking.append('estmin2', this.estimateState?.second_cost?.est_min);
+    ConfirmBooking.append('estmax2', this.estimateState?.second_cost?.est_max);
     
     
     
@@ -104,7 +104,7 @@ export class ADConfirmBooking {
               </div>
               <div>
                 <modal-booking-details
-                    returnprops = {true}
+                    returnproperties={true}
                     date={this.localState?.pickupDate} //date
                     time={this.localState?.pickupTime} //time
                     airport={ this.estimateState?.second_cost?.from}
@@ -126,7 +126,7 @@ export class ADConfirmBooking {
                                     type="button"  
                                     class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none customBookingDetails-btn">Continue Book
                                   </button>
-                                  <a {...href('/page-arrival-to-final-destination')}>
+                                  <a {...href('/page-pickuppoint-airport-destination')}>
                                       <button 
                                         // onClick={this.previousChange.bind(this)}  
                                         type="button" 

@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AdComfirmBooking {
     }
+    interface AirdestinationCbtd {
+    }
     interface BookingConfirmed {
     }
     interface ComfirmBooking {
@@ -25,19 +27,29 @@ export namespace Components {
     interface FinaldestCbtd {
     }
     interface GetCabticket {
+        "airdestination"?: boolean;
+        "arrivalairport"?: string | number;
+        "arrivaldestination"?: string | number;
+        "arrivalticketnum"?: string | number;
         "callIcon": string;
         "carIcon": string;
         "date": string | number;
-        "destination": string | number;
-        "estmax": string | number;
-        "estmin": string | number;
-        "from": string | number;
+        "departureairport"?: string | number;
+        "destination"?: string | number;
+        "estmax"?: string | number;
+        "estmax2"?: string | number;
+        "estmin"?: string | number;
+        "estmin2"?: string | number;
+        "from"?: string | number;
         "passengername": string | number;
-        "phonenum": string | number;
+        "phonenum"?: string | number;
         "phonenumber": string | number;
-        "ticketnum": string | number;
+        "pickuparea"?: string | number;
+        "pickupticketnum"?: string | number;
+        "ticketnum"?: string | number;
         "time": string | number;
-        "whatapp": string | number;
+        "totalestimate"?: any;
+        "whatapp"?: string | number;
         "whatappIcon": string;
     }
     interface HomePage {
@@ -52,7 +64,7 @@ export namespace Components {
         "dottedLines": string;
         "estimatedPriceMax": string | number;
         "estimatedPriceMin": string | number;
-        "returnprops": boolean;
+        "returnproperties": boolean;
         "time": string | number;
     }
     interface ModalButton {
@@ -98,6 +110,12 @@ declare global {
     var HTMLAdComfirmBookingElement: {
         prototype: HTMLAdComfirmBookingElement;
         new (): HTMLAdComfirmBookingElement;
+    };
+    interface HTMLAirdestinationCbtdElement extends Components.AirdestinationCbtd, HTMLStencilElement {
+    }
+    var HTMLAirdestinationCbtdElement: {
+        prototype: HTMLAirdestinationCbtdElement;
+        new (): HTMLAirdestinationCbtdElement;
     };
     interface HTMLBookingConfirmedElement extends Components.BookingConfirmed, HTMLStencilElement {
     }
@@ -233,6 +251,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ad-comfirm-booking": HTMLAdComfirmBookingElement;
+        "airdestination-cbtd": HTMLAirdestinationCbtdElement;
         "booking-confirmed": HTMLBookingConfirmedElement;
         "comfirm-booking": HTMLComfirmBookingElement;
         "confirmed-airportdest-booking": HTMLConfirmedAirportdestBookingElement;
@@ -260,6 +279,8 @@ declare global {
 declare namespace LocalJSX {
     interface AdComfirmBooking {
     }
+    interface AirdestinationCbtd {
+    }
     interface BookingConfirmed {
     }
     interface ComfirmBooking {
@@ -277,18 +298,28 @@ declare namespace LocalJSX {
     interface FinaldestCbtd {
     }
     interface GetCabticket {
+        "airdestination"?: boolean;
+        "arrivalairport"?: string | number;
+        "arrivaldestination"?: string | number;
+        "arrivalticketnum"?: string | number;
         "callIcon"?: string;
         "carIcon"?: string;
         "date"?: string | number;
+        "departureairport"?: string | number;
         "destination"?: string | number;
         "estmax"?: string | number;
+        "estmax2"?: string | number;
         "estmin"?: string | number;
+        "estmin2"?: string | number;
         "from"?: string | number;
         "passengername"?: string | number;
         "phonenum"?: string | number;
         "phonenumber"?: string | number;
+        "pickuparea"?: string | number;
+        "pickupticketnum"?: string | number;
         "ticketnum"?: string | number;
         "time"?: string | number;
+        "totalestimate"?: any;
         "whatapp"?: string | number;
         "whatappIcon"?: string;
     }
@@ -304,7 +335,7 @@ declare namespace LocalJSX {
         "dottedLines"?: string;
         "estimatedPriceMax"?: string | number;
         "estimatedPriceMin"?: string | number;
-        "returnprops"?: boolean;
+        "returnproperties"?: boolean;
         "time"?: string | number;
     }
     interface ModalButton {
@@ -342,6 +373,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ad-comfirm-booking": AdComfirmBooking;
+        "airdestination-cbtd": AirdestinationCbtd;
         "booking-confirmed": BookingConfirmed;
         "comfirm-booking": ComfirmBooking;
         "confirmed-airportdest-booking": ConfirmedAirportdestBooking;
@@ -371,6 +403,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ad-comfirm-booking": LocalJSX.AdComfirmBooking & JSXBase.HTMLAttributes<HTMLAdComfirmBookingElement>;
+            "airdestination-cbtd": LocalJSX.AirdestinationCbtd & JSXBase.HTMLAttributes<HTMLAirdestinationCbtdElement>;
             "booking-confirmed": LocalJSX.BookingConfirmed & JSXBase.HTMLAttributes<HTMLBookingConfirmedElement>;
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
             "confirmed-airportdest-booking": LocalJSX.ConfirmedAirportdestBooking & JSXBase.HTMLAttributes<HTMLConfirmedAirportdestBookingElement>;

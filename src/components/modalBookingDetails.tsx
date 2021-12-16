@@ -15,7 +15,7 @@ import toCurrency from "./useFulSnippets/toCurrency";
 
 export class ModalBookingDetails {
     @Prop() dottedLines = 'dotted-lines.png';
-    @Prop({ reflect: true, mutable: true}) returnprops : boolean = false;
+    @Prop({ reflect: true, mutable: true}) returnproperties : boolean = false;
     @Prop({ reflect: true, mutable: true}) date : string | number;
     @Prop({ reflect: true, mutable: true}) time : string | number;
     @Prop({ reflect: true, mutable: true}) airport : string;
@@ -37,7 +37,7 @@ export class ModalBookingDetails {
                     <div class="text-white w-full">
                         <div class="flex flex-col space-y-2 sm:space-y-1">
                             {
-                                !this.returnprops ? (
+                                !this.returnproperties ? (
                                     <small class="text-sm font-semibold">from</small>
                                 ) : (
                                         <small class="text-sm font-semibold">to</small>
@@ -52,7 +52,7 @@ export class ModalBookingDetails {
                         <div class='flex justify-between mt-16 sm:mt-14 space-x-4 sm:space-x-0 items-end'>
                             <div class="flex flex-col  space-y-2 sm:space-y-1 ">
                                 {
-                                    !this.returnprops ? (
+                                    !this.returnproperties ? (
                                         <small class="text-sm font-semibold">to</small>
                                     ) : (
                                         <small class="text-sm font-semibold">from</small>
