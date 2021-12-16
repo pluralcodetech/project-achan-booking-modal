@@ -69,7 +69,7 @@ export class FDConfirmBooking {
         this.loading = false;
         let json = await response.json();
         localStorage.setItem("finalDestinationCBTD", JSON.stringify(json));
-        Router.push('/page-confirmed-departure-airport');
+        Router.push('/page-confirmed-finaldest-booking');
         
     } catch (error) {
         console.log(error);

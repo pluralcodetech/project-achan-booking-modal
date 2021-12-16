@@ -150,7 +150,7 @@ export class ArrivalToFinalDestination {
         estimatedData.append('time', this.formState?.pickupTime);
 
     
-        const response = await fetch(`https://watchoutachan.herokuapp.com/api/firstestimate`,
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/secondestimate`,
         {
             method: 'post',
             body: estimatedData,
@@ -206,7 +206,8 @@ export class ArrivalToFinalDestination {
             && this.formState?.pickupDate?.trim() !== ''
             && this.formState?.pickupTime?.trim() !== ''
             && this.formState?.finalDestAddress?.trim() !== ''
-        ) {
+      ) {
+            this.callEstimatedDataApi()
             Router.push('/page-fd-comfirm-booking')
             console.log(this.formState)
             localStorage.setItem("finalDestination", JSON.stringify(this.formState));

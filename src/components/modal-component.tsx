@@ -155,6 +155,12 @@ export class ModalComponent {
                                         <Route path="/page-fd-comfirm-booking">
                                             <fd-comfirm-booking></fd-comfirm-booking>
                                         </Route>
+                                        <Route path="/page-confirmed-finaldest-booking">
+                                            <confirmed-finaldest-booking></confirmed-finaldest-booking>
+                                        </Route>
+                                        <Route path="/page-finaldest-cbtd">
+                                            <finaldest-cbtd></finaldest-cbtd>
+                                        </Route>
 
                                         {/* Redirect to Home */}
                                         <Route path="/" to="/home"/>

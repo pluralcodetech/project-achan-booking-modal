@@ -12,9 +12,13 @@ export namespace Components {
     }
     interface ConfirmedDepartureAirport {
     }
+    interface ConfirmedFinaldestBooking {
+    }
     interface DepartureAirportCbtd {
     }
     interface FdComfirmBooking {
+    }
+    interface FinaldestCbtd {
     }
     interface GetCabticket {
         "callIcon": string;
@@ -99,6 +103,12 @@ declare global {
         prototype: HTMLConfirmedDepartureAirportElement;
         new (): HTMLConfirmedDepartureAirportElement;
     };
+    interface HTMLConfirmedFinaldestBookingElement extends Components.ConfirmedFinaldestBooking, HTMLStencilElement {
+    }
+    var HTMLConfirmedFinaldestBookingElement: {
+        prototype: HTMLConfirmedFinaldestBookingElement;
+        new (): HTMLConfirmedFinaldestBookingElement;
+    };
     interface HTMLDepartureAirportCbtdElement extends Components.DepartureAirportCbtd, HTMLStencilElement {
     }
     var HTMLDepartureAirportCbtdElement: {
@@ -110,6 +120,12 @@ declare global {
     var HTMLFdComfirmBookingElement: {
         prototype: HTMLFdComfirmBookingElement;
         new (): HTMLFdComfirmBookingElement;
+    };
+    interface HTMLFinaldestCbtdElement extends Components.FinaldestCbtd, HTMLStencilElement {
+    }
+    var HTMLFinaldestCbtdElement: {
+        prototype: HTMLFinaldestCbtdElement;
+        new (): HTMLFinaldestCbtdElement;
     };
     interface HTMLGetCabticketElement extends Components.GetCabticket, HTMLStencilElement {
     }
@@ -193,8 +209,10 @@ declare global {
         "booking-confirmed": HTMLBookingConfirmedElement;
         "comfirm-booking": HTMLComfirmBookingElement;
         "confirmed-departure-airport": HTMLConfirmedDepartureAirportElement;
+        "confirmed-finaldest-booking": HTMLConfirmedFinaldestBookingElement;
         "departure-airport-cbtd": HTMLDepartureAirportCbtdElement;
         "fd-comfirm-booking": HTMLFdComfirmBookingElement;
+        "finaldest-cbtd": HTMLFinaldestCbtdElement;
         "get-cabticket": HTMLGetCabticketElement;
         "home-page": HTMLHomePageElement;
         "main-screen": HTMLMainScreenElement;
@@ -217,9 +235,13 @@ declare namespace LocalJSX {
     }
     interface ConfirmedDepartureAirport {
     }
+    interface ConfirmedFinaldestBooking {
+    }
     interface DepartureAirportCbtd {
     }
     interface FdComfirmBooking {
+    }
+    interface FinaldestCbtd {
     }
     interface GetCabticket {
         "callIcon"?: string;
@@ -286,8 +308,10 @@ declare namespace LocalJSX {
         "booking-confirmed": BookingConfirmed;
         "comfirm-booking": ComfirmBooking;
         "confirmed-departure-airport": ConfirmedDepartureAirport;
+        "confirmed-finaldest-booking": ConfirmedFinaldestBooking;
         "departure-airport-cbtd": DepartureAirportCbtd;
         "fd-comfirm-booking": FdComfirmBooking;
+        "finaldest-cbtd": FinaldestCbtd;
         "get-cabticket": GetCabticket;
         "home-page": HomePage;
         "main-screen": MainScreen;
@@ -310,8 +334,10 @@ declare module "@stencil/core" {
             "booking-confirmed": LocalJSX.BookingConfirmed & JSXBase.HTMLAttributes<HTMLBookingConfirmedElement>;
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
             "confirmed-departure-airport": LocalJSX.ConfirmedDepartureAirport & JSXBase.HTMLAttributes<HTMLConfirmedDepartureAirportElement>;
+            "confirmed-finaldest-booking": LocalJSX.ConfirmedFinaldestBooking & JSXBase.HTMLAttributes<HTMLConfirmedFinaldestBookingElement>;
             "departure-airport-cbtd": LocalJSX.DepartureAirportCbtd & JSXBase.HTMLAttributes<HTMLDepartureAirportCbtdElement>;
             "fd-comfirm-booking": LocalJSX.FdComfirmBooking & JSXBase.HTMLAttributes<HTMLFdComfirmBookingElement>;
+            "finaldest-cbtd": LocalJSX.FinaldestCbtd & JSXBase.HTMLAttributes<HTMLFinaldestCbtdElement>;
             "get-cabticket": LocalJSX.GetCabticket & JSXBase.HTMLAttributes<HTMLGetCabticketElement>;
             "home-page": LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
             "main-screen": LocalJSX.MainScreen & JSXBase.HTMLAttributes<HTMLMainScreenElement>;
