@@ -79,6 +79,7 @@ export class ModalComponent {
         localStorage.removeItem("departureAirport");
         localStorage.removeItem("finalDestination");
         localStorage.removeItem("finalDestinationCBTD");
+        localStorage.removeItem("airportDestination");
     }
 
     // Previous Button
@@ -160,6 +161,9 @@ export class ModalComponent {
                                         </Route>
                                         <Route path="/page-finaldest-cbtd">
                                             <finaldest-cbtd></finaldest-cbtd>
+                                        </Route>
+                                        <Route path="/page-ad-comfirm-booking">
+                                            <ad-comfirm-booking></ad-comfirm-booking>
                                         </Route>
 
                                         {/* Redirect to Home */}

@@ -1,6 +1,7 @@
 import { Component, getAssetPath, h, Method, Prop, State } from "@stencil/core";
 import { href } from "stencil-router-v2";
 import { branchId, toNextpageState } from "../globalState/globalState";
+import { Router } from "../routerconfig/routerconfig";
 import { handleErrors } from "../useFulSnippets/actions";
 
 
@@ -161,6 +162,32 @@ export class PagePickuppointAirportDestination {
         let json = await response.json();
         this.storeGoogleApiLocation = json;
     };
+
+    callEstimatedDataApi = async () => {
+        let estimatedData: FormData = new FormData();
+        estimatedData.append('destination_area', this.formState?.arrivalAirport);
+        estimatedData.append('airid', this.formState?.arrivalAirport);
+        estimatedData.append('date', this.formState?.pickupDate);
+        estimatedData.append('time', this.formState?.pickupTime);
+        estimatedData.append('pickup_area', this.formState?.pickupArea);
+        estimatedData.append('departure_airid', this.formState?.departureAirport);
+        // estimatedData.append('returndate', this.formState?.pickupTime);
+        // estimatedData.append('returntime', this.formState?.pickupTime);
+
+    
+        const response = await fetch(`https://watchoutachan.herokuapp.com/api/thirdestimate`,
+        {
+            method: 'post',
+            body: estimatedData,
+        }
+        );
+        
+        handleErrors(response);
+
+        let json = await response.json();
+        // this.estimatePrice = json;
+        localStorage.setItem("estimatedPrice", JSON.stringify(json));
+    };
     
 
     onBookChange() {
@@ -220,13 +247,15 @@ export class PagePickuppointAirportDestination {
             && this.formState?.pickupDate?.trim() !== ''
             && this.formState?.pickupTime?.trim() !== ''
             && this.formState?.arrivalTime?.trim() !== ''
-        ) {
-            this.setValid()
+      ) {
+          
+            this.callEstimatedDataApi()
+            Router.push('/page-ad-comfirm-booking')
             console.log(this.formState)
-            localStorage.setItem("confirmBooking", JSON.stringify(this.formState));
+            localStorage.setItem("airportDestination", JSON.stringify(this.formState));
             // console.log(pickupPointAir)
             // confirmBranchState.set('state', this.formState);
-            console.log(localStorage.getItem("confirmBooking"));
+            console.log(localStorage.getItem("airportDestination"));
         
          
 

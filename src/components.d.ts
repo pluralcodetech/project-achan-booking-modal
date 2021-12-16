@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface AdComfirmBooking {
+    }
     interface BookingConfirmed {
     }
     interface ComfirmBooking {
@@ -85,6 +87,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAdComfirmBookingElement extends Components.AdComfirmBooking, HTMLStencilElement {
+    }
+    var HTMLAdComfirmBookingElement: {
+        prototype: HTMLAdComfirmBookingElement;
+        new (): HTMLAdComfirmBookingElement;
+    };
     interface HTMLBookingConfirmedElement extends Components.BookingConfirmed, HTMLStencilElement {
     }
     var HTMLBookingConfirmedElement: {
@@ -206,6 +214,7 @@ declare global {
         new (): HTMLTitleComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "ad-comfirm-booking": HTMLAdComfirmBookingElement;
         "booking-confirmed": HTMLBookingConfirmedElement;
         "comfirm-booking": HTMLComfirmBookingElement;
         "confirmed-departure-airport": HTMLConfirmedDepartureAirportElement;
@@ -229,6 +238,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AdComfirmBooking {
+    }
     interface BookingConfirmed {
     }
     interface ComfirmBooking {
@@ -305,6 +316,7 @@ declare namespace LocalJSX {
     interface TitleComponent {
     }
     interface IntrinsicElements {
+        "ad-comfirm-booking": AdComfirmBooking;
         "booking-confirmed": BookingConfirmed;
         "comfirm-booking": ComfirmBooking;
         "confirmed-departure-airport": ConfirmedDepartureAirport;
@@ -331,6 +343,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ad-comfirm-booking": LocalJSX.AdComfirmBooking & JSXBase.HTMLAttributes<HTMLAdComfirmBookingElement>;
             "booking-confirmed": LocalJSX.BookingConfirmed & JSXBase.HTMLAttributes<HTMLBookingConfirmedElement>;
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;
             "confirmed-departure-airport": LocalJSX.ConfirmedDepartureAirport & JSXBase.HTMLAttributes<HTMLConfirmedDepartureAirportElement>;
