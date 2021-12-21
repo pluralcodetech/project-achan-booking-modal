@@ -12,7 +12,7 @@ import toCurrency from "./useFulSnippets/toCurrency";
     assetsDirs: ['assets'],
 })
 
-export class Getcabticket {
+export class AirportDestinationGetcabticket {
     @Prop() carIcon = "car-icon.png"
     @Prop() callIcon = "call-icon.png"
     @Prop() whatappIcon = "whatapp.png"

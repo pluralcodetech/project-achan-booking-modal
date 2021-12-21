@@ -82,6 +82,7 @@ export class ModalComponent {
         localStorage.removeItem("airportDestination");
         localStorage.removeItem("roundTripPickUp");
         localStorage.removeItem("airportDestinationCBTD");
+        localStorage.removeItem("roundtripCBTD");
     }
 
     // Previous Button
@@ -185,6 +186,7 @@ export class ModalComponent {
                                         <Route path="/page-roundtrip-cbtd">
                                             <roundtrip-cbtd></roundtrip-cbtd>
                                         </Route>
+                                        
 
                                         {/* Redirect to Home */}
                                         <Route path="/" to="/home"/>

@@ -121,6 +121,43 @@ export namespace Components {
     }
     interface RoundtripConfirmBooking {
     }
+    interface RoundtripGetCabticket {
+        "callIcon": string;
+        "carIcon": string;
+        "estmax": string | number;
+        "estmax2": string | number;
+        "estmax3": string | number;
+        "estmax4": string | number;
+        "estmin": string | number;
+        "estmin2": string | number;
+        "estmin3": string | number;
+        "estmin4": string | number;
+        "firstpickudestination": string | number;
+        "firstpickuparea": string | number;
+        "firstpickupdate": string | number;
+        "firstpickuptime": string | number;
+        "fourthpickudestination": string | number;
+        "fourthpickuparea": string | number;
+        "fourthpickupdate": string | number;
+        "fourthpickupticketnum": string | number;
+        "fourthpickuptime": string | number;
+        "passengername": string | number;
+        "phonenum": string | number;
+        "phonenumber": string | number;
+        "pickupticketnum": string | number;
+        "secondpickudestination": string | number;
+        "secondpickuparea": string | number;
+        "secondpickupdate": string | number;
+        "secondpickupticketnum": string | number;
+        "secondpickuptime": string | number;
+        "thirdpickudestination": string | number;
+        "thirdpickuparea": string | number;
+        "thirdpickupdate": string | number;
+        "thirdpickupticketnum": string | number;
+        "thirdpickuptime": string | number;
+        "whatapp": string | number;
+        "whatappIcon": string;
+    }
     interface RouteCard {
         "faqIcon": string;
         "pathname": string;
@@ -282,6 +319,12 @@ declare global {
         prototype: HTMLRoundtripConfirmBookingElement;
         new (): HTMLRoundtripConfirmBookingElement;
     };
+    interface HTMLRoundtripGetCabticketElement extends Components.RoundtripGetCabticket, HTMLStencilElement {
+    }
+    var HTMLRoundtripGetCabticketElement: {
+        prototype: HTMLRoundtripGetCabticketElement;
+        new (): HTMLRoundtripGetCabticketElement;
+    };
     interface HTMLRouteCardElement extends Components.RouteCard, HTMLStencilElement {
     }
     var HTMLRouteCardElement: {
@@ -326,6 +369,7 @@ declare global {
         "pickup-comfirm-booking": HTMLPickupComfirmBookingElement;
         "roundtrip-cbtd": HTMLRoundtripCbtdElement;
         "roundtrip-confirm-booking": HTMLRoundtripConfirmBookingElement;
+        "roundtrip-get-cabticket": HTMLRoundtripGetCabticketElement;
         "route-card": HTMLRouteCardElement;
         "row-element": HTMLRowElementElement;
         "title-component": HTMLTitleComponentElement;
@@ -444,6 +488,43 @@ declare namespace LocalJSX {
     }
     interface RoundtripConfirmBooking {
     }
+    interface RoundtripGetCabticket {
+        "callIcon"?: string;
+        "carIcon"?: string;
+        "estmax"?: string | number;
+        "estmax2"?: string | number;
+        "estmax3"?: string | number;
+        "estmax4"?: string | number;
+        "estmin"?: string | number;
+        "estmin2"?: string | number;
+        "estmin3"?: string | number;
+        "estmin4"?: string | number;
+        "firstpickudestination"?: string | number;
+        "firstpickuparea"?: string | number;
+        "firstpickupdate"?: string | number;
+        "firstpickuptime"?: string | number;
+        "fourthpickudestination"?: string | number;
+        "fourthpickuparea"?: string | number;
+        "fourthpickupdate"?: string | number;
+        "fourthpickupticketnum"?: string | number;
+        "fourthpickuptime"?: string | number;
+        "passengername"?: string | number;
+        "phonenum"?: string | number;
+        "phonenumber"?: string | number;
+        "pickupticketnum"?: string | number;
+        "secondpickudestination"?: string | number;
+        "secondpickuparea"?: string | number;
+        "secondpickupdate"?: string | number;
+        "secondpickupticketnum"?: string | number;
+        "secondpickuptime"?: string | number;
+        "thirdpickudestination"?: string | number;
+        "thirdpickuparea"?: string | number;
+        "thirdpickupdate"?: string | number;
+        "thirdpickupticketnum"?: string | number;
+        "thirdpickuptime"?: string | number;
+        "whatapp"?: string | number;
+        "whatappIcon"?: string;
+    }
     interface RouteCard {
         "faqIcon"?: string;
         "pathname"?: string;
@@ -479,6 +560,7 @@ declare namespace LocalJSX {
         "pickup-comfirm-booking": PickupComfirmBooking;
         "roundtrip-cbtd": RoundtripCbtd;
         "roundtrip-confirm-booking": RoundtripConfirmBooking;
+        "roundtrip-get-cabticket": RoundtripGetCabticket;
         "route-card": RouteCard;
         "row-element": RowElement;
         "title-component": TitleComponent;
@@ -513,6 +595,7 @@ declare module "@stencil/core" {
             "pickup-comfirm-booking": LocalJSX.PickupComfirmBooking & JSXBase.HTMLAttributes<HTMLPickupComfirmBookingElement>;
             "roundtrip-cbtd": LocalJSX.RoundtripCbtd & JSXBase.HTMLAttributes<HTMLRoundtripCbtdElement>;
             "roundtrip-confirm-booking": LocalJSX.RoundtripConfirmBooking & JSXBase.HTMLAttributes<HTMLRoundtripConfirmBookingElement>;
+            "roundtrip-get-cabticket": LocalJSX.RoundtripGetCabticket & JSXBase.HTMLAttributes<HTMLRoundtripGetCabticketElement>;
             "route-card": LocalJSX.RouteCard & JSXBase.HTMLAttributes<HTMLRouteCardElement>;
             "row-element": LocalJSX.RowElement & JSXBase.HTMLAttributes<HTMLRowElementElement>;
             "title-component": LocalJSX.TitleComponent & JSXBase.HTMLAttributes<HTMLTitleComponentElement>;
