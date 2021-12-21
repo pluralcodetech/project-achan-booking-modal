@@ -176,6 +176,15 @@ export class ModalComponent {
                                         <Route path="/page-airdestination-cbtd">
                                             <airdestination-cbtd></airdestination-cbtd>
                                         </Route>
+                                        <Route path="/page-roundtrip-confirm-booking">
+                                            <roundtrip-confirm-booking></roundtrip-confirm-booking>
+                                        </Route>
+                                        <Route path="/page-confirmed-roundtrip-booking">
+                                            <confirmed-roundtrip-booking></confirmed-roundtrip-booking>
+                                        </Route>
+                                        <Route path="/page-roundtrip-cbtd">
+                                            <roundtrip-cbtd></roundtrip-cbtd>
+                                        </Route>
 
                                         {/* Redirect to Home */}
                                         <Route path="/" to="/home"/>

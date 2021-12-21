@@ -25,7 +25,7 @@ export class ModalBookingDetails {
     @Prop({ reflect: true, mutable: true}) estimatedPriceMax : string | number;
     @Prop({ reflect: true, mutable: true}) estimatedPriceMin : string | number;
 
-//   @Event({}) 
+
     render() {
         return (
             <figure class="rounded-xl px-4 py-6 sm:p-10 h-full lg:h-80 2xl:h-80 space-y-2 sm+:space-y-4 md:space-y-8 w-full customBookingDetails-Card">

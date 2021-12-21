@@ -41,6 +41,8 @@ export namespace Components {
     }
     interface ConfirmedFinaldestBooking {
     }
+    interface ConfirmedRoundtripBooking {
+    }
     interface DepartureAirportCbtd {
     }
     interface FdComfirmBooking {
@@ -115,6 +117,10 @@ export namespace Components {
     }
     interface PickupComfirmBooking {
     }
+    interface RoundtripCbtd {
+    }
+    interface RoundtripConfirmBooking {
+    }
     interface RouteCard {
         "faqIcon": string;
         "pathname": string;
@@ -173,6 +179,12 @@ declare global {
     var HTMLConfirmedFinaldestBookingElement: {
         prototype: HTMLConfirmedFinaldestBookingElement;
         new (): HTMLConfirmedFinaldestBookingElement;
+    };
+    interface HTMLConfirmedRoundtripBookingElement extends Components.ConfirmedRoundtripBooking, HTMLStencilElement {
+    }
+    var HTMLConfirmedRoundtripBookingElement: {
+        prototype: HTMLConfirmedRoundtripBookingElement;
+        new (): HTMLConfirmedRoundtripBookingElement;
     };
     interface HTMLDepartureAirportCbtdElement extends Components.DepartureAirportCbtd, HTMLStencilElement {
     }
@@ -258,6 +270,18 @@ declare global {
         prototype: HTMLPickupComfirmBookingElement;
         new (): HTMLPickupComfirmBookingElement;
     };
+    interface HTMLRoundtripCbtdElement extends Components.RoundtripCbtd, HTMLStencilElement {
+    }
+    var HTMLRoundtripCbtdElement: {
+        prototype: HTMLRoundtripCbtdElement;
+        new (): HTMLRoundtripCbtdElement;
+    };
+    interface HTMLRoundtripConfirmBookingElement extends Components.RoundtripConfirmBooking, HTMLStencilElement {
+    }
+    var HTMLRoundtripConfirmBookingElement: {
+        prototype: HTMLRoundtripConfirmBookingElement;
+        new (): HTMLRoundtripConfirmBookingElement;
+    };
     interface HTMLRouteCardElement extends Components.RouteCard, HTMLStencilElement {
     }
     var HTMLRouteCardElement: {
@@ -285,6 +309,7 @@ declare global {
         "confirmed-airportdest-booking": HTMLConfirmedAirportdestBookingElement;
         "confirmed-departure-airport": HTMLConfirmedDepartureAirportElement;
         "confirmed-finaldest-booking": HTMLConfirmedFinaldestBookingElement;
+        "confirmed-roundtrip-booking": HTMLConfirmedRoundtripBookingElement;
         "departure-airport-cbtd": HTMLDepartureAirportCbtdElement;
         "fd-comfirm-booking": HTMLFdComfirmBookingElement;
         "finaldest-cbtd": HTMLFinaldestCbtdElement;
@@ -299,6 +324,8 @@ declare global {
         "page-pickuppoint-airport-destination": HTMLPagePickuppointAirportDestinationElement;
         "page-roundtrip-pickup": HTMLPageRoundtripPickupElement;
         "pickup-comfirm-booking": HTMLPickupComfirmBookingElement;
+        "roundtrip-cbtd": HTMLRoundtripCbtdElement;
+        "roundtrip-confirm-booking": HTMLRoundtripConfirmBookingElement;
         "route-card": HTMLRouteCardElement;
         "row-element": HTMLRowElementElement;
         "title-component": HTMLTitleComponentElement;
@@ -339,6 +366,8 @@ declare namespace LocalJSX {
     interface ConfirmedDepartureAirport {
     }
     interface ConfirmedFinaldestBooking {
+    }
+    interface ConfirmedRoundtripBooking {
     }
     interface DepartureAirportCbtd {
     }
@@ -411,6 +440,10 @@ declare namespace LocalJSX {
     }
     interface PickupComfirmBooking {
     }
+    interface RoundtripCbtd {
+    }
+    interface RoundtripConfirmBooking {
+    }
     interface RouteCard {
         "faqIcon"?: string;
         "pathname"?: string;
@@ -429,6 +462,7 @@ declare namespace LocalJSX {
         "confirmed-airportdest-booking": ConfirmedAirportdestBooking;
         "confirmed-departure-airport": ConfirmedDepartureAirport;
         "confirmed-finaldest-booking": ConfirmedFinaldestBooking;
+        "confirmed-roundtrip-booking": ConfirmedRoundtripBooking;
         "departure-airport-cbtd": DepartureAirportCbtd;
         "fd-comfirm-booking": FdComfirmBooking;
         "finaldest-cbtd": FinaldestCbtd;
@@ -443,6 +477,8 @@ declare namespace LocalJSX {
         "page-pickuppoint-airport-destination": PagePickuppointAirportDestination;
         "page-roundtrip-pickup": PageRoundtripPickup;
         "pickup-comfirm-booking": PickupComfirmBooking;
+        "roundtrip-cbtd": RoundtripCbtd;
+        "roundtrip-confirm-booking": RoundtripConfirmBooking;
         "route-card": RouteCard;
         "row-element": RowElement;
         "title-component": TitleComponent;
@@ -460,6 +496,7 @@ declare module "@stencil/core" {
             "confirmed-airportdest-booking": LocalJSX.ConfirmedAirportdestBooking & JSXBase.HTMLAttributes<HTMLConfirmedAirportdestBookingElement>;
             "confirmed-departure-airport": LocalJSX.ConfirmedDepartureAirport & JSXBase.HTMLAttributes<HTMLConfirmedDepartureAirportElement>;
             "confirmed-finaldest-booking": LocalJSX.ConfirmedFinaldestBooking & JSXBase.HTMLAttributes<HTMLConfirmedFinaldestBookingElement>;
+            "confirmed-roundtrip-booking": LocalJSX.ConfirmedRoundtripBooking & JSXBase.HTMLAttributes<HTMLConfirmedRoundtripBookingElement>;
             "departure-airport-cbtd": LocalJSX.DepartureAirportCbtd & JSXBase.HTMLAttributes<HTMLDepartureAirportCbtdElement>;
             "fd-comfirm-booking": LocalJSX.FdComfirmBooking & JSXBase.HTMLAttributes<HTMLFdComfirmBookingElement>;
             "finaldest-cbtd": LocalJSX.FinaldestCbtd & JSXBase.HTMLAttributes<HTMLFinaldestCbtdElement>;
@@ -474,6 +511,8 @@ declare module "@stencil/core" {
             "page-pickuppoint-airport-destination": LocalJSX.PagePickuppointAirportDestination & JSXBase.HTMLAttributes<HTMLPagePickuppointAirportDestinationElement>;
             "page-roundtrip-pickup": LocalJSX.PageRoundtripPickup & JSXBase.HTMLAttributes<HTMLPageRoundtripPickupElement>;
             "pickup-comfirm-booking": LocalJSX.PickupComfirmBooking & JSXBase.HTMLAttributes<HTMLPickupComfirmBookingElement>;
+            "roundtrip-cbtd": LocalJSX.RoundtripCbtd & JSXBase.HTMLAttributes<HTMLRoundtripCbtdElement>;
+            "roundtrip-confirm-booking": LocalJSX.RoundtripConfirmBooking & JSXBase.HTMLAttributes<HTMLRoundtripConfirmBookingElement>;
             "route-card": LocalJSX.RouteCard & JSXBase.HTMLAttributes<HTMLRouteCardElement>;
             "row-element": LocalJSX.RowElement & JSXBase.HTMLAttributes<HTMLRowElementElement>;
             "title-component": LocalJSX.TitleComponent & JSXBase.HTMLAttributes<HTMLTitleComponentElement>;

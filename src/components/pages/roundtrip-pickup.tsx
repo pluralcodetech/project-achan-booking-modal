@@ -424,7 +424,6 @@ export class PageRoundtripPickusp {
         returnArrivalTime: "",
         returnPickupDate: "",
         returnPickupTime: "",
-        
     };
 
     @State() firstNameErrMsg;
@@ -450,6 +449,7 @@ export class PageRoundtripPickusp {
     @State() destinationState: any;
 
     @State() valid = false;
+    @State() loading = false;
 
     @Method()
     async setValid() {
@@ -539,7 +539,7 @@ export class PageRoundtripPickusp {
 
     callEstimatedDataApi = async () => {
         let estimatedData: FormData = new FormData();
-        estimatedData.append('destination_area', this.formState?.arrivalAirport);
+        estimatedData.append('destination_area', this.formState?.destinationArea);
         estimatedData.append('arrival_airid', this.formState?.arrivalAirport);
         estimatedData.append('date', this.formState?.pickupDate);
         estimatedData.append('time', this.formState?.pickupTime);
@@ -549,18 +549,24 @@ export class PageRoundtripPickusp {
         estimatedData.append('returntime', this.formState?.returnPickupTime);
 
     
-        const response = await fetch(`https://watchoutachan.herokuapp.com/api/fourthestimate`,
-        {
-            method: 'post',
-            body: estimatedData,
-        }
+        try {
+            const response = await fetch(`https://watchoutachan.herokuapp.com/api/fourthestimate`,
+            {
+                method: 'post',
+                body: estimatedData,
+            }
         );
         
-        handleErrors(response);
-
-        let json = await response.json();
-        // this.estimatePrice = json;
-        localStorage.setItem("estimatedPrice", JSON.stringify(json));
+            handleErrors(response);
+            this.loading = false;
+            let json = await response.json();
+            localStorage.setItem("estimatedPrice", JSON.stringify(json));
+            Router.push('/page-roundtrip-confirm-booking')
+        } catch (error) {
+            console.log(error);
+            this.loading = false;
+        }
+        
     };
     
 
@@ -635,17 +641,11 @@ export class PageRoundtripPickusp {
       ) {
           
             this.callEstimatedDataApi()
-            Router.push('/page-pickup-comfirm-booking')
+            
             console.log(this.formState)
             localStorage.setItem("roundTripPickUp", JSON.stringify(this.formState));
-            // console.log(pickupPointAir)
-            // confirmBranchState.set('state', this.formState);
             console.log(localStorage.getItem("roundTripPickUp"));
         
-         
-
-           
-            
         }
   }
 
@@ -799,8 +799,8 @@ export class PageRoundtripPickusp {
                                         required
                                         >
                                         <option value="" selected disabled hidden>select airport </option>
-                                            {this.storeAirportApiData?.map(({branch_location }) => 
-                                            <option value={branch_location} >{branch_location}</option>
+                                            {this.storeAirportApiData?.map(({userid, branch_location }) => 
+                                            <option value={userid} >{branch_location}</option>
                                             )}
                                     </select>
                                     <small>{this.arrivalAirportErrMsg}</small>
@@ -924,14 +924,26 @@ export class PageRoundtripPickusp {
                             </div>
                         </div>
                        
+                        {
+                            !this.loading ? (
+                                <button 
+                                    type="button" 
+                                    onClick={this.onBookChange.bind(this)}  
+                                    class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
+                                >
+                                    <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a> 
+                                </button>
+                            ) : (
+                                <div class=" flex justify-center w-full">
+                                    <div class="flex flex-row rounded-xl space-x-2 shadow-2xl p-4 items-center w-auto">
+                                        <div class=" animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
+                                        <small class="text-midnightblue">Please wait...</small>
+                                    </div>
+                                </div>  
+                            )
+                        }
                
-                        <button 
-                            type="button" 
-                            onClick={this.onBookChange.bind(this)}  
-                            class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
-                        >
-                            <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a> 
-                        </button>
+                        
                     </form>
                 </main>
             </div>
