@@ -1,10 +1,8 @@
 import { Component, h, State } from "@stencil/core";
 import {  href } from "stencil-router-v2";
-// import { href } from "stencil-router-v2";
 import { toNextpageState } from "../globalState/globalState";
 import { Router } from "../routerconfig/routerconfig";
 import { handleErrors } from "../useFulSnippets/actions";
-// import { handleErrors } from "../useFulSnippets/actions";
 
 
 
@@ -16,29 +14,19 @@ import { handleErrors } from "../useFulSnippets/actions";
 
 export class ADConfirmBooking {
 
-    @State() estimatePrice;
+  @State() estimatePrice;
 
-    @State() localState = JSON.parse(localStorage.getItem("airportDestination"));
-    @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
-    @State() loading = false;
+  @State() localState = JSON.parse(localStorage.getItem("airportDestination"));
+  @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
+  @State() loading = false;
 
-    componentWillLoad() { 
-        toNextpageState.set('toNextpage', true);
-
-
-    //    this.callEstimatedDataApi();
-
-        console.log(this.localState)
-        console.log(this.estimateState)
-
-    };
+  componentWillLoad() { 
+      toNextpageState.set('toNextpage', true);
+  };
 
 
-    callConfirmBookingApi = async () => {
-        
-
-        console.log(Router);
-        
+  callConfirmBookingApi = async () => {
+    this.loading = true;
 
     let ConfirmBooking: FormData = new FormData();
     ConfirmBooking.append('firstname', this.localState.firstName);
@@ -62,10 +50,7 @@ export class ADConfirmBooking {
     ConfirmBooking.append('to', this.estimateState?.first_cost?.to);
     ConfirmBooking.append('estmin2', this.estimateState?.second_cost?.est_min);
     ConfirmBooking.append('estmax2', this.estimateState?.second_cost?.est_max);
-    
-    
-    
-        
+    ConfirmBooking.append('estimated_arivaltime', this.localState?.arrivalTime);
     
     try {
         const response = await fetch(`https://watchoutachan.herokuapp.com/api/thirdform`,
@@ -83,7 +68,6 @@ export class ADConfirmBooking {
         
     } catch (error) {
         console.log(error);
-        // this.cabTicketDetails = null;
         this.loading = false;
     }
   };
@@ -119,30 +103,30 @@ export class ADConfirmBooking {
 
                 <div>
                     {!this.loading ? (
-                                <div>
-                                  <button 
-                                    onClick={this.callConfirmBookingApi.bind(this)} 
-                                    disabled={this.loading} 
-                                    type="button"  
-                                    class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none customBookingDetails-btn">Continue Book
-                                  </button>
-                                  <a {...href('/page-pickuppoint-airport-destination')}>
-                                      <button 
-                                        // onClick={this.previousChange.bind(this)}  
-                                        type="button" 
-                                        class="text-center mt-10 w-full border p-3 outline-none hover:border-0 focus:outline-none customBookingDetails-btn2">Cancel
-                                    </button>
-                                  </a>
-                                  
-                                </div>
-                              ) : (
-                                <div class=" flex justify-center w-full">
-                                  <div class="flex flex-row rounded-xl space-x-2 shadow-2xl p-4 items-center w-auto">
-                                      <div class=" animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
-                                      <small class="text-midnightblue">Please wait...</small>
-                                  </div>
-                                </div>
-                              )}
+                      <div>
+                        <button 
+                          onClick={this.callConfirmBookingApi.bind(this)} 
+                          disabled={this.loading} 
+                          type="button"  
+                          class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none customBookingDetails-btn">Continue Book
+                        </button>
+                        <a {...href('/page-pickuppoint-airport-destination')}>
+                            <button 
+                              // onClick={this.previousChange.bind(this)}  
+                              type="button" 
+                              class="text-center mt-10 w-full border p-3 outline-none hover:border-0 focus:outline-none customBookingDetails-btn2">Cancel
+                          </button>
+                        </a>
+                        
+                      </div>
+                    ) : (
+                      <div class=" flex justify-center w-full">
+                        <div class="flex flex-row rounded-xl space-x-2 shadow-2xl p-4 items-center w-auto">
+                            <div class=" animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
+                            <small class="text-midnightblue">Please wait...</small>
+                        </div>
+                      </div>
+                    )}
                 </div>
             </div>
             // <modal-booking-details></modal-booking-details>

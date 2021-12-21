@@ -18,14 +18,13 @@ export class AirportDestinationCBTD {
     render() {
         return (
             <div class="p-4">
-                <get-cabticket
-                    airdestination = {true}
+                <ad-get-cabticket
                     passengername={this.airportDestinationCBTD?.first_ticket?.passenger_name}
-                    phonenumber = {this.airportDestinationCBTD?.first_ticket?.phone_number}
-                    pickupticketnum = {this.airportDestinationCBTD?.first_ticket?.ticket_num}
-                    arrivalticketnum = {this.airportDestinationCBTD?.second_ticket?.ticket_num}
+                    phonenumber={this.airportDestinationCBTD?.first_ticket?.phone_number}
                     date = {this.airportDestinationCBTD?.first_ticket?.date}
                     time = {this.airportDestinationCBTD?.first_ticket?.time}
+                    pickupticketnum={this.airportDestinationCBTD?.first_ticket?.ticket_num}
+                    arrivalticketnum = {this.airportDestinationCBTD?.second_ticket?.ticket_num}
                     pickuparea = {this.airportDestinationCBTD?.first_ticket?.from}
                     departureairport = {this.airportDestinationCBTD?.first_ticket?.destination}
                     arrivalairport = {this.airportDestinationCBTD?.second_ticket?.from}
@@ -62,7 +61,7 @@ export class AirportDestinationCBTD {
 
                         
                     </div>
-                </get-cabticket>
+                </ad-get-cabticket>
             </div>
         )
     }

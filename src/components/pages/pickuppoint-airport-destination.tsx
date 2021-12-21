@@ -171,8 +171,7 @@ export class PagePickuppointAirportDestination {
         estimatedData.append('time', this.formState?.pickupTime);
         estimatedData.append('pickup_area', this.formState?.pickupArea);
         estimatedData.append('departure_airid', this.formState?.departureAirport);
-        // estimatedData.append('returndate', this.formState?.pickupTime);
-        // estimatedData.append('returntime', this.formState?.pickupTime);
+        
 
     
         const response = await fetch(`https://watchoutachan.herokuapp.com/api/thirdestimate`,

@@ -8,6 +8,27 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AdComfirmBooking {
     }
+    interface AdGetCabticket {
+        "arrivalairport": string | number;
+        "arrivaldestination": string | number;
+        "arrivalticketnum": string | number;
+        "callIcon": string;
+        "carIcon": string;
+        "date": string | number;
+        "departureairport": string | number;
+        "estmax": string | number;
+        "estmax2": string | number;
+        "estmin": string | number;
+        "estmin2": string | number;
+        "passengername": string | number;
+        "phonenum": string | number;
+        "phonenumber": string | number;
+        "pickuparea": string | number;
+        "pickupticketnum": string | number;
+        "time": string | number;
+        "whatapp": string | number;
+        "whatappIcon": string;
+    }
     interface AirdestinationCbtd {
     }
     interface BookingConfirmed {
@@ -27,7 +48,7 @@ export namespace Components {
     interface FinaldestCbtd {
     }
     interface GetCabticket {
-        "airdestination"?: boolean;
+        "airdestination"?: any;
         "arrivalairport"?: string | number;
         "arrivaldestination"?: string | number;
         "arrivalticketnum"?: string | number;
@@ -110,6 +131,12 @@ declare global {
     var HTMLAdComfirmBookingElement: {
         prototype: HTMLAdComfirmBookingElement;
         new (): HTMLAdComfirmBookingElement;
+    };
+    interface HTMLAdGetCabticketElement extends Components.AdGetCabticket, HTMLStencilElement {
+    }
+    var HTMLAdGetCabticketElement: {
+        prototype: HTMLAdGetCabticketElement;
+        new (): HTMLAdGetCabticketElement;
     };
     interface HTMLAirdestinationCbtdElement extends Components.AirdestinationCbtd, HTMLStencilElement {
     }
@@ -251,6 +278,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ad-comfirm-booking": HTMLAdComfirmBookingElement;
+        "ad-get-cabticket": HTMLAdGetCabticketElement;
         "airdestination-cbtd": HTMLAirdestinationCbtdElement;
         "booking-confirmed": HTMLBookingConfirmedElement;
         "comfirm-booking": HTMLComfirmBookingElement;
@@ -279,6 +307,27 @@ declare global {
 declare namespace LocalJSX {
     interface AdComfirmBooking {
     }
+    interface AdGetCabticket {
+        "arrivalairport"?: string | number;
+        "arrivaldestination"?: string | number;
+        "arrivalticketnum"?: string | number;
+        "callIcon"?: string;
+        "carIcon"?: string;
+        "date"?: string | number;
+        "departureairport"?: string | number;
+        "estmax"?: string | number;
+        "estmax2"?: string | number;
+        "estmin"?: string | number;
+        "estmin2"?: string | number;
+        "passengername"?: string | number;
+        "phonenum"?: string | number;
+        "phonenumber"?: string | number;
+        "pickuparea"?: string | number;
+        "pickupticketnum"?: string | number;
+        "time"?: string | number;
+        "whatapp"?: string | number;
+        "whatappIcon"?: string;
+    }
     interface AirdestinationCbtd {
     }
     interface BookingConfirmed {
@@ -298,7 +347,7 @@ declare namespace LocalJSX {
     interface FinaldestCbtd {
     }
     interface GetCabticket {
-        "airdestination"?: boolean;
+        "airdestination"?: any;
         "arrivalairport"?: string | number;
         "arrivaldestination"?: string | number;
         "arrivalticketnum"?: string | number;
@@ -373,6 +422,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ad-comfirm-booking": AdComfirmBooking;
+        "ad-get-cabticket": AdGetCabticket;
         "airdestination-cbtd": AirdestinationCbtd;
         "booking-confirmed": BookingConfirmed;
         "comfirm-booking": ComfirmBooking;
@@ -403,6 +453,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ad-comfirm-booking": LocalJSX.AdComfirmBooking & JSXBase.HTMLAttributes<HTMLAdComfirmBookingElement>;
+            "ad-get-cabticket": LocalJSX.AdGetCabticket & JSXBase.HTMLAttributes<HTMLAdGetCabticketElement>;
             "airdestination-cbtd": LocalJSX.AirdestinationCbtd & JSXBase.HTMLAttributes<HTMLAirdestinationCbtdElement>;
             "booking-confirmed": LocalJSX.BookingConfirmed & JSXBase.HTMLAttributes<HTMLBookingConfirmedElement>;
             "comfirm-booking": LocalJSX.ComfirmBooking & JSXBase.HTMLAttributes<HTMLComfirmBookingElement>;

@@ -17,7 +17,7 @@ export class Getcabticket {
     @Prop() callIcon = "call-icon.png"
     @Prop() whatappIcon = "whatapp.png"
         
-    @Prop({ reflect: true, mutable: true }) airdestination? = false
+    @Prop({ reflect: true, mutable: true }) airdestination? : any = false
     @Prop({ reflect: true, mutable: true}) passengername : string | number;
     @Prop({ reflect: true, mutable: true}) phonenumber: string | number;
     @Prop({ reflect: true, mutable: true}) ticketnum? : string | number;
@@ -37,7 +37,7 @@ export class Getcabticket {
     @Prop({ reflect: true, mutable: true}) arrivaldestination? : string | number;
     @Prop({ reflect: true, mutable: true}) estmax2? : string | number;
     @Prop({ reflect: true, mutable: true}) estmin2? : string | number;
-    @Prop({ reflect: true, mutable: true}) totalestimate?;
+    @Prop({ reflect: true, mutable: true}) totalestimate?: any
 
     render() {
         return (
