@@ -34,8 +34,7 @@ export class DepartureAirportCBTD {
                 >
                     <div>
                         <a href={`http://www.codesandbox.com.ng/details/receipt.php?trip_id=${this.departureAirportCBTD?.first_ticket?.trip_id}` }>
-                            <button 
-                                // onClick={this.openDriverDetails.bind(this)}  
+                            <button   
                                 type="button"  
                                 class="text-center w-full border-0 p-3 outline-none focus:outline-none customBookingDetails-btn">
                                 Ticket Details
