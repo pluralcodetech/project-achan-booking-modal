@@ -45,27 +45,11 @@ export class ModalComponent {
 
         toNextpageState.set('toNextpage', false);
         branchId.set('id', this.requiredid);
-        
-        // store.setStore(configureStore({}));
 
-        // store.mapStateToProps(this, state => {
-        //     const {
-        //         customPostReducer: { customPost, loading, error },
-        //     } = state;
-        //     return {
-        //         customPost,
-        //         loading,
-        //         error,
-        //     };
-        // });
-
-        // store.mapStateToProps(this, state => state)
-
-        // store.mapDispatchToProps(this, {
-        //     customPostAction,
-        // });
-
-        // this.customPostAction();
+        departureAirPageState.set('departureAirPage', false);
+        finalDestinationPageState.set('finalDestinationPage', false);
+        airportToDestinationPageState.set('airportToDestinationPage', false);
+        roundTripPickupPageState.set('roundTripPickupPage', false);
     }
 
 
@@ -73,6 +57,13 @@ export class ModalComponent {
     closeModal() {
         this.opened = false;
         console.log("closing Modal...")
+
+        // departureAirPageState.set('departureAirPage', false);
+        // finalDestinationPageState.set('finalDestinationPage', false);
+        // airportToDestinationPageState.set('airportToDestinationPage', false);
+        // roundTripPickupPageState.set('roundTripPickupPage', false);
+
+
         localStorage.removeItem("departureAirportCBTD");
         localStorage.removeItem("estimatedPrice");
         localStorage.removeItem("confirmBooking");
@@ -88,6 +79,7 @@ export class ModalComponent {
     // Previous Button
     previousButton() {
         toNextpageState.set('toNextpage', false);
+        
     }
 
     render() {
@@ -125,7 +117,7 @@ export class ModalComponent {
 
                                     {
                                         departureAirPageState.get('departureAirPage') ? (
-                                            <div>
+                                            <div class='mx-auto custom-text-color'>
                                                 <h1>Pick up Point - Departure Airport</h1>
                                             </div>
                                         ) : null 
@@ -133,7 +125,7 @@ export class ModalComponent {
 
                                     {
                                         finalDestinationPageState.get('finalDestinationPage') ? (
-                                            <div>
+                                            <div class='mx-auto custom-text-color'>
                                                 <h1>Arrival Airport - Final Destination</h1>
                                             </div>
                                         ) : null 
@@ -141,7 +133,7 @@ export class ModalComponent {
 
                                     {
                                         airportToDestinationPageState.get('airportToDestinationPage') ? (
-                                            <div>
+                                            <div class='mx-auto custom-text-color'>
                                                 <h1>Pick Up point - Airports - Destination</h1>
                                             </div>
                                         ) : null 
@@ -149,7 +141,7 @@ export class ModalComponent {
 
                                     {
                                         roundTripPickupPageState.get('roundTripPickupPage') ? (
-                                            <div>
+                                            <div class='mx-auto custom-text-color'>
                                                 <h1>Round Trip Pick ups</h1>
                                             </div>
                                         ) : null 

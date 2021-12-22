@@ -1,13 +1,7 @@
-import { Component, getAssetPath, h, Listen, Prop, State  } from "@stencil/core";
-// import { href} from "stencil-router-v2";
+import { Component, getAssetPath, h, Prop, State  } from "@stencil/core";
 import { airportToDestinationPageState, branchId, departureAirPageState, finalDestinationPageState, roundTripPickupPageState, toNextpageState } from "../globalState/globalState";
 import { Router } from "../routerconfig/routerconfig";
 import { handleErrors } from "../useFulSnippets/actions";
-
-// console.log(confirmBranchState.get('state'));
-// const sv = JSON.parse(localStorage.getItem("confirmBooking"))
-// console.log(sv.firstName)
-
 
 interface  formStateType { 
   firstName: string,
@@ -290,7 +284,6 @@ export class MyComponent {
                                         
                                     </div>
                                     <select
-                                        // name="airport"
                                         class='shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600'
                                         onInput={(event) => this.handleSecondSelect(event)} 
                                         required

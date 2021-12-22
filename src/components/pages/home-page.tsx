@@ -1,5 +1,6 @@
 import { Component, h } from "@stencil/core";
-// import { Router } from "../routerconfig/routerconfig";
+import { airportToDestinationPageState, departureAirPageState, finalDestinationPageState, roundTripPickupPageState } from "../globalState/globalState";
+
 
 @Component({
     tag: "home-page",
@@ -9,9 +10,14 @@ import { Component, h } from "@stencil/core";
 })
 
 export class HomePage {
+        componentWillLoad() { 
+            departureAirPageState.set('departureAirPage', false);
+            finalDestinationPageState.set('finalDestinationPage', false);
+            airportToDestinationPageState.set('airportToDestinationPage', false);
+            roundTripPickupPageState.set('roundTripPickupPage', false);
+        
+        }
     render() {
-        // const url = Router.url?.pathname;
-        // console.log(url);
         return (
             <div>
                 <main-screen></main-screen>
