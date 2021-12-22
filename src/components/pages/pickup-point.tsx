@@ -35,12 +35,6 @@ export class MyComponent {
         this.airportDataApi(branchId.get('id'));
     }
 
-    
-
-    
-
-    
-
     @Prop() logoIcon = 'logo.png';
 
     @State() formState : formStateType = {
@@ -56,6 +50,7 @@ export class MyComponent {
     };
 
     @State() valid = false;
+    @State() loading = false;
 
     @State() firstNameErrMsg;
     @State() surnameErrMsg;
@@ -70,8 +65,6 @@ export class MyComponent {
     @State() googleApiLocation;
     @State() storeGoogleApiLocation;
     @State() storeAirportApiData;
-    // @State() destinationAreaState: any;
-    // @State() storeFromDropDown: any;
     @State() destinationState: any;
     
 
@@ -148,26 +141,30 @@ export class MyComponent {
         estimatedData.append('date', this.formState?.pickupDate);
         estimatedData.append('time', this.formState?.pickupTime);
 
-    
-        const response = await fetch(`https://watchoutachan.herokuapp.com/api/firstestimate`,
-        {
-            method: 'post',
-            body: estimatedData,
-        }
-        );
-        
-        handleErrors(response);
+        try {
+            const response = await fetch(`https://watchoutachan.herokuapp.com/api/firstestimate`,
+                {
+                    method: 'post',
+                    body: estimatedData,
+                }
+            );
+            
+            handleErrors(response);
+            this.loading = false;
+            let json = await response.json();
+            localStorage.setItem("estimatedPrice", JSON.stringify(json));
+            Router.push('/page-comfirm-booking');
 
-        let json = await response.json();
-        // this.estimatePrice = json;
-        localStorage.setItem("estimatedPrice", JSON.stringify(json));
+        } catch (error) {
+            console.log(error);
+            this.loading = false;
+        }
+        
     };
     
 
-    onBookChange(e) {
-        console.log(e)
-        // e.preventDefault();
-
+    onBookChange() {
+  
         if (this.formState?.firstName?.trim() === '') {
             this.firstNameErrMsg = 'First Name is required';
         }
@@ -208,26 +205,14 @@ export class MyComponent {
             && this.formState?.pickupDate?.trim() !== ''
             && this.formState?.pickupTime?.trim() !== ''
         ) {
-            
-
-           Router.push('/page-comfirm-booking');
-            console.log(this.formState)
+            this.loading = true;
 
             this.callEstimatedDataApi();
 
             localStorage.setItem("departureAirport", JSON.stringify(this.formState));
-            // console.log(pickupPointAir)
-            // confirmBranchState.set('state', this.formState);
-            console.log(localStorage.getItem("departureAirport"));
-        
-         
-
-           
-            
+  
         }
     }
-
-    
 
     render() {
         return (
@@ -381,30 +366,27 @@ export class MyComponent {
                             </div>
                         </div>
 
-                         
-               
-                        <button 
-                            type="button" 
-                            onClick={this.onBookChange.bind(this)}  
-                            // onSubmit={this.onBookChange.bind(this)}  
-                            class="text-center mt-16 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
-                        >
-                            Book Now
-                            {/* <a {...href('/page-comfirm-booking')}>Book Now</a>  */}
-                            {/* <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a>  */}
-                            {/* {
-                                confirmBranchState.get('state') !== '' ?
-                                    <a {...href('/page-comfirm-booking')}>Book Now</a> 
-                                    : <h1>Book Now</h1>
-                        } */}
-                            {/* Book Now */}
-                            
-                        </button>
+                        {
+                            !this.loading ? (
+                                <button 
+                                    type="button" 
+                                    onClick={this.onBookChange.bind(this)}    
+                                    class="text-center mt-16 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
+                                >
+                                    Book Now
+                                </button>
+                            ) : (
+                                <div class=" flex justify-center w-full">
+                                    <div class="flex flex-row rounded-xl space-x-2 shadow-2xl p-4 items-center w-auto">
+                                        <div class=" animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
+                                        <small class="text-midnightblue">Please wait...</small>
+                                    </div>
+                                </div>  
+                            )
+                        }
                     </form>
                 </main>
             </div>
         );
     }
 }
-
-// ...href('/page-comfirm-booking')

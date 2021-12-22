@@ -267,7 +267,7 @@ export class PageRoundtripPickusp {
             && this.formState?.returnPickupDate?.trim() !== ''
             && this.formState?.returnPickupTime?.trim() !== ''
       ) {
-          this.loading = true;
+            this.loading = true;
           
             this.callEstimatedDataApi()
             
