@@ -1,6 +1,6 @@
 import { Component, getAssetPath, h, Listen, Prop, State  } from "@stencil/core";
 // import { href} from "stencil-router-v2";
-import { branchId, toNextpageState } from "../globalState/globalState";
+import { airportToDestinationPageState, branchId, departureAirPageState, finalDestinationPageState, roundTripPickupPageState, toNextpageState } from "../globalState/globalState";
 import { Router } from "../routerconfig/routerconfig";
 import { handleErrors } from "../useFulSnippets/actions";
 
@@ -32,6 +32,12 @@ export class MyComponent {
 
     componentWillLoad() { 
         toNextpageState.set('toNextpage', true);
+
+        departureAirPageState.set('departureAirPage', true);
+        finalDestinationPageState.set('finalDestinationPage', false);
+        airportToDestinationPageState.set('airportToDestinationPage', false);
+        roundTripPickupPageState.set('roundTripPickupPage', false);
+        
         this.airportDataApi(branchId.get('id'));
     }
 

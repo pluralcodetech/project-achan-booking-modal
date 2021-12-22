@@ -6,7 +6,7 @@ import { href, Route } from 'stencil-router-v2';
 
 
 import { Router } from "./routerconfig/routerconfig";
-import { branchId, toNextpageState } from "./globalState/globalState";
+import { airportToDestinationPageState, branchId, departureAirPageState, finalDestinationPageState, roundTripPickupPageState, toNextpageState } from "./globalState/globalState";
 // import { store } from "@stencil/redux";
 // import { configureStore } from "./redux-statement/store";
 
@@ -120,11 +120,41 @@ export class ModalComponent {
                                                     </a>
                                                     
                                             )}
-                                            
-
-                                            
                                         </div>
                                     </div>
+
+                                    {
+                                        departureAirPageState.get('departureAirPage') ? (
+                                            <div>
+                                                <h1>Pick up Point - Departure Airport</h1>
+                                            </div>
+                                        ) : null 
+                                    }
+
+                                    {
+                                        finalDestinationPageState.get('finalDestinationPage') ? (
+                                            <div>
+                                                <h1>Arrival Airport - Final Destination</h1>
+                                            </div>
+                                        ) : null 
+                                    }
+
+                                    {
+                                        airportToDestinationPageState.get('airportToDestinationPage') ? (
+                                            <div>
+                                                <h1>Pick Up point - Airports - Destination</h1>
+                                            </div>
+                                        ) : null 
+                                    }
+
+                                    {
+                                        roundTripPickupPageState.get('roundTripPickupPage') ? (
+                                            <div>
+                                                <h1>Round Trip Pick ups</h1>
+                                            </div>
+                                        ) : null 
+                                    }
+
                                     <button
                                         onClick={this.closeModal.bind(this)}
                                         class="text-gray-400 p-1 ml-auto bg-transparent border-0 outline-none focus:outline-none"
