@@ -73,13 +73,6 @@ export class ArrivalToFinalDestination {
         this.formState[event.target.name] = value;
     };
 
-    // handlefinalDest(event) {
-    //     this.googleApiLocation = event.target.value;
-    //     // this.formState.finalDest = event.target.value;
-
-    //     this.callgoogleApiData();
-    // };
-
     handlefinalDestAddress(event) {
         this.googleApiLocation = event.target.value;
         this.formState.finalDestAddress = event.target.value;

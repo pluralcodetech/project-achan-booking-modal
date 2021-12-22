@@ -17,7 +17,7 @@ export class AirportDestinationCBTD {
     @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
     render() {
         return (
-            <div class="p-4">
+            <div class="py-4 px-2">
                 <ad-get-cabticket
                     passengername={this.airportDestinationCBTD?.first_ticket?.passenger_name}
                     phonenumber={this.airportDestinationCBTD?.first_ticket?.phone_number}

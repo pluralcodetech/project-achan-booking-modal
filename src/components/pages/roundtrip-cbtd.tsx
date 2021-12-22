@@ -17,7 +17,7 @@ export class RoundTripCBTD {
     @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
     render() {
         return (
-            <div class="p-4">
+            <div class="py-4 px-2">
                 <roundtrip-get-cabticket
                     passengername={this.roundtripCBTD?.first_ticket?.passenger_name}
                     phonenumber={this.roundtripCBTD?.first_ticket?.phone_number}
