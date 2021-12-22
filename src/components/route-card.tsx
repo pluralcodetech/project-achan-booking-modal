@@ -17,13 +17,12 @@ export class RouteCard {
     render() {
         return (
             <a {...href(this.pathname)}  >
-                <div class='p-5 mx-auto border flex flex-row items-center justify-between w-96 custom-border-color'>
+                <div class='p-3 sm:p-5 mx-auto border w-full flex flex-row items-center justify-between sm:w-96 custom-border-color'>
                     <div>
                         <h1 class="font-semibold custom-text-color">{this.places}</h1>
                     </div>
                     <div>
                         <img  
-                            // class="w-6" 
                             src={getAssetPath(`../assets/${this.faqIcon}`)} 
                             alt="logo-icon"
                         /> 

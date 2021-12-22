@@ -18,7 +18,7 @@ export class MainScreen {
                     <h1 class="text-2xl custom-text-color">Book Our Aiport Taxi</h1>
                 </title-component>
 
-                <main class='mt-20 space-y-6'>
+                <main class='px-2 sm:px-0 mt-20 space-y-6'>
                     <div>
                         <route-card
                             pathname="/page-pickup-point"

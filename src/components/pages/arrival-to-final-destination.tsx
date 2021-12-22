@@ -140,7 +140,7 @@ export class ArrivalToFinalDestination {
     callEstimatedDataApi = async () => {
         let estimatedData: FormData = new FormData();
         estimatedData.append('airid', this.formState?.arrivalAirport);
-        estimatedData.append('pickup_area', this.formState?.destinationArea);
+        estimatedData.append('destination_area', this.formState?.destinationArea);
         estimatedData.append('date', this.formState?.pickupDate);
         estimatedData.append('time', this.formState?.pickupTime);
 
