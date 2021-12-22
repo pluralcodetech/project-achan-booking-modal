@@ -465,19 +465,11 @@ export class PageRoundtripPickusp {
         console.log(this.formState)
     };
 
-    // handlefinalDest(event) {
-    //     this.googleApiLocation = event.target.value;
-    //     this.formState.finalDest = event.target.value;
-
-    //     this.callgoogleApiData();
-    // };
-
     handleDestination(event) {
         const value = event.target.value;
         this.googleApiLocation = value ;
 
         this.formState[event.target.name] = value;
-        // this.formState.pickupAddress = event.target.value;
 
         this.callgoogleApiData();
     };
@@ -526,10 +518,10 @@ export class PageRoundtripPickusp {
 
 
         const response = await fetch(`https://watchoutachan.herokuapp.com/api/google/locations`,
-        {
-            method: 'post',
-            body: googleData
-        }
+            {
+                method: 'post',
+                body: googleData
+            }
         );
         handleErrors(response);
 
@@ -571,7 +563,8 @@ export class PageRoundtripPickusp {
     
 
     onBookChange() {
-
+        
+        
       if (this.formState?.firstName?.trim() === '') {
         this.firstNameErrMsg = 'First Name is required';
       }
@@ -639,13 +632,11 @@ export class PageRoundtripPickusp {
             && this.formState?.returnPickupDate?.trim() !== ''
             && this.formState?.returnPickupTime?.trim() !== ''
       ) {
+          this.loading = true;
           
             this.callEstimatedDataApi()
             
-            console.log(this.formState)
             localStorage.setItem("roundTripPickUp", JSON.stringify(this.formState));
-            console.log(localStorage.getItem("roundTripPickUp"));
-        
         }
   }
 
@@ -931,7 +922,8 @@ export class PageRoundtripPickusp {
                                     onClick={this.onBookChange.bind(this)}  
                                     class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
                                 >
-                                    <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a> 
+                                    Book Now
+                                    {/* <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a>  */}
                                 </button>
                             ) : (
                                 <div class=" flex justify-center w-full">

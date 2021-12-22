@@ -54,6 +54,7 @@ export class ConfirmedDepartureAirport {
         this.sendTicketApi();
         console.log(this.departureAirportCBTD)
     }
+    
     render() {
         return (
             <div class="px-4 py-56">

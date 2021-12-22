@@ -76,6 +76,7 @@ export class PagePickuppointAirportDestination {
     @State() destinationState: any;
 
     @State() valid = false;
+    @State() loading = false;
 
     @Method()
     async setValid() {
@@ -83,28 +84,17 @@ export class PagePickuppointAirportDestination {
          this.valid = true;
     }
 
-    
-
     handleInputChange(event) {
         const value = event.target.value;
         this.formState[event.target.name] = value;
         console.log(this.formState)
     };
 
-    // handlefinalDest(event) {
-    //     this.googleApiLocation = event.target.value;
-    //     this.formState.finalDest = event.target.value;
-
-    //     this.callgoogleApiData();
-    // };
-
     handleDestination(event) {
         const value = event.target.value;
         this.googleApiLocation = value ;
 
         this.formState[event.target.name] = value;
-        // this.formState.pickupAddress = event.target.value;
-
         this.callgoogleApiData();
     };
 
@@ -173,19 +163,24 @@ export class PagePickuppointAirportDestination {
         estimatedData.append('departure_airid', this.formState?.departureAirport);
         
 
-    
-        const response = await fetch(`https://watchoutachan.herokuapp.com/api/thirdestimate`,
-        {
-            method: 'post',
-            body: estimatedData,
-        }
-        );
+        try {
+            const response = await fetch(`https://watchoutachan.herokuapp.com/api/thirdestimate`,
+                {
+                    method: 'post',
+                    body: estimatedData,
+                }
+            );
         
-        handleErrors(response);
-
-        let json = await response.json();
-        // this.estimatePrice = json;
-        localStorage.setItem("estimatedPrice", JSON.stringify(json));
+            handleErrors(response);
+            this.loading = false;
+            let json = await response.json();
+            localStorage.setItem("estimatedPrice", JSON.stringify(json));
+            Router.push('/page-ad-comfirm-booking')
+        
+        } catch (error) {
+            console.log(error);
+            this.loading = false;
+        }
     };
     
 
@@ -247,21 +242,11 @@ export class PagePickuppointAirportDestination {
             && this.formState?.pickupTime?.trim() !== ''
             && this.formState?.arrivalTime?.trim() !== ''
       ) {
-          
+            this.loading = true;
             this.callEstimatedDataApi()
-            Router.push('/page-ad-comfirm-booking')
-            console.log(this.formState)
             localStorage.setItem("airportDestination", JSON.stringify(this.formState));
-            // console.log(pickupPointAir)
-            // confirmBranchState.set('state', this.formState);
-            console.log(localStorage.getItem("airportDestination"));
-        
-         
-
-           
-            
         }
-  }
+    }
 
     
     render() {
@@ -420,23 +405,6 @@ export class PagePickuppointAirportDestination {
                                     <small>{this.arrivalAirportErrMsg}</small>
                                 </div>
                             </div>
-                            {/* <div class="sm:w-3/6">
-                                <label class="block text-gray-400 text-sm font-light mb-2">Destination Address</label>
-                                <input
-                                    name="finalDest"
-                                    list='datalist1'
-                                    onInput={(e) => this.handlefinalDest(e)}
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-600" type="text"
-                                    required
-                                />
-                                <datalist id='datalist1'>
-                                    {
-                                    this.storeGoogleApiLocation?.map((item) => (
-                                        <option value={item}>{item}</option>
-                                    ))}
-                                </datalist>
-                                <small>{this.finalDestErrMsg}</small>
-                            </div> */}
                         </div>
 
                         <div class="mt-4 flex flex-col sm:flex-row sm:justify-between sm:space-x-7 space-y-6 sm:space-y-0">

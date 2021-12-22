@@ -28,10 +28,7 @@ export class ConfirmBooking {
 
 
     callConfirmBookingApi = async () => {
-        
-
-      // console.log(Router);
-
+  
       let ConfirmBooking: FormData = new FormData();
       ConfirmBooking.append('firstname', this.localState.firstName);
       ConfirmBooking.append('surname', this.localState?.surname);
