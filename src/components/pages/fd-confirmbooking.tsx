@@ -21,7 +21,6 @@ export class FDConfirmBooking {
     @State() localState = JSON.parse(localStorage.getItem("finalDestination"));
     @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
     @State() loading = false;
-    // @Prop() router = createRouter();
     
 
     componentWillLoad() { 
@@ -73,7 +72,6 @@ export class FDConfirmBooking {
         
     } catch (error) {
         console.log(error);
-        // this.cabTicketDetails = null;
         this.loading = false;
     }
   };
