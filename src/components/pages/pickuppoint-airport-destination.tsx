@@ -489,6 +489,25 @@ export class PagePickuppointAirportDestination {
                             </div>
                         </div>
                        
+                         {
+                            !this.loading ? (
+                                <button 
+                                    type="button" 
+                                    onClick={this.onBookChange.bind(this)}  
+                                    class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
+                                >
+                                    Book Now
+                                    {/* <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a>  */}
+                                </button>
+                            ) : (
+                                <div class=" flex justify-center w-full">
+                                    <div class="flex flex-row rounded-xl space-x-2 shadow-2xl p-4 items-center w-auto">
+                                        <div class=" animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
+                                        <small class="text-midnightblue">Please wait...</small>
+                                    </div>
+                                </div>  
+                            )
+                        }
                
                         <button 
                             type="button" 

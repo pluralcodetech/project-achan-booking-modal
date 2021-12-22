@@ -62,6 +62,8 @@ export class ArrivalToFinalDestination {
     @State() destinationState: any;
 
     @State() valid = false;
+    @State() loading = false;
+
     
     @Method()
     async setValid() {
@@ -142,19 +144,27 @@ export class ArrivalToFinalDestination {
         estimatedData.append('date', this.formState?.pickupDate);
         estimatedData.append('time', this.formState?.pickupTime);
 
-    
-        const response = await fetch(`https://watchoutachan.herokuapp.com/api/secondestimate`,
-        {
-            method: 'post',
-            body: estimatedData,
-        }
-        );
+        try {
+            const response = await fetch(`https://watchoutachan.herokuapp.com/api/secondestimate`,
+                {
+                    method: 'post',
+                    body: estimatedData,
+                }
+            );
+            
+            handleErrors(response);
         
-        handleErrors(response);
-
-        let json = await response.json();
-        // this.estimatePrice = json;
-        localStorage.setItem("estimatedPrice", JSON.stringify(json));
+            this.loading = false;
+            let json = await response.json();
+            localStorage.setItem("estimatedPrice", JSON.stringify(json));
+            
+            Router.push('/page-fd-comfirm-booking')
+        } catch (error) {
+            console.log(error);
+            this.loading = false;
+        }
+    
+        
     };
     
 
@@ -200,13 +210,11 @@ export class ArrivalToFinalDestination {
             && this.formState?.pickupTime?.trim() !== ''
             && this.formState?.finalDestAddress?.trim() !== ''
       ) {
+            this.loading = true;
             this.callEstimatedDataApi()
-            Router.push('/page-fd-comfirm-booking')
+            
             console.log(this.formState)
             localStorage.setItem("finalDestination", JSON.stringify(this.formState));
-           
-            console.log(localStorage.getItem("finalDestination"));
-          
         }
     
 
@@ -365,12 +373,25 @@ export class ArrivalToFinalDestination {
                                 <small>{this.finalDestAddressErrMsg}</small>
                             </div>
                         </div>
+
+                        {
+                            !this.loading ? (
+                               <button 
+                                    type="button" 
+                                    onClick={this.onBookChange.bind(this)}  
+                                    class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
+                                >Book Now</button>
+                            ) : (
+                                <div class=" flex justify-center w-full">
+                                    <div class="flex flex-row rounded-xl space-x-2 shadow-2xl p-4 items-center w-auto">
+                                        <div class=" animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
+                                        <small class="text-midnightblue">Please wait...</small>
+                                    </div>
+                                </div>  
+                            )
+                        }
                
-                        <button 
-                            type="button" 
-                            onClick={this.onBookChange.bind(this)}  
-                            class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
-                        >Book Now</button>
+                        
                     </form>
                 </main>
             </div>
