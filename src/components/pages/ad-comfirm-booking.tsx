@@ -112,7 +112,6 @@ export class ADConfirmBooking {
                         </button>
                         <a {...href('/page-pickuppoint-airport-destination')}>
                             <button 
-                              // onClick={this.previousChange.bind(this)}  
                               type="button" 
                               class="text-center mt-10 w-full border p-3 outline-none hover:border-0 focus:outline-none customBookingDetails-btn2">Cancel
                           </button>
@@ -129,7 +128,6 @@ export class ADConfirmBooking {
                     )}
                 </div>
             </div>
-            // <modal-booking-details></modal-booking-details>
             
         )
     }

@@ -59,8 +59,6 @@ export class ConfirmedRoundtripBooking {
         this.loading = true;
 
         this.sendTicketApi();
-        
-        console.log(this.roundtripCBTD)
     }
     render() {
         return (

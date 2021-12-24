@@ -68,30 +68,7 @@ export class ModalBookingDetails {
                             </div>
                         </div>
                     </div>
-                    {/* <div class="text-white w-full">
-                        <div class="flex flex-col space-y-2 sm:space-y-1">
-                            <small class="text-sm font-semibold">from</small>
-                            <small class="text-xs">2020-11-2</small>
-                            <small class="text-lg">19:11</small>
-                            <small class="text-sm">MM2</small>
-                            
-                        </div>
-                        <div class='flex justify-between mt-16 sm:mt-14 space-x-4 sm:space-x-0 items-end'>
-                            <div class="flex flex-col  space-y-2 sm:space-y-1 ">
-                                <small class="text-sm font-semibold">to</small>
-                                <small class="text-xs">2020-11-2</small>
-                                <small class="text-lg">19:11</small>
-                                <small class="text-sm">MM2</small>
-                            </div>
-                            <div class="flex flex-col  space-y-1 ">
-                                <label class="text-xs sm:text-sm font-semibold">Estimated Price</label>
-                                <small class="text-xs sm:text-sm">{toCurrency(this.estimatedPriceMin, "NGN" )} - {toCurrency(this.estimatedPriceMax, "NGN" )}</small>
-                            </div>
-                            
-                            
-                        </div>
-                    </div> */}
-                    
+                   
                 </figcaption>
 
                 

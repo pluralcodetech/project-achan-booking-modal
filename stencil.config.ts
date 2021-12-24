@@ -22,6 +22,9 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
+      copy: [
+        { src: 'assets', dest: '../assets' },
+      ]
     },
     {
       type: 'dist-custom-elements',
@@ -34,11 +37,6 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
-
-  // bundles: [
-  //   { components: ['home-page', 'page-pickup-point', 'page-arrival-to-final-destination', 'page-roundtrip-pickup'] }
-  // ],
-  // collections: [{ name: '@stencil/router' }],
 
 
   //add postcss as a plugin

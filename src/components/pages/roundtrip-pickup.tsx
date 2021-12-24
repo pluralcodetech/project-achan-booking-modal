@@ -105,7 +105,6 @@ export class PageRoundtripPickusp {
     handleInputChange(event) {
         const value = event.target.value;
         this.formState[event.target.name] = value;
-        console.log(this.formState)
     };
 
     handleDestination(event) {
@@ -120,7 +119,6 @@ export class PageRoundtripPickusp {
     handleSecondSelect(event) {
         const value = event.target.value;
         this.formState[event.target.name] = value;
-        console.log(this.formState)
 
         this.callDestinationDataApi()
     }
@@ -566,7 +564,7 @@ export class PageRoundtripPickusp {
                                     class="text-center mt-10 w-full border-0 p-3 outline-none focus:outline-none custom-book-btn"
                                 >
                                     Book Now
-                                    {/* <a {...href(this.valid ? '/page-comfirm-booking' : '')}>Book Now</a>  */}
+                                   
                                 </button>
                             ) : (
                                 <div class=" flex justify-center w-full">

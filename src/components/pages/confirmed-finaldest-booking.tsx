@@ -53,7 +53,6 @@ export class ConfirmedFinalDestination {
         this.loading = true;
 
         this.sendTicketApi();
-        console.log(this.finalDestinationCBTD)
     }
     render() {
         return (

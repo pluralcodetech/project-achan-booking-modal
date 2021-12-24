@@ -1,10 +1,8 @@
 import { Component, h, State } from "@stencil/core";
 import {  href } from "stencil-router-v2";
-// import { href } from "stencil-router-v2";
 import { toNextpageState } from "../globalState/globalState";
 import { Router } from "../routerconfig/routerconfig";
 import { handleErrors } from "../useFulSnippets/actions";
-// import { handleErrors } from "../useFulSnippets/actions";
 
 
 
@@ -25,13 +23,6 @@ export class FDConfirmBooking {
 
     componentWillLoad() { 
         toNextpageState.set('toNextpage', true);
-
-
-    //    this.callEstimatedDataApi();
-
-        console.log(this.localState)
-        console.log(this.estimateState)
-
     };
 
 
@@ -85,7 +76,6 @@ export class FDConfirmBooking {
                     time={this.localState?.pickupTime} //time
                     airport={ this.estimateState?.from}
                     destinationAddress={this.estimateState?.to}
-                    //   destination={this.globalTrips?.destination} //destination
                     estimatedPriceMax={this.estimateState?.est_max}
                     estimatedPriceMin={this.estimateState?.est_min}
                 ></modal-booking-details>
@@ -101,7 +91,6 @@ export class FDConfirmBooking {
                                   </button>
                                   <a {...href('/page-arrival-to-final-destination')}>
                                       <button 
-                                        // onClick={this.previousChange.bind(this)}  
                                         type="button" 
                                         class="text-center mt-10 w-full border p-3 outline-none hover:border-0 focus:outline-none customBookingDetails-btn2">Cancel
                                     </button>
@@ -118,7 +107,6 @@ export class FDConfirmBooking {
                               )}
                 </div>
             </div>
-            // <modal-booking-details></modal-booking-details>
             
         )
     }

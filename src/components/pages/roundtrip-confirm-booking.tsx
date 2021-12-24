@@ -22,8 +22,6 @@ export class RoundtripConfirmBooking {
 
   componentWillLoad() { 
       toNextpageState.set('toNextpage', true);
-      console.log(this.estimateState);
-      
   };
 
 

@@ -21,9 +21,6 @@ export class ConfirmBooking {
 
     componentWillLoad() { 
         toNextpageState.set('toNextpage', true);
-        console.log(this.localState)
-        console.log(this.estimateState)
-
     };
 
 

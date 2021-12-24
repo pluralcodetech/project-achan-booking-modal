@@ -57,13 +57,7 @@ export class ModalComponent {
     closeModal() {
         this.opened = false;
         console.log("closing Modal...")
-
-        // departureAirPageState.set('departureAirPage', false);
-        // finalDestinationPageState.set('finalDestinationPage', false);
-        // airportToDestinationPageState.set('airportToDestinationPage', false);
-        // roundTripPickupPageState.set('roundTripPickupPage', false);
-
-
+        
         localStorage.removeItem("departureAirportCBTD");
         localStorage.removeItem("estimatedPrice");
         localStorage.removeItem("confirmBooking");

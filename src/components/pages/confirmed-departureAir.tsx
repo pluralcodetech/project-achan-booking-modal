@@ -52,7 +52,6 @@ export class ConfirmedDepartureAirport {
         this.loading = true;
 
         this.sendTicketApi();
-        console.log(this.departureAirportCBTD)
     }
     
     render() {

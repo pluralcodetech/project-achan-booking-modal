@@ -1,5 +1,3 @@
-
-
 import { Component, getAssetPath, h, Prop } from "@stencil/core";
 import convertDate from "./useFulSnippets/convertDate";
 import convertTime from "./useFulSnippets/convertTime";
