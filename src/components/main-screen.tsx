@@ -3,7 +3,7 @@ import { Component, h, } from "@stencil/core";
 @Component({
     tag: "main-screen",
     styleUrl: 'my-component.css',
-    shadow: true,
+    // shadow: true,
     assetsDirs: ['assets'],
 })
     

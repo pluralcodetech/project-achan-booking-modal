@@ -167,7 +167,7 @@ export class ArrivalToFinalDestination {
             
             Router.push('/page-fd-comfirm-booking')
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             this.loading = false;
         }
     

@@ -67,7 +67,7 @@ export class ADConfirmBooking {
         Router.push('/page-confirmed-airportdest-booking');
         
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         this.loading = false;
     }
   };

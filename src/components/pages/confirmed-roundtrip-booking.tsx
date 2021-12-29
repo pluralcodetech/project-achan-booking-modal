@@ -45,12 +45,12 @@ export class ConfirmedRoundtripBooking {
             );
             handleErrors(response);
             this.loading = false;
-            let json = await response.json();
-            console.log(json);
+            // let json = await response.json();
+            // console.log(json);
             Router.push('/page-roundtrip-cbtd');
             
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             this.loading = false;
         }
         

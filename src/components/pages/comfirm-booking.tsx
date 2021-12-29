@@ -55,7 +55,7 @@ export class ConfirmBooking {
         Router.push('/page-confirmed-departure-airport');
         
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         this.loading = false;
     }
   };

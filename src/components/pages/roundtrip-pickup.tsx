@@ -196,7 +196,7 @@ export class PageRoundtripPickusp {
             localStorage.setItem("estimatedPrice", JSON.stringify(json));
             Router.push('/page-roundtrip-confirm-booking')
         } catch (error) {
-            console.log(error);
+            // console.log(error);`
             this.loading = false;
         }
         

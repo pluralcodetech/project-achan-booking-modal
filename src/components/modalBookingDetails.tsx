@@ -2,9 +2,6 @@ import { Component, Prop, h, getAssetPath} from "@stencil/core";
 import convertDate from "./useFulSnippets/convertDate";
 import convertTime from "./useFulSnippets/convertTime";
 import toCurrency from "./useFulSnippets/toCurrency";
-// import convertDate from "./useFulSnippets/convertDate";
-// import convertTime from "./useFulSnippets/convertTime";
-// import toCurrency from "./useFulSnippets/toCurrency";
 
 @Component({
     tag : 'modal-booking-details',

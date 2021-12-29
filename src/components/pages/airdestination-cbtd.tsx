@@ -13,6 +13,7 @@ export class AirportDestinationCBTD {
     componentWillLoad() {
         toNextpageState.set('toNextpage', false);
     }
+    
     @State() airportDestinationCBTD = JSON.parse(localStorage.getItem("airportDestinationCBTD"));
     @State() estimateState = JSON.parse(localStorage.getItem("estimatedPrice"));
     render() {

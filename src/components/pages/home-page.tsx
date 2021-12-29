@@ -5,7 +5,7 @@ import { airportToDestinationPageState, departureAirPageState, finalDestinationP
 @Component({
     tag: "home-page",
     styleUrl: 'pages.css',
-    shadow: true,
+    // shadow: true,
     assetsDirs: ['assets'],
 })
 

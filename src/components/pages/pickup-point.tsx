@@ -156,7 +156,7 @@ export class MyComponent {
             Router.push('/page-comfirm-booking');
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             this.loading = false;
         }
         

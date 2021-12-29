@@ -37,12 +37,12 @@ export class ConfirmedDepartureAirport {
             );
             handleErrors(response);
             this.loading = false;
-            let json = await response.json();
-            console.log(json);
+            // let json = await response.json();
+            // console.log(json);
             Router.push('/page-departure-airport-cbtd');
             
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             this.loading = false;
         }
     

@@ -4,7 +4,9 @@ import autoprefixer from "autoprefixer";
 import tailwindcss from "tailwindcss";
 import cssnano from "cssnano";
 import purgecss from "@fullhuman/postcss-purgecss";
-import replace from "postcss-replace"
+import replace from "postcss-replace";
+
+import { createRouter} from 'stencil-router-v2';
 
 
 
@@ -30,6 +32,9 @@ export const config: Config = {
       type: 'dist-custom-elements',
     },
     {
+      type: 'dist-custom-elements-bundle',
+    },
+    {
       type: 'docs-readme',
     },
     {
@@ -41,6 +46,7 @@ export const config: Config = {
 
   //add postcss as a plugin
   plugins: [
+    // createRouter(),
     postcss({
       // add postcss plugins
       plugins: [
@@ -55,5 +61,11 @@ export const config: Config = {
           : [])
       ]
     })
-  ]
+  ],
+
+  commonjs: {
+    namedExports: {
+      'stencil-router-v2' : ['createRouter']
+    }
+  }
 };

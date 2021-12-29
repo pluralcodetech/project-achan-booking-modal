@@ -1,5 +1,5 @@
 {
-  "name": "achan-booking-modal",
+  "name": "test-achan-booking-modal",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -26,11 +26,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.11.0",
-    "@stencil/redux": "^0.2.0",
-    "redux": "^4.1.2",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.1"
+    "@stencil/core": "^2.11.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.1.3",

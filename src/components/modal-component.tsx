@@ -1,24 +1,11 @@
-import { Component, getAssetPath, h, Prop, State } from "@stencil/core";
+import { Component, getAssetPath, h, Prop} from "@stencil/core";
 
 import { href, Route } from 'stencil-router-v2';
 
-// import customPostAction from '../components/redux-statement/actions/customPostAction'
-
-
 import { Router } from "./routerconfig/routerconfig";
 import { airportToDestinationPageState, branchId, departureAirPageState, finalDestinationPageState, roundTripPickupPageState, toNextpageState } from "./globalState/globalState";
-// import { store } from "@stencil/redux";
-// import { configureStore } from "./redux-statement/store";
 
-
-
-
-console.log(Router);
-
-
-console.log(toNextpageState.get('toNextpage'));
-
-
+// const Router = createRouter();
 
 @Component({
     tag: 'modal-component',
@@ -34,10 +21,6 @@ export class ModalComponent {
     @Prop({ reflect: true, mutable: true })  requiredid: string;
     @Prop() previousBtn = 'arrow-left.svg';
     @Prop() logoIcon = 'logo.png';
-
-    @State() customPost;
-    @State() loading;
-    @State() error;
 
     customPostAction: (...args: any) => any;
     

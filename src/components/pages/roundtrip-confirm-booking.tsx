@@ -70,7 +70,7 @@ export class RoundtripConfirmBooking {
         Router.push('/page-confirmed-roundtrip-booking');
         
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         this.loading = false;
     }
   };
